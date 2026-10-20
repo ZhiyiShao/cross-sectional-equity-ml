@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "scope": "existing_2020_2021_validation_predictions_only",
+  "predictions": "outputs/cv_selected_validation_v1/development_predictions.parquet",
+  "proxy_source": "outputs/baselines_v1/development_predictions.parquet",
+  "models": ["raw__ridge_04", "cross_sectional_rank__ridge_05", "raw__lightgbm_02", "cross_sectional_rank__lightgbm_01"],
+  "baseline": "momentum20",
+  "groups": 10,
+  "assignment": "signal_eligible only; descending score, ascending PERMNO tie break; group=10-floor(10*zero_based_position/n); group 10 contains ceil(n/10)",
+  "label": "frozen strict-main y_excess_5d; missing stays missing",
+  "boundary": "assign all dates first; exclude whole dates with horizon beyond 2021-12-31 from return summaries, report their coverage separately",
+  "aggregation": "within-date equal-weight mean of observed labels in the preassigned group; then equal date mean; report conditional-on-observation and coverage explicitly",
+  "proxy_sensitivity": "fixed groups; fill only missing primary labels with existing frozen-proceeds proxy on non-boundary dates; unresolved remain missing",
+  "bootstrap": {"method": "paired circular moving blocks of daily IC differences vs momentum20", "blocks": [10, 5, 20], "replications": 5000, "seed": 20261016},
+  "model_fit_budget": 0,
+  "new_predictions": false,
+  "test_performance_authorized": false,
+  "backtest": false
+}

@@ -1,0 +1,17 @@
+{
+  "scope": "US regular-way equity settlement; validation plus public-calendar boundary fixtures only",
+  "supported_windows": [["2020-01-01","2022-01-10"],["2017-08-28","2017-09-15"],["2024-05-20","2024-06-07"]],
+  "non_settlement_weekdays": ["2020-01-01","2020-01-20","2020-02-17","2020-04-10","2020-05-25","2020-07-03","2020-09-07","2020-10-12","2020-11-11","2020-11-26","2020-12-25","2021-01-01","2021-01-18","2021-02-15","2021-04-02","2021-05-31","2021-07-05","2021-09-06","2021-10-11","2021-11-11","2021-11-25","2021-12-24","2017-09-04","2024-05-27"],
+  "explicit_open_dates": ["2021-06-18","2021-12-31","2022-01-03"],
+  "sources": {
+    "2020": "https://www.dtcc.com/~/media/Files/pdf/2019/12/9/12636-19.pdf",
+    "2021": "https://www.dtcc.com/-/media/Files/pdf/2020/12/9/14407-20.pdf",
+    "columbus_2020": "https://www.dtcc.com/Globals/PDFs/2020/September/25/14015-20",
+    "good_friday_2021": "https://www.dtcc.com/-/media/Files/pdf/2021/3/4/14790-21.pdf",
+    "juneteenth_2021": "https://www.dtcc.com/Globals/PDFs/2021/June/17/15471-21",
+    "christmas_2021": "https://www.dtcc.com/-/media/Files/pdf/2021/11/19/a9078.pdf",
+    "t3_t2": "https://www.sec.gov/rules/sro/finra/2017/34-81448.pdf",
+    "t2_t1": "https://www.dtcc.com/Globals/PDFs/2024/April/25/20083-24"
+  },
+  "note": "Limited DTC processing does not mean standard equity settlement. 2021 annual notice mislabels Nov 11 weekday; use ISO date. Unsupported dates fail closed; future full test calendar must be extended from public notices before test execution. No test prices loaded."
+}

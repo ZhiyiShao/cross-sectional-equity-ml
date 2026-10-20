@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "signal_start": "2015-01-02",
+  "signal_step_trading_days": 5,
+  "entry_lag_trading_days": 1,
+  "holding_period_trading_days": 5,
+  "label": "stock total return from close t+1 to close t+6 minus vwretd compounded over t+2..t+6",
+  "ordinary_label_policy": "Require executable entry and exit closes; verified P* spans may bridge only entirely within the holding interval",
+  "delist_policy": "Strict main label is missing; known NA-flagged CIZ delisting returns produce a separately named frozen-proceeds proxy, never actual cash settlement",
+  "unresolved_returns": "MV/DG/DM/DP/GP and unverified spans remain missing; never zero or blanket -100%",
+  "feature_policy": "Raw causal features; strict complete rolling windows; no imputation, winsorization, scaling or feature selection before training",
+  "single_day_return_flags": ["D1", "D2", "D3", "D4", "DU"],
+  "features": [
+    "momentum_5", "momentum_10", "momentum_20", "momentum_60", "momentum_120",
+    "momentum_60_skip5", "reversal_1",
+    "volatility_5", "volatility_20", "volatility_60", "downside_volatility_20",
+    "log_dollar_volume_20", "log_dollar_volume_60", "dollar_volume_ratio_5_20",
+    "share_volume_ratio_5_20", "share_turnover_20", "amihud_20",
+    "intraday_range_20", "close_location_5", "log_market_cap", "market_beta_60"
+  ],
+  "splits": {
+    "train": ["2015-01-01", "2019-12-31"],
+    "validation": ["2020-01-01", "2021-12-31"],
+    "test": ["2022-01-01", "2025-12-31"]
+  },
+  "split_purge": "Label end must be inside the signal-date split. After tuning, refit eligibility is separately available through 2021-12-31.",
+  "calendar_rows_preserved": true,
+  "test_strategy_performance_inspected": false
+}

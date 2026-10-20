@@ -1,0 +1,94 @@
+{
+  "version": "1.0",
+  "scope": "full_2015_2019_training_validation_2020_2021_selection_four_families",
+  "train_dates": [
+    "2015-01-01",
+    "2019-12-31"
+  ],
+  "validation_dates": [
+    "2020-01-01",
+    "2021-12-31"
+  ],
+  "test_start_exclusive": "2022-01-01",
+  "target": "y_excess_5d",
+  "selection_metric": "equal_date_mean_cross_sectional_spearman_rank_ic",
+  "tie_break": "first configuration in the fixed grid",
+  "preprocessing": {
+    "fit_rows": "eligible_main_sample in train only",
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "imputation": "training feature median",
+    "scaling": "training mean and population standard deviation after clipping and imputation",
+    "same_transformed_inputs_for_both_models": true,
+    "target_transform": "none",
+    "missing_indicators": false
+  },
+  "sample_weight": "equal weight per eligible stock-signal row",
+  "ridge": {
+    "alpha_log10_start": -2,
+    "alpha_log10_end": 6,
+    "n_trials": 20,
+    "solver": "cholesky"
+  },
+  "lightgbm": {
+    "num_leaves": [
+      7,
+      15,
+      31,
+      63,
+      127
+    ],
+    "n_estimators": [
+      100,
+      300
+    ],
+    "min_child_samples": [
+      100,
+      500
+    ],
+    "fixed": {
+      "objective": "regression",
+      "learning_rate": 0.03,
+      "reg_lambda": 1.0,
+      "max_depth": -1,
+      "subsample": 1.0,
+      "subsample_freq": 0,
+      "colsample_bytree": 1.0,
+      "random_state": 20261014,
+      "deterministic": true,
+      "force_col_wise": true,
+      "n_jobs": 4,
+      "verbosity": -1
+    },
+    "early_stopping": false
+  },
+  "momentum_baseline": "raw momentum_20, larger is better; missing values use training median; no sign selection",
+  "bootstrap": {
+    "blocks": [
+      10,
+      5,
+      20
+    ],
+    "replications": 5000,
+    "seed": 20261014
+  },
+  "event_sensitivity": "selected models unchanged; augment validation evaluation with available frozen-proceeds proxy labels; never fill unresolved events",
+  "test_performance_authorized": false,
+  "representations": [
+    "raw",
+    "cross_sectional_rank"
+  ],
+  "raw_clip_quantiles": [
+    0.005,
+    0.995
+  ],
+  "rank_clip_bounds": [
+    -0.5,
+    0.5
+  ],
+  "model_fit_budget": 80,
+  "early_stopping": false,
+  "refit_through_2021": false
+}

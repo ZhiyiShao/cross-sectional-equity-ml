@@ -1,0 +1,31 @@
+{
+  "version": "1.1",
+  "research_design": "RESEARCH_DESIGN.md",
+  "start_month": "2015-01",
+  "end_month": "2025-12",
+  "security_filters": {
+    "SecurityType": ["EQTY"],
+    "SecuritySubType": ["COM"],
+    "ShareType": ["NS"],
+    "USIncFlg": ["Y"],
+    "IssuerType": ["ACOR", "CORP"],
+    "PrimaryExch": ["N", "A", "Q"]
+  },
+  "regular_trading_filters": {
+    "ConditionalType": ["RW"],
+    "TradingStatusFlg": ["A"],
+    "DlyDelFlg": ["N"],
+    "DlyPrcFlg": ["TR"]
+  },
+  "min_close_usd": 5.0,
+  "min_observed_history_days": 252,
+  "liquidity_window_trading_days": 60,
+  "min_valid_liquidity_days": 50,
+  "max_securities": 500,
+  "liquidity_formula": "mean(DlyClose * DlyVol) over valid observations within 60 market trading dates, including formation date",
+  "history_definition": "cumulative non-delisting RW/A observations with positive DlyPrc and price flag TR or BA, from extraction start through formation date",
+  "share_class_resolution": "highest liquidity per PERMCO before taking top 500; PERMNO ascending breaks ties",
+  "effective_rule": "formation at previous calendar month's last market trading date; effective next month's first market trading date",
+  "snapshot_limitation": "historical effective dates in current CRSP vintage, not unrevised as-released data",
+  "rules_refined_before_model_evaluation": true
+}

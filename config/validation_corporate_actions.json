@@ -1,0 +1,808 @@
+{
+  "date_scope": [
+    "2020-01-01",
+    "2021-12-31"
+  ],
+  "query_ids": [
+    11807755,
+    11807760
+  ],
+  "primary_availability_lag": 2,
+  "availability_lags": [
+    0,
+    2,
+    5,
+    20
+  ],
+  "trade_settlement_lag": 2,
+  "costs_bps": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "primary_cost_bps": 10,
+  "events": [
+    {
+      "permno": 10182,
+      "ticker": "TECD",
+      "event_date": "2020-06-30",
+      "cash_per_share": 145.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 145.0,
+      "economic_value": 145.0,
+      "bridge_gap": 0.0,
+      "previous_price": 144.9,
+      "vendor_payment_dates": [
+        "2020-06-29"
+      ],
+      "vendor_return": 0.00069
+    },
+    {
+      "permno": 10302,
+      "ticker": "CY",
+      "event_date": "2020-04-16",
+      "cash_per_share": 23.85,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 23.85,
+      "economic_value": 23.85,
+      "bridge_gap": 0.0,
+      "previous_price": 23.82,
+      "vendor_payment_dates": [
+        "2020-04-15"
+      ],
+      "vendor_return": 0.001259
+    },
+    {
+      "permno": 11896,
+      "ticker": "MXIM",
+      "event_date": "2021-08-26",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.63,
+      "successor_permno": 60871,
+      "source": "https://investor.analog.com/news-releases/news-release-details/analog-devices-completes-acquisition-maxim-integrated/",
+      "election_policy": "fixed_terms",
+      "vendor_value": 105.4368,
+      "economic_value": 105.4368,
+      "bridge_gap": 0.0,
+      "previous_price": 103.14,
+      "vendor_payment_dates": [
+        "2021-08-25"
+      ],
+      "vendor_return": 0.022269
+    },
+    {
+      "permno": 12089,
+      "ticker": "RP",
+      "event_date": "2021-04-22",
+      "cash_per_share": 88.75,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 88.75,
+      "economic_value": 88.75,
+      "bridge_gap": 0.0,
+      "previous_price": 88.72,
+      "vendor_payment_dates": [
+        "2021-04-21"
+      ],
+      "vendor_return": 0.000338
+    },
+    {
+      "permno": 12374,
+      "ticker": "IPHI",
+      "event_date": "2021-04-21",
+      "cash_per_share": 66.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 2.323,
+      "successor_permno": 88360,
+      "source": "https://investor.marvell.com/sec-filings/all-sec-filings/content/0001193125-21-123305/d282209dex991.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 176.296,
+      "economic_value": 176.29604,
+      "bridge_gap": 4.0000000012696546e-05,
+      "previous_price": 172.27,
+      "vendor_payment_dates": [
+        "2021-04-20"
+      ],
+      "vendor_return": 0.02337
+    },
+    {
+      "permno": 12650,
+      "ticker": "KSU",
+      "event_date": "2021-12-14",
+      "cash_per_share": 90.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 2.884,
+      "successor_permno": 89125,
+      "source": "https://s21.q4cdn.com/736796105/files/doc_financials/2021/ar/2021-special-cp.pdf",
+      "election_policy": "fixed_terms",
+      "vendor_value": 299.9552,
+      "economic_value": 299.9552,
+      "bridge_gap": 0.0,
+      "previous_price": 293.59,
+      "vendor_payment_dates": [
+        "2021-12-13"
+      ],
+      "vendor_return": 0.021681
+    },
+    {
+      "permno": 12914,
+      "ticker": "DNKN",
+      "event_date": "2020-12-15",
+      "cash_per_share": 106.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://www.sec.gov/Archives/edgar/data/1357204/000119312520317644/d99481d8k.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 106.5,
+      "economic_value": 106.5,
+      "bridge_gap": 0.0,
+      "previous_price": 106.48,
+      "vendor_payment_dates": [
+        "2020-12-14"
+      ],
+      "vendor_return": 0.000188
+    },
+    {
+      "permno": 13267,
+      "ticker": "CZR",
+      "event_date": "2020-07-21",
+      "cash_per_share": 12.41,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ECA2020-128",
+      "election_policy": "no_election_cash",
+      "vendor_value": 11.974754,
+      "economic_value": 12.41,
+      "bridge_gap": 0.43524599999999936,
+      "previous_price": 12.37,
+      "vendor_payment_dates": [
+        "2020-07-20"
+      ],
+      "vendor_return": -0.031952
+    },
+    {
+      "permno": 13377,
+      "ticker": "PFPT",
+      "event_date": "2021-08-31",
+      "cash_per_share": 176.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 176.0,
+      "economic_value": 176.0,
+      "bridge_gap": 0.0,
+      "previous_price": 175.9,
+      "vendor_payment_dates": [
+        "2021-08-30"
+      ],
+      "vendor_return": 0.000569
+    },
+    {
+      "permno": 13957,
+      "ticker": "HDS",
+      "event_date": "2020-12-24",
+      "cash_per_share": 56.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 56.0,
+      "economic_value": 56.0,
+      "bridge_gap": 0.0,
+      "previous_price": 55.99,
+      "vendor_payment_dates": [
+        "2020-12-23"
+      ],
+      "vendor_return": 0.000179
+    },
+    {
+      "permno": 14040,
+      "ticker": "S",
+      "event_date": "2020-04-01",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.10256,
+      "successor_permno": 91937,
+      "source": "https://www.t-mobile.com/news/un-carrier/t-mobile-sprint-business-combination-agreement",
+      "election_policy": "fixed_terms",
+      "vendor_value": 8.730933,
+      "economic_value": 8.7309328,
+      "bridge_gap": -2.0000000056086265e-07,
+      "previous_price": 8.62,
+      "vendor_payment_dates": [
+        "2020-03-31"
+      ],
+      "vendor_return": 0.012869
+    },
+    {
+      "permno": 14176,
+      "ticker": "XLRN",
+      "event_date": "2021-11-22",
+      "cash_per_share": 180.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 180.0,
+      "economic_value": 180.0,
+      "bridge_gap": 0.0,
+      "previous_price": 178.75,
+      "vendor_payment_dates": [
+        "2021-11-19"
+      ],
+      "vendor_return": 0.006993
+    },
+    {
+      "permno": 14984,
+      "ticker": "ZAYO",
+      "event_date": "2020-03-09",
+      "cash_per_share": 35.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 35.0,
+      "economic_value": 35.0,
+      "bridge_gap": 0.0,
+      "previous_price": 34.99,
+      "vendor_payment_dates": [
+        "2020-03-06"
+      ],
+      "vendor_return": 0.000286
+    },
+    {
+      "permno": 15079,
+      "ticker": "PRAH",
+      "event_date": "2021-07-01",
+      "cash_per_share": 80.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.4125,
+      "successor_permno": 86072,
+      "source": "https://investor.iconplc.com/news-releases/news-release-details/icon-acquisition-creates-world-leading-healthcare-intelligence/",
+      "election_policy": "fixed_terms",
+      "vendor_value": 169.03812,
+      "economic_value": 169.03812499999998,
+      "bridge_gap": 4.9999999873762135e-06,
+      "previous_price": 165.21,
+      "vendor_payment_dates": [
+        "2021-06-30"
+      ],
+      "vendor_return": 0.023171
+    },
+    {
+      "permno": 15788,
+      "ticker": "MYOK",
+      "event_date": "2020-11-17",
+      "cash_per_share": 225.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://news.bms.com/news/details/2020/Bristol-Myers-Squibb-to-Acquire-MyoKardia-for-13.1-Billion-in-Cash/default.aspx",
+      "election_policy": "fixed_terms",
+      "vendor_value": 225.0,
+      "economic_value": 225.0,
+      "bridge_gap": 0.0,
+      "previous_price": 224.91,
+      "vendor_payment_dates": [
+        "2020-11-16"
+      ],
+      "vendor_return": 0.0004
+    },
+    {
+      "permno": 16051,
+      "ticker": "ACIA",
+      "event_date": "2021-03-01",
+      "cash_per_share": 115.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 115.0,
+      "economic_value": 115.0,
+      "bridge_gap": 0.0,
+      "previous_price": 114.99,
+      "vendor_payment_dates": [
+        "2021-02-26"
+      ],
+      "vendor_return": 8.7e-05
+    },
+    {
+      "permno": 17883,
+      "ticker": "FTSV",
+      "event_date": "2020-04-07",
+      "cash_per_share": 95.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://www.gilead.com/news/news-details/2020/gilead-completes-acquisition-of-forty-seven-inc",
+      "election_policy": "fixed_terms",
+      "vendor_value": 95.5,
+      "economic_value": 95.5,
+      "bridge_gap": 0.0,
+      "previous_price": 95.51,
+      "vendor_payment_dates": [
+        "2020-04-06"
+      ],
+      "vendor_return": -0.000105
+    },
+    {
+      "permno": 18126,
+      "ticker": "PRNB",
+      "event_date": "2020-09-28",
+      "cash_per_share": 100.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 100.0,
+      "economic_value": 100.0,
+      "bridge_gap": 0.0,
+      "previous_price": 100.05,
+      "vendor_payment_dates": [
+        "2020-09-25"
+      ],
+      "vendor_return": -0.0005
+    },
+    {
+      "permno": 18734,
+      "ticker": "WORK",
+      "event_date": "2021-07-21",
+      "cash_per_share": 26.79,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.0776,
+      "successor_permno": 90215,
+      "source": "https://www.sec.gov/Archives/edgar/data/1764925/000119312521220234/d171429d8k.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 45.57774,
+      "economic_value": 45.577736,
+      "bridge_gap": -3.999999997006398e-06,
+      "previous_price": 45.2,
+      "vendor_payment_dates": [
+        "2021-07-20"
+      ],
+      "vendor_return": 0.008357
+    },
+    {
+      "permno": 18787,
+      "ticker": "MDLA",
+      "event_date": "2021-10-29",
+      "cash_per_share": 34.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://www.thomabravo.com/press-releases/thoma-bravo-completes-acquisition-of-medallia",
+      "election_policy": "fixed_terms",
+      "vendor_value": 34.0,
+      "economic_value": 34.0,
+      "bridge_gap": 0.0,
+      "previous_price": 33.99,
+      "vendor_payment_dates": [
+        "2021-10-28"
+      ],
+      "vendor_return": 0.000294
+    },
+    {
+      "permno": 18790,
+      "ticker": "LVGO",
+      "event_date": "2020-10-30",
+      "cash_per_share": 4.24,
+      "special_per_share": 7.09,
+      "special_expected_date": "2020-11-03",
+      "ratio": 0.592,
+      "successor_permno": 15585,
+      "source": "https://www.sec.gov/Archives/edgar/data/1477449/000110465920119769/tm2026658d62_8k.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 124.0823,
+      "economic_value": 127.63432,
+      "bridge_gap": 3.552019999999999,
+      "previous_price": 139.77,
+      "vendor_payment_dates": [
+        "2020-10-29",
+        "2020-11-03"
+      ],
+      "vendor_return": -0.112239
+    },
+    {
+      "permno": 24942,
+      "ticker": "RTN",
+      "event_date": "2020-04-03",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 2.3348,
+      "successor_permno": 17830,
+      "source": "https://www.sec.gov/Archives/edgar/data/101829/000114036120007906/nc10010681x1_ex99-1.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 116.5766,
+      "economic_value": 116.576564,
+      "bridge_gap": -3.5999999994373866e-05,
+      "previous_price": 116.96,
+      "vendor_payment_dates": [
+        "2020-04-02"
+      ],
+      "vendor_return": -0.003278
+    },
+    {
+      "permno": 27043,
+      "ticker": "VAR",
+      "event_date": "2021-04-15",
+      "cash_per_share": 177.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 177.5,
+      "economic_value": 177.5,
+      "bridge_gap": 0.0,
+      "previous_price": 177.07,
+      "vendor_payment_dates": [
+        "2021-04-14"
+      ],
+      "vendor_return": 0.002428
+    },
+    {
+      "permno": 31500,
+      "ticker": "EV",
+      "event_date": "2021-03-01",
+      "cash_per_share": 28.25,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.5833,
+      "successor_permno": 69032,
+      "source": "https://www.sec.gov/Archives/edgar/data/350797/000095010321003212/dp147036_8k.htm",
+      "election_policy": "no_election_mixed",
+      "vendor_value": 74.60852,
+      "economic_value": 74.42402799999999,
+      "bridge_gap": -0.18449200000000587,
+      "previous_price": 73.07,
+      "vendor_payment_dates": [
+        "2021-02-26"
+      ],
+      "vendor_return": 0.021055
+    },
+    {
+      "permno": 35124,
+      "ticker": "CLGX",
+      "event_date": "2021-06-04",
+      "cash_per_share": 80.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 80.0,
+      "economic_value": 80.0,
+      "bridge_gap": 0.0,
+      "previous_price": 80.0,
+      "vendor_payment_dates": [
+        "2021-06-03"
+      ],
+      "vendor_return": 0.0
+    },
+    {
+      "permno": 43757,
+      "ticker": "IMMU",
+      "event_date": "2020-10-23",
+      "cash_per_share": 88.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://www.gilead.com/news/news-details/2020/gilead-sciences-completes-acquisition-of-immunomedics-inc",
+      "election_policy": "fixed_terms",
+      "vendor_value": 88.0,
+      "economic_value": 88.0,
+      "bridge_gap": 0.0,
+      "previous_price": 87.86,
+      "vendor_payment_dates": [
+        "2020-10-22"
+      ],
+      "vendor_return": 0.001593
+    },
+    {
+      "permno": 52716,
+      "ticker": "HRC",
+      "event_date": "2021-12-13",
+      "cash_per_share": 156.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 156.0,
+      "economic_value": 156.0,
+      "bridge_gap": 0.0,
+      "previous_price": 155.96,
+      "vendor_payment_dates": [
+        "2021-12-10"
+      ],
+      "vendor_return": 0.000256
+    },
+    {
+      "permno": 61815,
+      "ticker": "NBL",
+      "event_date": "2020-10-05",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.1191,
+      "successor_permno": 14541,
+      "source": "https://www.chevron.com/newsroom/2020/q2/chevron-acquires-noble-energy",
+      "election_policy": "fixed_terms",
+      "vendor_value": 8.658569,
+      "economic_value": 8.658570000000001,
+      "bridge_gap": 1.0000000010279564e-06,
+      "previous_price": 8.46,
+      "vendor_payment_dates": [
+        "2020-10-02"
+      ],
+      "vendor_return": 0.023472
+    },
+    {
+      "permno": 65330,
+      "ticker": "LM",
+      "event_date": "2020-08-03",
+      "cash_per_share": 50.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "https://investors.franklintempleton.com/news-center/press-releases/press-release-details/2020/Franklin-Templeton-Expects-to-Close-Acquisition-of-Legg-Mason-on-July-31-2020/",
+      "election_policy": "fixed_terms",
+      "vendor_value": 50.0,
+      "economic_value": 50.0,
+      "bridge_gap": 0.0,
+      "previous_price": 49.99,
+      "vendor_payment_dates": [
+        "2020-07-31"
+      ],
+      "vendor_return": 0.0002
+    },
+    {
+      "permno": 75100,
+      "ticker": "TIF",
+      "event_date": "2021-01-07",
+      "cash_per_share": 131.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 131.5,
+      "economic_value": 131.5,
+      "bridge_gap": 0.0,
+      "previous_price": 131.46,
+      "vendor_payment_dates": [
+        "2021-01-06"
+      ],
+      "vendor_return": 0.000304
+    },
+    {
+      "permno": 83111,
+      "ticker": "ALXN",
+      "event_date": "2021-07-21",
+      "cash_per_share": 60.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 2.1243,
+      "successor_permno": 79363,
+      "source": "https://www.astrazeneca.com/media-centre/press-releases/2020/astrazeneca-to-acquire-alexion.html",
+      "election_policy": "fixed_terms",
+      "vendor_value": 182.5721,
+      "economic_value": 182.720811,
+      "bridge_gap": 0.1487109999999916,
+      "previous_price": 182.5,
+      "vendor_payment_dates": [
+        "2021-07-20"
+      ],
+      "vendor_return": 0.000395
+    },
+    {
+      "permno": 83862,
+      "ticker": "ETFC",
+      "event_date": "2020-10-02",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 1.0432,
+      "successor_permno": 69032,
+      "source": "https://www.morganstanley.com/press-releases/morgan-stanley-closes-acquisition-of-e-trade",
+      "election_policy": "fixed_terms",
+      "vendor_value": 50.0423,
+      "economic_value": 50.042303999999994,
+      "bridge_gap": 3.999999997006398e-06,
+      "previous_price": 49.26,
+      "vendor_payment_dates": [
+        "2020-10-01"
+      ],
+      "vendor_return": 0.015881
+    },
+    {
+      "permno": 84597,
+      "ticker": "AMTD",
+      "event_date": "2020-10-06",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 1.0837,
+      "successor_permno": 75186,
+      "source": "https://content.schwab.com/web/retail/public/about-schwab/SEC_Form8kA_12042020.pdf",
+      "election_policy": "fixed_terms",
+      "vendor_value": 39.82597,
+      "economic_value": 39.82597500000001,
+      "bridge_gap": 5.000000008692496e-06,
+      "previous_price": 39.97,
+      "vendor_payment_dates": [
+        "2020-10-05"
+      ],
+      "vendor_return": -0.003603
+    },
+    {
+      "permno": 87000,
+      "ticker": "STMP",
+      "event_date": "2021-10-05",
+      "cash_per_share": 330.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 330.0,
+      "economic_value": 330.0,
+      "bridge_gap": 0.0,
+      "previous_price": 329.61,
+      "vendor_payment_dates": [
+        "2021-10-04"
+      ],
+      "vendor_return": 0.001183
+    },
+    {
+      "permno": 88468,
+      "ticker": "SPRT",
+      "event_date": "2021-09-15",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0.115,
+      "successor_permno": 21889,
+      "source": "https://www.sec.gov/Archives/edgar/data/1844971/000119312521273493/d163523d8k.htm",
+      "election_policy": "fixed_terms",
+      "vendor_value": 4.991,
+      "economic_value": 4.991,
+      "bridge_gap": 0.0,
+      "previous_price": 11.8,
+      "vendor_payment_dates": [
+        "2021-09-14"
+      ],
+      "vendor_return": -0.577034
+    },
+    {
+      "permno": 90233,
+      "ticker": "MNTA",
+      "event_date": "2020-10-01",
+      "cash_per_share": 52.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 52.5,
+      "economic_value": 52.5,
+      "bridge_gap": 0.0,
+      "previous_price": 52.48,
+      "vendor_payment_dates": [
+        "2020-09-30"
+      ],
+      "vendor_return": 0.000381
+    },
+    {
+      "permno": 90272,
+      "ticker": "WCG",
+      "event_date": "2020-01-24",
+      "cash_per_share": 120.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 3.38,
+      "successor_permno": 89269,
+      "source": "https://investors.centene.com/2020-01-23-Centene-Completes-Acquisition-of-WellCare%2C-Creating-a-Leading-Healthcare-Enterprise-Focused-on-Government-Sponsored-Healthcare-Programs?aspdf=1",
+      "election_policy": "fixed_terms",
+      "vendor_value": 345.1418,
+      "economic_value": 345.1418,
+      "bridge_gap": 0.0,
+      "previous_price": 349.92,
+      "vendor_payment_dates": [
+        "2020-01-23"
+      ],
+      "vendor_return": -0.013655
+    },
+    {
+      "permno": 92188,
+      "ticker": "WBC",
+      "event_date": "2020-05-29",
+      "cash_per_share": 136.5,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 0,
+      "successor_permno": 0,
+      "source": "WRDS query 11807755 + 11807760",
+      "election_policy": "fixed_terms",
+      "vendor_value": 136.5,
+      "economic_value": 136.5,
+      "bridge_gap": 0.0,
+      "previous_price": 136.46,
+      "vendor_payment_dates": [
+        "2020-05-28"
+      ],
+      "vendor_return": 0.000293
+    },
+    {
+      "permno": 92239,
+      "ticker": "CXO",
+      "event_date": "2021-01-19",
+      "cash_per_share": 0.0,
+      "special_per_share": 0.0,
+      "special_expected_date": null,
+      "ratio": 1.46,
+      "successor_permno": 13928,
+      "source": "https://www.conocophillips.com/news-media/story/conocophillips-completes-acquisition-of-concho-resources/",
+      "election_policy": "fixed_terms",
+      "vendor_value": 67.16,
+      "economic_value": 67.16,
+      "bridge_gap": 0.0,
+      "previous_price": 65.6,
+      "vendor_payment_dates": [
+        "2021-01-15"
+      ],
+      "vendor_return": 0.023781
+    }
+  ]
+}

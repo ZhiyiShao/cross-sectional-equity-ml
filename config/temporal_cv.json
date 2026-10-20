@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "scope": "training_period_only_2015_2019",
+  "folds": [
+    {"name": "2017", "train_start": "2015-01-01", "train_end": "2016-12-31", "validation_start": "2017-01-01", "validation_end": "2017-12-31"},
+    {"name": "2018", "train_start": "2015-01-01", "train_end": "2017-12-31", "validation_start": "2018-01-01", "validation_end": "2018-12-31"},
+    {"name": "2019", "train_start": "2015-01-01", "train_end": "2018-12-31", "validation_start": "2019-01-01", "validation_end": "2019-12-31"}
+  ],
+  "representations": ["raw", "cross_sectional_rank"],
+  "raw_clip_quantiles": [0.005, 0.995],
+  "rank_definition": "(average_rank - 0.5) / finite_eligible_count - 0.5, within signal date; missing/ineligible remain NaN",
+  "rank_clip_bounds": [-0.5, 0.5],
+  "preprocessing_fit": "fold training main samples only; per-feature median fill, then mean/population-std scaling",
+  "label": "unchanged y_excess_5d; strict main label, no target clipping or ranking",
+  "weighting": "equal stock-date rows for loss; equal OOF dates for selection",
+  "ridge_lambda": [0.000001, 0.0001, 0.01, 0.1, 1.0],
+  "ridge_alpha_definition": "alpha = number_of_fold_training_rows * lambda; minimize mean_squared_error + lambda * sum(coef**2), unpenalized intercept",
+  "lightgbm": {
+    "num_leaves": [15, 63, 127],
+    "min_child_samples": [100, 500],
+    "fixed": {"objective": "regression", "learning_rate": 0.03, "n_estimators": 100, "reg_lambda": 1.0, "max_depth": -1, "subsample": 1.0, "subsample_freq": 0, "colsample_bytree": 1.0, "random_state": 20261016, "deterministic": true, "force_col_wise": true, "n_jobs": 4, "verbosity": -1}
+  },
+  "early_stopping": false,
+  "configuration_budget": 22,
+  "model_fit_budget": 66,
+  "selection": "highest mean of all inner OOF date Rank ICs within each model/representation; exact ties choose first grid entry",
+  "constant_prediction_policy": "abort and investigate; never replace undefined IC with zero",
+  "baseline": "raw momentum_20, positive direction, missing filled with fold-training median",
+  "external_validation_evaluated": false,
+  "test_performance_authorized": false,
+  "final_refit_authorized": false
+}

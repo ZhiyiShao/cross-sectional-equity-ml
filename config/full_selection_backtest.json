@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "scope": "2020-2021 validation only; saved predictions; no training or new predictions",
+  "signal_dates": 100,
+  "initial_nav": 1.0,
+  "entry_lag_trading_days": 1,
+  "holding_period_trading_days": 5,
+  "top_fraction": 0.1,
+  "models": [
+    "raw__ridge_03",
+    "cross_sectional_rank__ridge_13",
+    "raw__lightgbm_17",
+    "cross_sectional_rank__lightgbm_10",
+    "momentum20",
+    "equal_weight"
+  ],
+  "cost_bps_per_side": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "primary_cost_bps": 10,
+  "settlement_scenarios": {
+    "locked": null,
+    "release_5": 5,
+    "release_20": 20
+  },
+  "primary_settlement": "locked",
+  "normal_dividends": "CRSP total-return units; distributions reinvested in same security without additional fees; fractional units; not a payment-date share ledger",
+  "known_delisting": "Apply verified NA terminal total return once; move value to frozen non-tradable receivable. Main scenario holds receivable at that mark until evaluation end. Sensitivities release to cash 5 or 20 market days later. No true settlement date is inferred.",
+  "missing_return": "Only MP followed by a causally verified P1-P9 whole-span return can resolve pending valuation. Carry last observed asset value as explicitly flagged stale estimate while unavailable; never overwrite source return with zero. Other unresolved held returns stop simulation.",
+  "allocation": "Pretrade NAV / selected count; sell excess executable positions first; scale ALL buy requests pro rata to available cash including costs before masking failed buys; failed-buy budgets stay cash; failed sells and frozen claims remain assets.",
+  "terminal": "Skip signals crossing 2021; liquidate executable holdings at final complete horizon 2021-12-30, charge exit costs; unresolved receivables remain in final marked NAV.",
+  "primary_metric": "Strategy CAGR minus same-cost same-settlement eligible-pool equal-weight CAGR",
+  "limitations": "Research simulations conditional on declared valuation and settlement assumptions; not verified executable returns or capacity estimates",
+  "model_fit_budget": 0,
+  "new_predictions": false,
+  "test_performance_authorized": false,
+  "prediction_source": "outputs/full_train_selection_v1/selected_predictions.parquet"
+}

@@ -1,0 +1,46 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.jupyter-runtime/
+/data/
+/outputs/
+/archive/
+*.log
+
+# Local history, workstation settings and download metadata
+/reports/
+/notebooks/
+/.vscode/
+/config/crsp_query.json
+
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+credentials*.json
+*token*.json
+
+# Licensed observations and fitted models
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.csv.gz
+*.zip
+
+# OS/editor/build files
+Thumbs.db
+.DS_Store
+*.tmp
+*.bak
+*.egg-info/
+build/
+dist/

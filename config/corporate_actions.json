@@ -1,0 +1,124 @@
+{
+  "scope": "validation event-lot verification only",
+  "availability_lags": [
+    0,
+    2,
+    5,
+    20
+  ],
+  "primary_lag": 2,
+  "sale_settlement_lag": 2,
+  "cost_bps": 10,
+  "events": [
+    {
+      "permno": 18790,
+      "ticker": "LVGO",
+      "successor_permno": 15585,
+      "successor_ticker": "TDOC",
+      "ratio": 0.592,
+      "cash_per_share": 4.24,
+      "special_per_share": 7.09,
+      "special_expected_date": "2020-11-03",
+      "source": "https://www.sec.gov/Archives/edgar/data/1477449/000110465920119769/tm2026658d62_8k.htm"
+    },
+    {
+      "permno": 18787,
+      "ticker": "MDLA",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 34,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.thomabravo.com/press-releases/thoma-bravo-completes-acquisition-of-medallia"
+    },
+    {
+      "permno": 12914,
+      "ticker": "DNKN",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 106.5,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.sec.gov/Archives/edgar/data/1357204/000119312520317644/d99481d8k.htm"
+    },
+    {
+      "permno": 43757,
+      "ticker": "IMMU",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 88,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.gilead.com/news/news-details/2020/gilead-sciences-completes-acquisition-of-immunomedics-inc"
+    },
+    {
+      "permno": 65330,
+      "ticker": "LM",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 50,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://investors.franklintempleton.com/news-center/press-releases/press-release-details/2020/Franklin-Templeton-Expects-to-Close-Acquisition-of-Legg-Mason-on-July-31-2020/"
+    },
+    {
+      "permno": 15788,
+      "ticker": "MYOK",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 225,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://news.bms.com/news/details/2020/Bristol-Myers-Squibb-to-Acquire-MyoKardia-for-13.1-Billion-in-Cash/default.aspx"
+    },
+    {
+      "permno": 17883,
+      "ticker": "FTSV",
+      "successor_permno": null,
+      "successor_ticker": null,
+      "ratio": 0,
+      "cash_per_share": 95.5,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.gilead.com/news/news-details/2020/gilead-completes-acquisition-of-forty-seven-inc"
+    },
+    {
+      "permno": 61815,
+      "ticker": "NBL",
+      "successor_permno": null,
+      "successor_ticker": "CVX",
+      "ratio": 0.1191,
+      "cash_per_share": 0,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.chevron.com/newsroom/2020/q2/chevron-acquires-noble-energy"
+    },
+    {
+      "permno": 83862,
+      "ticker": "ETFC",
+      "successor_permno": null,
+      "successor_ticker": "MS",
+      "ratio": 1.0432,
+      "cash_per_share": 0,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.morganstanley.com/press-releases/morgan-stanley-closes-acquisition-of-e-trade"
+    },
+    {
+      "permno": 88468,
+      "ticker": "SPRT",
+      "successor_permno": 21889,
+      "successor_ticker": "GREE",
+      "ratio": 0.115,
+      "cash_per_share": 0,
+      "special_per_share": 0,
+      "special_expected_date": null,
+      "source": "https://www.sec.gov/Archives/edgar/data/1844971/000119312521273493/d163523d8k.htm"
+    }
+  ]
+}

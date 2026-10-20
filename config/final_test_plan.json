@@ -1,0 +1,201 @@
+{
+  "version": "1.0",
+  "status": "frozen_plan_not_executed",
+  "test_data_access_authorized": false,
+  "test_performance_authorized": false,
+  "test_dates": [
+    "2022-01-01",
+    "2025-12-31"
+  ],
+  "final_fit_dates": [
+    "2015-01-01",
+    "2021-12-31"
+  ],
+  "final_fit_label_end_max": "2021-12-31",
+  "final_fit_budget": 4,
+  "final_fits_performed": 0,
+  "refit_eligibility": "eligible_refit_through_2021 independently recomputed; restore eligible 2019/2020 internal-boundary labels; never cross 2021/2022",
+  "primary_model": "cross_sectional_rank__lightgbm_10",
+  "models": [
+    {
+      "id": "raw__ridge_03",
+      "representation": "raw",
+      "model": "ridge",
+      "parameters": {
+        "solver": "cholesky",
+        "alpha": 0.06951927961775606
+      }
+    },
+    {
+      "id": "raw__lightgbm_17",
+      "representation": "raw",
+      "model": "lightgbm",
+      "parameters": {
+        "objective": "regression",
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261014,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 127,
+        "n_estimators": 100,
+        "min_child_samples": 100
+      }
+    },
+    {
+      "id": "cross_sectional_rank__ridge_13",
+      "representation": "cross_sectional_rank",
+      "model": "ridge",
+      "parameters": {
+        "solver": "cholesky",
+        "alpha": 1128.8378916846884
+      }
+    },
+    {
+      "id": "cross_sectional_rank__lightgbm_10",
+      "representation": "cross_sectional_rank",
+      "model": "lightgbm",
+      "parameters": {
+        "objective": "regression",
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261014,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 31,
+        "n_estimators": 100,
+        "min_child_samples": 500
+      }
+    }
+  ],
+  "features": [
+    "momentum_5",
+    "momentum_10",
+    "momentum_20",
+    "momentum_60",
+    "momentum_120",
+    "momentum_60_skip5",
+    "reversal_1",
+    "volatility_5",
+    "volatility_20",
+    "volatility_60",
+    "downside_volatility_20",
+    "log_dollar_volume_20",
+    "log_dollar_volume_60",
+    "dollar_volume_ratio_5_20",
+    "share_volume_ratio_5_20",
+    "share_turnover_20",
+    "amihud_20",
+    "intraday_range_20",
+    "close_location_5",
+    "log_market_cap",
+    "market_beta_60"
+  ],
+  "preprocessing": {
+    "fit_rows": "final development eligible_refit_through_2021 only",
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "imputation": "training feature median",
+    "scaling": "training mean and population standard deviation after clipping and imputation",
+    "same_transformed_inputs_for_both_models": true,
+    "target_transform": "none",
+    "missing_indicators": false
+  },
+  "rank_population": "same signal date eligible stocks, finite feature; never conditioned on future label",
+  "target": "strict y_excess_5d; status ok or ok_bridged; no event proxy substituted",
+  "baselines": [
+    "momentum20",
+    "equal_weight"
+  ],
+  "momentum_direction": "positive",
+  "momentum_missing": "final-fit eligible sample median",
+  "initial_nav": 1.0,
+  "initial_state": "cash; no validation positions carried",
+  "signal_anchor": "2015-01-02",
+  "signal_step_trading_days": 5,
+  "entry_lag_trading_days": 1,
+  "holding_period_trading_days": 5,
+  "top_fraction": 0.1,
+  "top_count": "ceil",
+  "tie_break": "PERMNO ascending",
+  "annual_refit": false,
+  "universe_config": "config/universe.json",
+  "funding_policy": "reports/FUNDING_AND_SETTLEMENT_POLICY.md",
+  "primary_funding": "reusable executed-sale receivables; explicit buy payables; no future settlement deficit; no leverage",
+  "primary_cost_bps": 10,
+  "costs_bps": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "primary_action_availability_market_days": 2,
+  "action_availability_market_days": [
+    0,
+    2,
+    5,
+    20
+  ],
+  "settled_only_sensitivity": {
+    "cost_bps": 10,
+    "action_availability_market_days": 2
+  },
+  "portfolio_path_budget": 102,
+  "settlement_regimes": [
+    [
+      "2017-09-05",
+      "T+2"
+    ],
+    [
+      "2024-05-28",
+      "T+1"
+    ]
+  ],
+  "settlement_calendar_status": "full test calendar pending; existing partial calendar must not be extrapolated",
+  "action_registry_status": "validation events only; test event audit pending explicit data authorization",
+  "primary_predictive_comparison": [
+    "cross_sectional_rank__lightgbm_10",
+    "cross_sectional_rank__ridge_13"
+  ],
+  "primary_investment_comparison": [
+    "cross_sectional_rank__lightgbm_10",
+    "equal_weight"
+  ],
+  "predictive_metric": "equal-date mean Spearman Rank IC difference",
+  "investment_metric": "net CAGR difference",
+  "bootstrap": {
+    "method": "paired circular block",
+    "replications": 5000,
+    "seed": 20261014,
+    "signal_blocks": [
+      10,
+      5,
+      20
+    ],
+    "daily_return_blocks": [
+      20,
+      10,
+      60
+    ],
+    "ordinary_ci": 0.95,
+    "primary_family_ci": 0.975
+  },
+  "label_missing_policy": "retain prediction candidates; omit invalid strict labels only from IC/loss; report coverage",
+  "unresolved_held_event_policy": "stop before publication; audit chronologically without model-performance ranking",
+  "terminal": "final complete 5-session horizon inside 2025; charge liquidation costs; carry unsettled claims at face; no 2026 prices",
+  "protocol": "FINAL_TEST_PROTOCOL.md"
+}
