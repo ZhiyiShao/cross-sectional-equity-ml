@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
 from equity_research.provenance import sha256 as sha
+# Compatibility exports: preprocessing calculations live in one module.
+from equity_research.models.preprocessing import fit_preprocessing, transform_features
 
 
 def load_development_data(path, features, cfg):
@@ -38,27 +40,6 @@ def sample_masks(frame,cfg):
     return masks
 
 
-def fit_preprocessing(x,quantiles):
-    x=x.replace([np.inf,-np.inf],np.nan)
-    if x.isna().all().any():
-        raise ValueError('Training contains an entirely missing feature')
-    lower=x.quantile(quantiles[0]); upper=x.quantile(quantiles[1]); median=x.median()
-    clean=x.clip(lower=lower,upper=upper,axis=1).fillna(median)
-    std=clean.std(ddof=0).replace(0.,1.)
-    return {'features':x.columns.tolist(),'fitted_rows':len(x),
-        'lower':lower.tolist(),'upper':upper.tolist(),'median':median.tolist(),
-        'mean':clean.mean().tolist(),'scale':std.tolist()}
-
-
-def transform_features(x,state):
-    assert x.columns.tolist()==state['features']
-    a=x.to_numpy(dtype=float,copy=True)
-    a[~np.isfinite(a)]=np.nan
-    a=np.clip(a,state['lower'],state['upper'])
-    a=np.where(np.isnan(a),np.asarray(state['median']),a)
-    a=(a-state['mean'])/state['scale']
-    assert np.isfinite(a).all()
-    return pd.DataFrame(a,index=x.index,columns=x.columns)
 
 
 def daily_rank_ic(dates,pred,target):

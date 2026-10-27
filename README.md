@@ -61,6 +61,10 @@ Linux/macOS 使用 `source .venv/bin/activate`。环境检查只用合成数据�
 
 ## 六个运行入口
 
+配套阅读：[可编辑代码思维导图与文字大纲](docs/diagrams/README.md)（总览、五个研究模块及公共支撑，共七页）。
+
+首次精读请按 [核心精读 / 辅助查阅两层路线](docs/diagrams/READING_PATH.md)，无需逐行阅读所有审计和运行组织代码。预处理计算集中在 `models/preprocessing.py`；验证期回测由准备输入、运行固定情景、保存与核验三个步骤组成。
+
 入口只解析阶段、调用模块；计算实现集中在 `src/equity_research/`。
 
 | 入口 | 阶段参数 | 用途 |
