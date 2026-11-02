@@ -8,7 +8,7 @@
 
 测试中，原始特征 Ridge 的扣费年化收益为 **18.27%**，股票池等权基准为 **8.72%**；验证期选出的主模型“排名特征 LightGBM”为 **11.56%**。模型在验证期与测试期的排序发生变化，是本项目关于泛化能力的主要发现。
 
-[查看测试结果](#测试结果与研究发现) · [运行完整演示](#快速运行) · [阅读核心代码](docs/diagrams/READING_PATH.md) · [查看可编辑导图](docs/diagrams/README.md)
+[查看测试结果](#测试结果与研究发现) · [实验总索引](docs/EXPERIMENT_INDEX.md) · [运行完整演示](#快速运行) · [阅读核心代码](docs/diagrams/READING_PATH.md) · [查看可编辑导图](docs/diagrams/README.md)
 
 ## 项目概览
 
@@ -87,6 +87,8 @@ flowchart LR
 | 冻结测试 | 2022–2025 | 评价保存的模型与固定交易规则 |
 
 最终选参轮次为**每组 20 个配置，共 80 次候选拟合**。开发过程中还比较过训练期内部时间交叉验证和 9 / 21 特征方案，最终保留 21 特征及上述训练验证划分。排名 LightGBM 在测试前被指定为主模型，其余三组模型保留为对照。
+
+[实验总索引](docs/EXPERIMENT_INDEX.md)区分当前正式结果、历史探索、执行规则修订与合成演示，并列出各运行目录的用途。最终测试已经完成；部分冻结文件保留的是执行前的历史状态。
 
 核心实现：[预处理](src/equity_research/models/preprocessing.py)、[验证选参](src/equity_research/models/selection.py)、[最终拟合](src/equity_research/models/final_fit.py)。
 

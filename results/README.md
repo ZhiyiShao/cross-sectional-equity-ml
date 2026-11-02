@@ -2,6 +2,8 @@
 
 These files are aggregate research outputs from the completed 2022–2025 frozen test. They were copied from the local `outputs/frozen_test_v1/` run without refitting or changing predictions.
 
+See the [experiment index](../docs/EXPERIMENT_INDEX.md) for the adopted model pipeline, historical CV / feature-count experiments, and the distinction between frozen planning snapshots and completed execution. Post-test holdings attribution is available in [test diagnostics](test_diagnostics/README.md).
+
 | File | Contents |
 |---|---|
 | `summary.csv` | Six portfolios under the primary 10 bps / `lag_2` scenario |
