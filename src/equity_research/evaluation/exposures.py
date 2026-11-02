@@ -100,14 +100,18 @@ def load_inputs():
 def security_ledger(d,h,t,dates,events,registry):
     key=['model','date','PERMNO']
     # Fixed cash claims and trade settlements do not generate investment PnL.
-    stock=h.loc[h.kind.isin(['equity','inherited'])].groupby(key,as_index=False).value.sum().rename(columns={'value':'equity'})
+    stock=h.loc[h.kind.isin(['equity','inherited','otc_frozen'])].groupby(key,as_index=False).value.sum().rename(columns={'value':'equity'})
     nxt=dict(zip(dates[:-1],dates[1:]))
     prev=stock.copy();prev['date']=prev.date.map(nxt);prev=prev.dropna(subset=['date']).rename(columns={'equity':'prev_equity'})
     p=stock.merge(prev,on=key,how='outer',validate='one_to_one')
     tr=t.pivot_table(index=key,columns='side',values='amount',aggfunc='sum',fill_value=0).reset_index()
     fees=t.groupby(key,as_index=False).cost.sum()
     adjustments=[]
-    for e in events.itertuples():
+    # OTC frozen lots already remain in equity; their eventual sale is in trades.
+    # Excluded CVR rights have zero investable value. Only conversions need a
+    # transfer adjustment between the original stock, cash claim and successor.
+    conversions = events.loc[events.kind.eq('conversion')] if 'kind' in events else events
+    for e in conversions.itertuples():
         r=registry.loc[e.PERMNO];qty=e.old_value/r.previous_price
         stock_value=e.value-qty*(r.cash_per_share+r.special_per_share)
         require(stock_value>=-1e-10,'Negative converted stock value')
@@ -187,7 +191,7 @@ def contribution_tables(p,d):
         group=group.merge(datecount.reset_index(),on=['model','year'],validate='many_to_one');group['average_weight']=group.weight_sum/group.days
         for (model,year),z in group.groupby(['model','year']):
             np.testing.assert_allclose(z.contribution.sum(),annual.loc[annual.model.eq(model)&annual.year.eq(year),'net_return'].iloc[0],atol=1e-10)
-        categories=sorted(group.category.unique());full=pd.MultiIndex.from_product([MODELS,[2020,2021],categories],names=['model','year','category'])
+        categories=sorted(group.category.unique());full=pd.MultiIndex.from_product([sorted(d.model.unique()),sorted(d.date.dt.year.unique()),categories],names=['model','year','category'])
         group=group.set_index(['model','year','category']).reindex(full).reset_index()
         for col in ['contribution','fee_contribution','average_weight']:group[col]=group[col].fillna(0.)
         eq=group.loc[group.model.eq('equal_weight'),['year','category','contribution','average_weight']].rename(columns={'contribution':'pool_contribution','average_weight':'pool_weight'})

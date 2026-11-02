@@ -131,6 +131,8 @@ flowchart LR
 
 研究结论是：在这组价量特征与固定交易规则下，验证期的模型优势没有延续为相同的测试期排序；线性正则化模型提供了有竞争力的样本外对照。模型选择需要同时考虑时间泛化、组合风险和收益差的不确定性。
 
+后续利用现有持仓完成了[测试期风险暴露与 2022 年收益归因](results/test_diagnostics/README.md)：排名 LightGBM 的 beta 和波动率暴露更高，2022 年相对原始 Ridge 的收益差主要集中在商业服务和油气类持仓。分析未重训、未调参，逐日损益与原账本核对一致。
+
 结果文件：[整体指标](results/summary.csv) · [逐年收益](results/annual_metrics.csv) · [逐年 Rank IC](results/annual_rank_ic.csv) · [配对置信区间](results/paired_confidence_intervals.csv)。逐年收益文件包含多个情景，比较时筛选 `scenario=lag_2`、`cost_bps=10`。
 
 ## 代码结构与阅读路线
@@ -199,7 +201,7 @@ python -m pytest -q
 | `scripts/prepare_data.py` | `ingest / universe / audit / returns / features / validate / validation-events / test-audit / test-events` | 数据准备、特征与事件审计 |
 | `scripts/train_models.py` | `select / final-fit` | 验证选参、冻结后的最终拟合 |
 | `scripts/backtest.py` | `validation / test` | 验证期或测试期组合回测 |
-| `scripts/evaluate.py` | `test / validation-exposures` | 测试评价与验证期暴露分析 |
+| `scripts/evaluate.py` | `test / validation-exposures / test-exposures` | 测试评价、验证期和测试期持仓归因 |
 | `scripts/verify.py` | `features / selection / final-models / history` | 独立核验与历史溯源 |
 
 通过 `python scripts/prepare_data.py --help` 等命令查看各入口参数。

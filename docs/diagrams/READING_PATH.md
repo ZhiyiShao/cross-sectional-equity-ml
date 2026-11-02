@@ -41,6 +41,8 @@ flowchart LR
 ### 05 评价与解释
 读 `common.daily_rank_ic()`、`market.performance()` 与 `evaluation/frozen.py` 的配对区间和结果组织；再看 `exposures.py` 的风格、行业与贡献统计。验收：能区分排序能力、扣费收益、风险暴露和统计不确定性。
 
+测试完成后的归因入口是 `python scripts/evaluate.py test-exposures`。`evaluation/test_exposures.py` 读取已保存的测试期预测和持仓，复用 `exposures.security_ledger()` 核对逐日损益，再用 `period_contributions()` 分开计算月初与年初净值口径的贡献；不调用训练、预测或回测执行入口。
+
 每轮只精读上述核心函数；输出文件、哈希、绘图等先掌握输入输出即可。核心精读和辅助查阅是学习优先级，运行时仍使用完整流程。
 
 ## 辅助查阅
