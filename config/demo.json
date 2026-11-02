@@ -1,0 +1,40 @@
+{
+  "synthetic_data_only": true,
+  "seed": 42,
+  "securities": 60,
+  "max_securities": 40,
+  "data_dates": ["2019-01-01", "2023-01-10"],
+  "train_dates": ["2020-01-01", "2020-12-31"],
+  "validation_dates": ["2021-01-01", "2021-12-31"],
+  "holdout_dates": ["2022-01-01", "2022-12-31"],
+  "test_start_exclusive": "2022-01-01",
+  "cash_event_date": "2022-06-15",
+  "representations": ["raw", "cross_sectional_rank"],
+  "selection_fit_budget": 8,
+  "final_fit_budget": 4,
+  "raw_clip_quantiles": [0.005, 0.995],
+  "rank_clip_bounds": [-0.5, 0.5],
+  "ridge": {
+    "alpha_log10_start": -1,
+    "alpha_log10_end": 1,
+    "n_trials": 2,
+    "solver": "cholesky"
+  },
+  "lightgbm": {
+    "num_leaves": [7, 15],
+    "n_estimators": [40],
+    "min_child_samples": [20],
+    "fixed": {
+      "objective": "regression",
+      "learning_rate": 0.03,
+      "reg_lambda": 1.0,
+      "random_state": 42,
+      "deterministic": true,
+      "force_col_wise": true,
+      "n_jobs": 2,
+      "verbosity": -1
+    }
+  },
+  "cost_bps": 10,
+  "action_availability_trading_days": 2
+}

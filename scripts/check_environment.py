@@ -1,7 +1,9 @@
 """Offline environment smoke check using synthetic data, not trading results."""
 from importlib.metadata import version
 from pathlib import Path
+import argparse
 import json
+import sys
 import tempfile
 
 import matplotlib
@@ -50,4 +52,15 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Offline smoke check or full synthetic research demo.")
+    parser.add_argument("--demo", action="store_true", help="Run the complete synthetic core workflow")
+    parser.add_argument("--output", type=Path, help="Empty demo output directory (default: outputs/demo)")
+    args = parser.parse_args()
+    if args.output is not None and not args.demo:
+        parser.error("--output requires --demo")
+    if args.demo:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+        from equity_research.demo import run_demo
+        run_demo(args.output)
+    else:
+        main()

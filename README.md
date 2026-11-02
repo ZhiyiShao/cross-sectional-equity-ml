@@ -8,7 +8,7 @@
 
 测试中，原始特征 Ridge 的扣费年化收益为 **18.27%**，股票池等权基准为 **8.72%**；验证期选出的主模型“排名特征 LightGBM”为 **11.56%**。模型在验证期与测试期的排序发生变化，是本项目关于泛化能力的主要发现。
 
-[查看测试结果](#测试结果与研究发现) · [阅读核心代码](docs/diagrams/READING_PATH.md) · [查看可编辑导图](docs/diagrams/README.md) · [运行测试](#快速运行)
+[查看测试结果](#测试结果与研究发现) · [运行完整演示](#快速运行) · [阅读核心代码](docs/diagrams/READING_PATH.md) · [查看可编辑导图](docs/diagrams/README.md)
 
 ## 项目概览
 
@@ -20,7 +20,7 @@
 | 模型比较 | 原始特征 / 横截面排名特征 × Ridge / LightGBM，共四组 |
 | 交易方式 | 只做多、不加杠杆，每 5 个交易日产生信号，下一交易日收盘调仓 |
 | 评价层次 | 预测排序能力 → 扣费组合收益 → 风险暴露与统计不确定性 |
-| 工程交付 | 模块化 Python 代码、6 个命令入口、184 项自动化测试、研究协议和结果汇总 |
+| 工程交付 | 无需 WRDS 的完整合成演示、模块化 Python 代码、6 个命令入口、自动化测试、研究协议和结果汇总 |
 | 技术栈 | pandas、NumPy、SciPy、scikit-learn、LightGBM、PyArrow、Matplotlib、pytest |
 
 项目中的主要工作包括：
@@ -142,6 +142,7 @@ src/equity_research/
   models/                  预处理、选参、最终拟合与独立核验
   backtest/                目标持仓、交易引擎、资金账本和结算日历
   evaluation/              分组诊断、风险暴露和测试评价
+  demo.py                  合成数据与核心流程串联
   paths.py                 项目路径
   provenance.py            文件与历史快照的哈希核验
 config/                    研究参数、公司行动规则与结算日历
@@ -157,17 +158,35 @@ results/                   组合级结果与图表
 
 ## 快速运行
 
-使用 **Python 3.11**。在仓库根目录执行以下命令即可检查环境并运行合成数据测试，无需 WRDS 账户：
+使用 **Python 3.11**。克隆仓库后，在仓库根目录执行以下命令即可运行完整合成演示，无需 WRDS 账户：
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+python scripts/check_environment.py --demo
+```
+
+Linux / macOS 激活环境使用 `source .venv/bin/activate`。
+
+这条命令会生成 **60 只虚构证券**，运行历史股票池、21 个特征与未来收益标签、四组模型的选参与最终拟合，再通过原有交易引擎和资金账本回测六组组合。输出集中在 `outputs/demo/`：先看 `demo_overview.png` 和 `summary.csv`，再按需查看模型、交易明细与核验清单。**图表和收益全部来自合成数据，用于展示代码流程。**
+
+再次运行时指定新目录，已有结果不会被覆盖：
+
+```bash
+python scripts/check_environment.py --demo --output outputs/demo_run2
+```
+
+演示的日期、缩小的实验预算及逐项输出见 [演示说明](docs/DEMO.md)。正式研究的结果仍位于 `results/`。
+
+单独检查环境或运行全部自动化测试：
+
+```bash
 python scripts/check_environment.py
 python -m pytest -q
 ```
 
-Linux / macOS 激活环境使用 `source .venv/bin/activate`。当前测试套件包含 **184 项测试**，覆盖特征因果性、标签边界、预处理隔离、公司行动、资金结算与净值核对。GitHub Actions 使用同一测试入口。
+测试覆盖完整演示、特征因果性、标签边界、预处理隔离、公司行动、资金结算与净值核对。GitHub Actions 使用同一测试入口。
 
 `requirements.txt` 定义安装依赖；`requirements.lock.txt` 保存原研究的本地环境版本。
 
@@ -176,7 +195,7 @@ Linux / macOS 激活环境使用 `source .venv/bin/activate`。当前测试套�
 
 | 入口 | 阶段参数 | 用途 |
 |---|---|---|
-| `scripts/check_environment.py` | 无 | 合成数据环境检查 |
+| `scripts/check_environment.py` | 无 / `--demo` | 环境检查 / 完整合成演示 |
 | `scripts/prepare_data.py` | `ingest / universe / audit / returns / features / validate / validation-events / test-audit / test-events` | 数据准备、特征与事件审计 |
 | `scripts/train_models.py` | `select / final-fit` | 验证选参、冻结后的最终拟合 |
 | `scripts/backtest.py` | `validation / test` | 验证期或测试期组合回测 |
@@ -187,7 +206,7 @@ Linux / macOS 激活环境使用 `source .venv/bin/activate`。当前测试套�
 
 完整数值复现需要自有 WRDS / CRSP 权限、授权行情、已核实的公司行动资料，以及各阶段的冻结清单和本地产物。取得数据后，参考 [查询配置示例](config/crsp_query.example.json) 创建本地 `config/crsp_query.json`，填写本次提取的文件、行数和 SHA256。
 
-入口按研究阶段组织，各阶段需要相应上游产物；部分入口会拒绝覆盖已经完成的运行。公开仓库直接支持环境检查与合成测试，历史运行溯源另需本地源码快照。原始行情、个股预测、持仓、模型、下载配置和历史快照通过 `.gitignore` 保留在本地。
+入口按研究阶段组织，各阶段需要相应上游产物；部分入口会拒绝覆盖已经完成的运行。公开仓库直接支持完整合成演示、环境检查与自动化测试，历史运行溯源另需本地源码快照。原始行情、个股预测、持仓、模型、下载配置和历史快照通过 `.gitignore` 保留在本地。
 
 历史源码哈希核对原运行版本，当前实现通过独立参考算法与回归测试核验。早期协议记录当时的方案与状态，当前入口和已完成状态以本 README 为准。
 

@@ -81,12 +81,13 @@ def load_inputs():
     return pred,schedule,dates,market,raw,provenance
 
 
-def make_targets(pred, schedule):
-    result={m:{} for m in MODELS}
+def make_targets(pred, schedule, *, models=None):
+    models = MODELS if models is None else models
+    result={m:{} for m in models}
     for s in schedule.itertuples(index=False):
         g=pred.loc[pred.signal_date.eq(s.signal_date)&pred.signal_eligible]
         require(len(g)>0,'Empty eligible universe')
-        for m in MODELS:
+        for m in models:
             chosen=g if m=='equal_weight' else g.sort_values([m,'PERMNO'],ascending=[False,True]).head(int(np.ceil(len(g)/10)))
             result[m][s.entry_date]=tuple(chosen.PERMNO.astype(int))
     return result
