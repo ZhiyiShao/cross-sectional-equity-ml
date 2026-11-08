@@ -1,0 +1,20 @@
+{
+  "frozen_on": "2026-11-07",
+  "round": 3,
+  "parent": "config/research_v2.json",
+  "context_config": "config/context_features_v2.json",
+  "max_fits": 16,
+  "final_refits": 0,
+  "data_end_exclusive": "2022-01-01",
+  "target": "Within each training signal date, strict eligible finite y_excess_5d samples only: relevance=min(9,floor(10*(average_rank(y)-0.5)/n)). Ties keep equal relevance. All tied returns have one relevance and no pairwise ranking signal. No global quantile estimates or future-period labels.",
+  "groups": "Sort by signal_date and PERMNO before masking; each contiguous signal date is one query. Missing/unverified or boundary-crossing targets excluded before computing relevance. Inference still covers all eligible stocks regardless of target availability.",
+  "ranking_fixed": {"objective": "lambdarank", "label_gain": [0,1,2,3,4,5,6,7,8,9], "lambdarank_truncation_level": 53, "lambdarank_norm": true, "sigmoid": 1.0},
+  "num_leaves": [7,15,31,63],
+  "shared_fixed": "All other estimator settings copied from frozen round2 lightgbm_fixed, including 100 trees, min_child_samples=500, learning_rate=.03, L2=1, seed=20261107. No early stopping.",
+  "preprocessing": "Reuse exact round2 per-window original/enhanced LightGBM preprocessing states and saved development feature snapshot; do not fit new transforms.",
+  "selection": "Equal weight mean across the two windows of equal-date Rank IC against continuous y_excess_5d; choose separately for original/enhanced features; exact ties choose lower candidate index. Save selection before portfolio evaluation.",
+  "diagnostics": "NDCG at ceil(n/10) with linear relevance and predicted ties ordered by PERMNO; top-decile continuous label mean on eligible scored stocks, then strict-label filtering; yearly IC; matched-leaf comparisons with saved round2 regression results. NDCG and portfolio returns never select candidates.",
+  "portfolio": "2020-2021 only; replay selected window2 rankers under original top-decile and unchanged round1 constrained rules. Compare to saved round2 portfolios without retraining/replaying regression models.",
+  "bootstrap": {"block_signals": 10, "replications": 2000, "seed": 20261107},
+  "interpretation": "Development and selection diagnostics, not independent confirmation. This experiment changes both loss and discrete target representation; it cannot isolate pure loss effect. No 2022-2025 performance reads or model selection."
+}

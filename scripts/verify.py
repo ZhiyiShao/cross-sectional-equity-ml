@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=["features", "selection", "final-models", "history"])
+    parser.add_argument("stage", choices=["features", "selection", "final-models", "final-models-v2", "history"])
     args = parser.parse_args()
     if args.stage == "history":
         from equity_research.models.final_fit import protected_hashes
@@ -19,6 +19,7 @@ def main():
         "features": "data.validation",
         "selection": "models.validation",
         "final-models": "models.verification",
+        "final-models-v2": "models.verification_v2",
     }[args.stage]
     import_module("equity_research." + module).main()
 

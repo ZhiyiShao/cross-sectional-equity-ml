@@ -1,0 +1,10 @@
+{
+  "annual_mean_net_difference": 0.012144610885967844,
+  "ci_low": -0.04365592517605767,
+  "ci_high": 0.06782535493148573,
+  "paired_days": 996,
+  "adequate_daily_coverage": true,
+  "conclusion": "insufficient_evidence_or_deterioration",
+  "valid_signal_dates": 199,
+  "interpretation_scope": "post-test historical replay, not independent confirmation"
+}

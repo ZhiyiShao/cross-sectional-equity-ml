@@ -1,0 +1,152 @@
+{
+  "config": {
+    "frozen_on": "2026-11-07",
+    "parent": "config/research_v2.json",
+    "round": 2,
+    "max_fits": 32,
+    "final_refits": 0,
+    "reserved_round3_fits": 16,
+    "data_end_exclusive": "2022-01-01",
+    "industry_min_count": 5,
+    "context_features": {
+      "industry_mom20": "Same signal-date eligible industry mean momentum_20; fewer than 5 finite observations or Unknown industry falls back to universe mean",
+      "industry_mom60": "Same as industry_mom20 using momentum_60",
+      "relative_mom20": "momentum_20 minus industry_mom20",
+      "relative_mom60": "momentum_60 minus industry_mom60",
+      "industry_rank20": "Average-tie rank of momentum_20 within eligible industry: (rank-.5)/n-.5; fewer than 5 finite observations or Unknown falls back to universe rank",
+      "universe_mean_mom20": "Equal weight mean of finite momentum_20 among signal-eligible stocks",
+      "universe_breadth20": "Fraction of finite eligible momentum_20 strictly above zero",
+      "universe_dispersion20": "Sample standard deviation (ddof=1) of eligible momentum_20",
+      "universe_median_vol20": "Median eligible volatility_20; already annualized",
+      "momentum_vol_interaction": "momentum_20 times universe_median_vol20",
+      "reversal_breadth_interaction": "reversal_1 times (universe_breadth20-.5)",
+      "momentum_dispersion_interaction": "momentum_60 times universe_dispersion20"
+    },
+    "population": "Signal-eligible population only, including stocks whose future label is missing. Finite observations only; no target information. Industry mean includes self. These universe proxies are not an external market index.",
+    "preprocessing": "Ridge: original and added columns use training-only .005/.995 clipping, median fill and population scaling. LightGBM: original 21 use centered same-date cross-sectional ranks then existing training median/scaling; added 12 use raw training-only clipping/fill/scaling, preserving common market context and interactions. No label normalization.",
+    "ridge_alphas": [
+      0.1,
+      10.0,
+      1000.0,
+      100000.0
+    ],
+    "lightgbm_num_leaves": [
+      7,
+      15,
+      31,
+      63
+    ],
+    "lightgbm_fixed": {
+      "objective": "regression",
+      "n_estimators": 100,
+      "min_child_samples": 500,
+      "learning_rate": 0.03,
+      "reg_lambda": 1.0,
+      "max_depth": -1,
+      "subsample": 1.0,
+      "subsample_freq": 0,
+      "colsample_bytree": 1.0,
+      "random_state": 20261107,
+      "deterministic": true,
+      "force_col_wise": true,
+      "n_jobs": 4,
+      "verbosity": -1
+    },
+    "early_stopping": false,
+    "selection": "Parent two-window equal-weight mean Rank IC, ties choose first grid entry; choose independently within four designs. Persist every candidate; reuse existing fitted candidates for evaluation and portfolios, no refit.",
+    "portfolio_scope": "2020-2021 only, verified corporate action/settlement ledger; original top-decile and round1 constrained portfolios. 2019 prediction metrics only. No portfolio metric used for selection.",
+    "bootstrap": {
+      "signal_block": 10,
+      "replications": 2000,
+      "seed": 20261107
+    }
+  },
+  "parent": {
+    "frozen_on": "2026-11-07",
+    "status": "post_test_research_v2",
+    "development_windows": [
+      {
+        "train": [
+          "2015-01-01",
+          "2018-12-31"
+        ],
+        "evaluate": [
+          "2019-01-01",
+          "2019-12-31"
+        ]
+      },
+      {
+        "train": [
+          "2015-01-01",
+          "2019-12-31"
+        ],
+        "evaluate": [
+          "2020-01-01",
+          "2021-12-31"
+        ]
+      }
+    ],
+    "boundary": "Training label_end_date must not exceed train end; preprocessing fitted on training only. Equal weight per evaluation date, then equal weight per window.",
+    "candidate_budget": {
+      "designs": 6,
+      "configurations_per_design": 4,
+      "windows": 2,
+      "maximum_candidate_fits": 48,
+      "selected_refits_maximum": 6,
+      "round1_fits": 0,
+      "round1_predictions": 0
+    },
+    "selection": "Mean Rank IC across two windows; exact ties choose simpler/earlier fixed configuration. Ranking diagnostics do not create additional tuning objectives.",
+    "round1_periods": {
+      "validation": [
+        "2020-01-01",
+        "2021-12-31"
+      ],
+      "seen_test": [
+        "2022-01-01",
+        "2025-12-31"
+      ]
+    },
+    "unseen_evaluation": "New period must be named and frozen before accessing its research data; 2022-2025 cannot be reused as unseen test. No new-period data read in round 1.",
+    "models": [
+      "raw__ridge_03",
+      "cross_sectional_rank__lightgbm_10"
+    ],
+    "constraints": {
+      "max_weight": 0.02,
+      "industry_active": 0.02,
+      "beta_active": 0.1,
+      "annual_stock_vol_active_upper": 0.1
+    },
+    "optimizer": "Maximize same-date percentile score by linear programming across all signal-eligible stocks. Full investment; no turnover penalty or covariance optimization in round 1. SIC two-digit industry; unknown is separate. Missing beta/vol imputed with contemporaneous universe median; abort if column entirely missing. Infeasible/failed solve aborts, never relaxes based on performance.",
+    "execution": {
+      "cost_bps_per_side": 10,
+      "company_action_lag": 2,
+      "ordinary_sales_reusable": true,
+      "historical_settlement": "existing T+2/T+1 calendars",
+      "timing": "every fifth signal date, next-close execution",
+      "exceptions": "existing approved OTC quote proxy and CVR exclusion unchanged"
+    },
+    "evaluation": {
+      "primary": "Paired change in annualized mean daily net active return versus universe EW",
+      "secondary": [
+        "CAGR",
+        "Sharpe_rf0",
+        "max_drawdown",
+        "tracking_error",
+        "information_ratio",
+        "turnover",
+        "annualized_fee_drag",
+        "target_and_executed_exposures",
+        "coverage",
+        "yearly_returns"
+      ],
+      "bootstrap": {
+        "block_days": 20,
+        "replications": 2000,
+        "seed": 20261107
+      }
+    },
+    "scope": "Constraints apply to signal targets. Fees, unavailable securities, inherited positions and between-rebalance drift may change realized exposures; report execution deviations. Industry histories are effective-dated CRSP SIC, not guaranteed unrevised point-in-time releases. This is a risk-controlled observational experiment, not causal attribution."
+  }
+}

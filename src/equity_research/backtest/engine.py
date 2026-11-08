@@ -99,7 +99,13 @@ def simulate(m,targets,terms,cost_bps=10,availability=2,settled_only=False,recor
    lots=keep
    desired=np.zeros(n)
    wanted=np.array([],int) if liquidation else indexed[date]
-   if len(wanted):desired[wanted]=pretrade/len(wanted)
+   if len(wanted):
+    specification=targets[date]
+    if isinstance(specification,dict):
+     weights=np.array([specification[int(ids[j])] for j in wanted],float)
+     base.require(np.isfinite(weights).all() and (weights>=0).all() and weights.sum()<=1+1e-10,'Invalid target weights')
+     desired[wanted]=pretrade*weights
+    else:desired[wanted]=pretrade/len(wanted)
    sell_wish=np.maximum(v-desired,0);sells=sell_wish*(m['sellable'][i]&(last==i))
    v-=sells;fee=float(sells.sum()*cost);fees+=fee;sell+=float(sells.sum())
    failed_sell=float((sell_wish-sells).sum())

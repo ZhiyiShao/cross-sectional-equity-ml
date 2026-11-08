@@ -1,0 +1,9 @@
+{
+  "model_fits": 0,
+  "new_predictions": 0,
+  "ledger_days_checked": 5996,
+  "original_paths_reproduced": 4,
+  "original_artifacts_unchanged": true,
+  "plan_sha256": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+  "status": "verified"
+}

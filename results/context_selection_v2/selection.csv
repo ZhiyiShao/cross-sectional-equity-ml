@@ -1,0 +1,5 @@
+design,candidate,parameter,rank_ic
+lightgbm_enhanced,3,63.0,0.012703084439378683
+lightgbm_original,0,7.0,0.010798816672081261
+ridge_enhanced,2,1000.0,0.015698893299340898
+ridge_original,2,1000.0,0.007195651137049809

@@ -1,0 +1,33 @@
+{
+  "frozen_on": "2026-11-07",
+  "parent": "config/research_v2.json",
+  "round": 2,
+  "max_fits": 32,
+  "final_refits": 0,
+  "reserved_round3_fits": 16,
+  "data_end_exclusive": "2022-01-01",
+  "industry_min_count": 5,
+  "context_features": {
+    "industry_mom20": "Same signal-date eligible industry mean momentum_20; fewer than 5 finite observations or Unknown industry falls back to universe mean",
+    "industry_mom60": "Same as industry_mom20 using momentum_60",
+    "relative_mom20": "momentum_20 minus industry_mom20",
+    "relative_mom60": "momentum_60 minus industry_mom60",
+    "industry_rank20": "Average-tie rank of momentum_20 within eligible industry: (rank-.5)/n-.5; fewer than 5 finite observations or Unknown falls back to universe rank",
+    "universe_mean_mom20": "Equal weight mean of finite momentum_20 among signal-eligible stocks",
+    "universe_breadth20": "Fraction of finite eligible momentum_20 strictly above zero",
+    "universe_dispersion20": "Sample standard deviation (ddof=1) of eligible momentum_20",
+    "universe_median_vol20": "Median eligible volatility_20; already annualized",
+    "momentum_vol_interaction": "momentum_20 times universe_median_vol20",
+    "reversal_breadth_interaction": "reversal_1 times (universe_breadth20-.5)",
+    "momentum_dispersion_interaction": "momentum_60 times universe_dispersion20"
+  },
+  "population": "Signal-eligible population only, including stocks whose future label is missing. Finite observations only; no target information. Industry mean includes self. These universe proxies are not an external market index.",
+  "preprocessing": "Ridge: original and added columns use training-only .005/.995 clipping, median fill and population scaling. LightGBM: original 21 use centered same-date cross-sectional ranks then existing training median/scaling; added 12 use raw training-only clipping/fill/scaling, preserving common market context and interactions. No label normalization.",
+  "ridge_alphas": [0.1, 10.0, 1000.0, 100000.0],
+  "lightgbm_num_leaves": [7, 15, 31, 63],
+  "lightgbm_fixed": {"objective": "regression", "n_estimators": 100, "min_child_samples": 500, "learning_rate": 0.03, "reg_lambda": 1.0, "max_depth": -1, "subsample": 1.0, "subsample_freq": 0, "colsample_bytree": 1.0, "random_state": 20261107, "deterministic": true, "force_col_wise": true, "n_jobs": 4, "verbosity": -1},
+  "early_stopping": false,
+  "selection": "Parent two-window equal-weight mean Rank IC, ties choose first grid entry; choose independently within four designs. Persist every candidate; reuse existing fitted candidates for evaluation and portfolios, no refit.",
+  "portfolio_scope": "2020-2021 only, verified corporate action/settlement ledger; original top-decile and round1 constrained portfolios. 2019 prediction metrics only. No portfolio metric used for selection.",
+  "bootstrap": {"signal_block": 10, "replications": 2000, "seed": 20261107}
+}

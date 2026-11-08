@@ -1,0 +1,24 @@
+{
+  "status": "plan_frozen_not_executed",
+  "date": "2026-11-07",
+  "designs": 6,
+  "new_fits": 0,
+  "new_predictions": 0,
+  "new_backtests": 0,
+  "new_test_or_unseen_observations_read": 0,
+  "prior_artifact_files_unchanged": 814,
+  "source_hash_checks": 12,
+  "parameter_grid_added": false,
+  "candidate_budget_remaining": 0,
+  "final_fit_budget_remaining": 6,
+  "unseen_eligibility": "pending",
+  "checks": [
+    "six retained model parameters equal saved selected parameters",
+    "primary follows highest equal-window IC",
+    "comparison has six complete finite rows",
+    "configuration and public frozen snapshot identical",
+    "source hashes unchanged",
+    "prior output/results metadata unchanged",
+    "no final_models_v2 directory created"
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "version": "2.0",
+  "frozen_on": "2026-11-07",
+  "status": "plan_frozen_execution_not_authorized_this_turn",
+  "source_sha256": {
+    "results/ranking_selection_v2/all_selection.csv": "6a8d01de8290343e129c6e69a79246091c8280ef2211e57ae1ae83fa8a08e8fe",
+    "results/ranking_selection_v2/window_ic.csv": "e5e312687c3185f25b1bb32842b5d0f716802ab3665c121a79448713670875d5",
+    "results/ranking_selection_v2/annual_ic.csv": "12491495a5aa68dd535c9ac2c8a9526c80b4ff5d6515e668bfb4baa1ccff397f",
+    "results/ranking_selection_v2/comparison_portfolio_metrics.csv": "3b4b123a613a9f7e0241bf4bbe2d00fb297359eab14751badda7ae2ecb0918c4",
+    "results/ranking_selection_v2/comparison_annual_returns.csv": "be421201c12c641091e31b682bcaba5f22cae9710c515091ed024c699ec66b10",
+    "results/context_selection_v2/paired_equal_window_ic.csv": "1d59470a3701ec36d245d5cda42d5dbac70e17955e5812e80386dee4cc44ffb2",
+    "results/ranking_selection_v2/paired_equal_window_ic.csv": "8924d5e69bb5391c90b8e14e75d73cf107f40c2b3f2c66a46d43bc6535178d1d",
+    "results/ranking_selection_v2/portfolio_paired_intervals.csv": "c59fbafa08bdf53295bfe1eafce4458572c76be7ab44643adcd391808c8dd855",
+    "config/research_v2.json": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+    "config/context_features_v2.json": "b6a4ae875b79abde39c5b870f63e83499f0c62404b5105277c8a385759a99e50",
+    "config/ranking_v2.json": "761fdc0b87bf472434f45e76d016b268ee2deadc453ed85feaea5729ce31370a",
+    "config/features_labels.json": "39f156a5d649b1b6786f77a560d085852f493f4003939c87749b045a6c74d663"
+  },
+  "primary_model": "ridge_enhanced",
+  "primary_comparator": "ridge_original",
+  "secondary_challenger": "ranker_enhanced",
+  "role_rule": "Retain all six designs. Primary model is largest predeclared equal-window Rank IC; portfolio winner remains secondary and cannot replace primary after later results.",
+  "models": [
+    {
+      "id": "ridge_original",
+      "role": "primary_comparator",
+      "family": "ridge",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60"
+      ],
+      "parameters": {
+        "alpha": 1000.0,
+        "solver": "cholesky",
+        "fit_intercept": true
+      },
+      "selection_metric_value": 0.0071956511370498
+    },
+    {
+      "id": "ridge_enhanced",
+      "role": "primary_model",
+      "family": "ridge",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60",
+        "industry_mom20",
+        "industry_mom60",
+        "relative_mom20",
+        "relative_mom60",
+        "industry_rank20",
+        "universe_mean_mom20",
+        "universe_breadth20",
+        "universe_dispersion20",
+        "universe_median_vol20",
+        "momentum_vol_interaction",
+        "reversal_breadth_interaction",
+        "momentum_dispersion_interaction"
+      ],
+      "parameters": {
+        "alpha": 1000.0,
+        "solver": "cholesky",
+        "fit_intercept": true
+      },
+      "selection_metric_value": 0.0156988932993408
+    },
+    {
+      "id": "lightgbm_original",
+      "role": "regression_baseline",
+      "family": "lightgbm",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60"
+      ],
+      "parameters": {
+        "objective": "regression",
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 7
+      },
+      "selection_metric_value": 0.0107988166720812
+    },
+    {
+      "id": "lightgbm_enhanced",
+      "role": "ranking_objective_control",
+      "family": "lightgbm",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60",
+        "industry_mom20",
+        "industry_mom60",
+        "relative_mom20",
+        "relative_mom60",
+        "industry_rank20",
+        "universe_mean_mom20",
+        "universe_breadth20",
+        "universe_dispersion20",
+        "universe_median_vol20",
+        "momentum_vol_interaction",
+        "reversal_breadth_interaction",
+        "momentum_dispersion_interaction"
+      ],
+      "parameters": {
+        "objective": "regression",
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 63
+      },
+      "selection_metric_value": 0.0127030844393786
+    },
+    {
+      "id": "ranker_original",
+      "role": "context_ablation_control",
+      "family": "ranker",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60"
+      ],
+      "parameters": {
+        "objective": "lambdarank",
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 63,
+        "label_gain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "lambdarank_truncation_level": 53,
+        "lambdarank_norm": true,
+        "sigmoid": 1.0
+      },
+      "selection_metric_value": 0.0132066460357574
+    },
+    {
+      "id": "ranker_enhanced",
+      "role": "secondary_challenger",
+      "family": "ranker",
+      "features": [
+        "momentum_5",
+        "momentum_10",
+        "momentum_20",
+        "momentum_60",
+        "momentum_120",
+        "momentum_60_skip5",
+        "reversal_1",
+        "volatility_5",
+        "volatility_20",
+        "volatility_60",
+        "downside_volatility_20",
+        "log_dollar_volume_20",
+        "log_dollar_volume_60",
+        "dollar_volume_ratio_5_20",
+        "share_volume_ratio_5_20",
+        "share_turnover_20",
+        "amihud_20",
+        "intraday_range_20",
+        "close_location_5",
+        "log_market_cap",
+        "market_beta_60",
+        "industry_mom20",
+        "industry_mom60",
+        "relative_mom20",
+        "relative_mom60",
+        "industry_rank20",
+        "universe_mean_mom20",
+        "universe_breadth20",
+        "universe_dispersion20",
+        "universe_median_vol20",
+        "momentum_vol_interaction",
+        "reversal_breadth_interaction",
+        "momentum_dispersion_interaction"
+      ],
+      "parameters": {
+        "objective": "lambdarank",
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "num_leaves": 7,
+        "label_gain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "lambdarank_truncation_level": 53,
+        "lambdarank_norm": true,
+        "sigmoid": 1.0
+      },
+      "selection_metric_value": 0.0137960825829244
+    }
+  ],
+  "budget": {
+    "candidate_fits_used": 48,
+    "candidate_fits_remaining": 0,
+    "future_final_fits_maximum": 6,
+    "fits_per_model": 1,
+    "fits_performed_this_turn": 0,
+    "future_rolling_refits": 0,
+    "future_seed_trials": 0
+  },
+  "final_fit": {
+    "dates": [
+      "2015-01-01",
+      "2021-12-31"
+    ],
+    "eligible": "signal_eligible; finite strict y_excess_5d; label_status ok/ok_bridged; signal_date < label_end_date <= 2021-12-31",
+    "internal_boundary": "Restore formerly purged 2019-to-2020 labels if strict and fully within final fit end; never restore labels ending in 2022.",
+    "features_population": "Same-date signal-eligible population, irrespective of label availability, before training-label filtering; original and context definitions unchanged.",
+    "preprocessing": "Refit three reusable training-only components: raw21 clip/median/scale, ranked21 median/scale, context12 clip/median/scale. Four bundles combine these; do not reuse 2015-2019 fitted statistics.",
+    "ranking": "Recompute frozen 0-9 relevance within each final training date after strict eligibility filtering, average ties, linear gain and truncation 53. Contiguous chronological groups.",
+    "model_use": "Identical six frozen model/preprocessing hashes for seen replay and unseen evaluation. No fit through 2025, annual update, calibration, ensemble fitting or early stopping.",
+    "artifacts": "New outputs/final_models_v2 directory; training keys/boundaries, fit ledger, preprocessing, model versions, hashes, serialization roundtrip and independent predictions required."
+  },
+  "historical_evaluation": {
+    "dates": [
+      "2022-01-01",
+      "2025-12-31"
+    ],
+    "label": "post-test historical robustness replay; not independent unseen test",
+    "selection_allowed": false,
+    "rules": "Publish all six, yearly results, paired differences and exposure diagnostics; preserve original v1 main-model identity and v1 results; do not overwrite. Do not change models after replay."
+  },
+  "unseen_evaluation": {
+    "planned_period": [
+      "2026-01-01",
+      "2026-12-31"
+    ],
+    "eligibility_status": "unverified_pending_access_audit",
+    "opening_conditions": [
+      "Final model/preprocessing/plan hashes locked before new performance access",
+      "Audit prior project ingestion, access logs and experiment use; do not infer unseen status from year or filenames alone",
+      "Full calendar-year vendor data, historical universe warmup, settlement calendar and corporate-action terms ready and verified blind to strategy returns"
+    ],
+    "no_interim_selection": "No partial-year return peeks, repeated stopping decisions or selection; first planned performance release after full 2026 data/event coverage is available, not necessarily 2027-01-01.",
+    "fallback_if_already_used": {
+      "period": [
+        "2027-01-01",
+        "2027-12-31"
+      ],
+      "trigger": "2026 found already used in project research, or early performance inspection requested; fix fallback before viewing its returns, not because 2026 performs poorly"
+    },
+    "incomplete_data": "Wait for prescribed period coverage; never silently shorten/replace to improve performance. No new raw data downloaded this turn.",
+    "future_status": "2026 historical portion is only potentially blinded holdout, not wholly prospective; 2027 fallback is prospective at freeze date."
+  },
+  "portfolio": {
+    "primary": "round1 constrained",
+    "secondary": "original top-decile equal weight",
+    "constraints": {
+      "max_weight": 0.02,
+      "industry_active": 0.02,
+      "beta_active": 0.1,
+      "annual_stock_vol_active_upper": 0.1
+    },
+    "execution": {
+      "cost_bps_per_side": 10,
+      "company_action_lag": 2,
+      "ordinary_sales_reusable": true,
+      "historical_settlement": "existing T+2/T+1 calendars",
+      "timing": "every fifth signal date, next-close execution",
+      "exceptions": "existing approved OTC quote proxy and CVR exclusion unchanged"
+    },
+    "benchmarks": [
+      "same-universe equal weight",
+      "positive momentum20 top decile, missing score filled with final-training median"
+    ],
+    "costs": {
+      "primary_bps_per_side": 10,
+      "diagnostic_bps_per_side": [
+        0,
+        5,
+        20
+      ],
+      "select_from_cost_sensitivity": false
+    },
+    "period_initialization": "Each evaluation period starts with NAV 1, cash only, no positions/receivables carried from previous period. Same universe and dates across models.",
+    "signal_grid": "Continue original 2015-01-02 anchor every fifth market session; do not reset cadence at period boundaries; next-close entry, t+6 exit label; only complete horizons within period; final scheduled endpoint liquidation uses existing ledger.",
+    "risk_scope": "Signal target constraints; separately report executed exposure deviations, unavailable trades and missing exposure coverage. No post-return constraint relaxation.",
+    "events": "Keep audited original legal/cash/share/OTC/CVR rules. Any uncovered event blocks full-period publication pending documented return-blind resolution; no silent event-stock exclusion or zero returns."
+  },
+  "evaluation": {
+    "primary_contrast": [
+      "ridge_enhanced",
+      "ridge_original"
+    ],
+    "primary_statistic": "252 times mean paired daily NET return difference of constrained portfolios, equivalent to difference in net active means versus common EW.",
+    "primary_interval": {
+      "method": "paired circular block bootstrap",
+      "block_days": 20,
+      "replications": 2000,
+      "seed": 20261107,
+      "confidence": 0.95
+    },
+    "secondary": [
+      "per-date Rank IC against continuous strict target",
+      "NDCG@top10 with frozen grades",
+      "CAGR",
+      "Sharpe rf0",
+      "maximum drawdown",
+      "tracking error / information ratio versus EW",
+      "turnover / annualized fee rate",
+      "yearly or quarterly stability",
+      "target and realized exposures / coverage",
+      "top-decile label returns distinct from NAV"
+    ],
+    "prediction_interval": {
+      "block_signal_dates": 10,
+      "replications": 2000,
+      "seed": 20261107
+    },
+    "predeclared_secondary_contrasts": [
+      [
+        "ranker_enhanced",
+        "lightgbm_enhanced"
+      ],
+      [
+        "ranker_enhanced",
+        "ridge_enhanced"
+      ],
+      [
+        "lightgbm_enhanced",
+        "lightgbm_original"
+      ],
+      [
+        "ranker_original",
+        "lightgbm_original"
+      ]
+    ],
+    "multiplicity": "Only one primary contrast; all other intervals explicitly exploratory, no unadjusted multiple-comparison success claims.",
+    "interpretation": "Support primary net improvement only if primary estimate >0 and lower 95% bound >0 with adequate data; otherwise report insufficient evidence or deterioration, without swapping primary. IC and risk tradeoffs always disclosed; not proof of production profitability.",
+    "adequacy": {
+      "minimum_daily_returns": 200,
+      "minimum_signal_dates": 40,
+      "require_all_six_same_dates": true,
+      "rule": "Shorter coverage is descriptive only; no favorable extension or event/date dropping."
+    }
+  },
+  "gates_before_execution": [
+    "New implementation must enforce date gates and exact fit count before actual final fits",
+    "Verify 2015-2021 label-boundary filtered read, context no-lookahead, solver and ledger regression tests",
+    "Verify public calendars for target period and resolve noncovered events before publishing performance",
+    "Permission for subsequent fitting/data evaluation is separate from this documentation-only turn"
+  ],
+  "not_done_this_turn": [
+    "training",
+    "new prediction",
+    "new backtest",
+    "reading 2022-2025 performance",
+    "unseen data access",
+    "parameter search"
+  ]
+}

@@ -1,0 +1,9 @@
+design,candidate,parameter,rank_ic
+ranker_enhanced,0,7,0.013796082582924463
+ranker_enhanced,1,15,0.012591715301640223
+ranker_enhanced,2,31,0.007297929955611249
+ranker_enhanced,3,63,0.007324999331995002
+ranker_original,0,7,0.007301063205983757
+ranker_original,1,15,0.01219671223341542
+ranker_original,2,31,0.006941089564927149
+ranker_original,3,63,0.013206646035757446

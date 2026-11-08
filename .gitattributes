@@ -6,3 +6,14 @@
 *.csv text eol=lf
 *.ps1 text eol=crlf
 *.png binary
+
+# Frozen V2 manifests hash exact bytes; preserve their source and result snapshots.
+config/final_evaluation_v2.json -text
+results/context_selection_v2/** -text
+results/final_models_v2/** -text
+results/historical_replay_v2/** -text
+results/ranking_selection_v2/** -text
+results/risk_comparison_v2/** -text
+results/v2_comparison/** -text
+src/equity_research/models/preprocessing.py -text
+src/equity_research/backtest/engine.py -text

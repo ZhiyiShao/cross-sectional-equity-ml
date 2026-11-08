@@ -1,0 +1,8 @@
+{
+  "config/final_evaluation_v2.json": "369a78f786f7772ab36b34c12607e7d11715c018dd06b45329d513c09292cc32",
+  "docs/FINAL_EVALUATION_V2.md": "c3bcbc97735faa0754affb9af1f9e057031e6d4852e85b88b2df36575dff7607",
+  "results/v2_comparison/audit.json": "658f489c38a362d810928802243e72e6ae75b9e901f91335e4cfde9ead1f441f",
+  "results/v2_comparison/frozen_plan.json": "369a78f786f7772ab36b34c12607e7d11715c018dd06b45329d513c09292cc32",
+  "results/v2_comparison/README.md": "6eb4829386626f279a67be5a8c2a363443919683d8607ffe6196a31b1ebeadc0",
+  "results/v2_comparison/six_designs.csv": "2e5e7f5d0974c012ee1231cba8fa3f8ccba23eced2dda892eca28a199d20c677"
+}

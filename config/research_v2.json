@@ -1,0 +1,19 @@
+{
+  "frozen_on": "2026-11-07",
+  "status": "post_test_research_v2",
+  "development_windows": [
+    {"train": ["2015-01-01", "2018-12-31"], "evaluate": ["2019-01-01", "2019-12-31"]},
+    {"train": ["2015-01-01", "2019-12-31"], "evaluate": ["2020-01-01", "2021-12-31"]}
+  ],
+  "boundary": "Training label_end_date must not exceed train end; preprocessing fitted on training only. Equal weight per evaluation date, then equal weight per window.",
+  "candidate_budget": {"designs": 6, "configurations_per_design": 4, "windows": 2, "maximum_candidate_fits": 48, "selected_refits_maximum": 6, "round1_fits": 0, "round1_predictions": 0},
+  "selection": "Mean Rank IC across two windows; exact ties choose simpler/earlier fixed configuration. Ranking diagnostics do not create additional tuning objectives.",
+  "round1_periods": {"validation": ["2020-01-01", "2021-12-31"], "seen_test": ["2022-01-01", "2025-12-31"]},
+  "unseen_evaluation": "New period must be named and frozen before accessing its research data; 2022-2025 cannot be reused as unseen test. No new-period data read in round 1.",
+  "models": ["raw__ridge_03", "cross_sectional_rank__lightgbm_10"],
+  "constraints": {"max_weight": 0.02, "industry_active": 0.02, "beta_active": 0.10, "annual_stock_vol_active_upper": 0.10},
+  "optimizer": "Maximize same-date percentile score by linear programming across all signal-eligible stocks. Full investment; no turnover penalty or covariance optimization in round 1. SIC two-digit industry; unknown is separate. Missing beta/vol imputed with contemporaneous universe median; abort if column entirely missing. Infeasible/failed solve aborts, never relaxes based on performance.",
+  "execution": {"cost_bps_per_side": 10, "company_action_lag": 2, "ordinary_sales_reusable": true, "historical_settlement": "existing T+2/T+1 calendars", "timing": "every fifth signal date, next-close execution", "exceptions": "existing approved OTC quote proxy and CVR exclusion unchanged"},
+  "evaluation": {"primary": "Paired change in annualized mean daily net active return versus universe EW", "secondary": ["CAGR", "Sharpe_rf0", "max_drawdown", "tracking_error", "information_ratio", "turnover", "annualized_fee_drag", "target_and_executed_exposures", "coverage", "yearly_returns"], "bootstrap": {"block_days": 20, "replications": 2000, "seed": 20261107}},
+  "scope": "Constraints apply to signal targets. Fees, unavailable securities, inherited positions and between-rebalance drift may change realized exposures; report execution deviations. Industry histories are effective-dated CRSP SIC, not guaranteed unrevised point-in-time releases. This is a risk-controlled observational experiment, not causal attribution."
+}

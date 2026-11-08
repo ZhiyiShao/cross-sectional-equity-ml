@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "tests_passed": 150,
+  "tests_failed": 0,
+  "additional_estimator_fits": 0,
+  "protected_prior_files": 823,
+  "source_hash_checks": 11,
+  "prediction_entry_check": "first and last qualified training signal dates, complete candidate populations, all six equal saved references at 1e-12",
+  "preflight": {
+    "status": "model_bundle_ready_evaluation_still_closed",
+    "models": 6,
+    "verified_artifacts": 13,
+    "observations_read": 0,
+    "historical_replay_executed": false,
+    "historical_period": [
+      "2022-01-01",
+      "2025-12-31"
+    ],
+    "unseen_period": [
+      "2026-01-01",
+      "2026-12-31"
+    ],
+    "unseen_eligibility": "unverified_pending_access_audit",
+    "requires": "Separate authorization and audited full-period replay bundle; no automatic market IO"
+  }
+}

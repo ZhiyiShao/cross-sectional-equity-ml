@@ -1,0 +1,17 @@
+model,comparator,variant,role,mean,ci_low,ci_high,observations
+ridge_enhanced,ridge_original,original,exploratory,-0.020667179402393623,-0.11016477407999913,0.07511065598973725,996
+ranker_enhanced,lightgbm_enhanced,original,exploratory,0.010347693899105814,-0.14190407705171174,0.1585004350044998,996
+ranker_enhanced,ridge_enhanced,original,exploratory,-0.09302210665344715,-0.22619917671751355,0.04511124047538524,996
+lightgbm_enhanced,lightgbm_original,original,exploratory,-0.1003433714829092,-0.22119454226307614,0.020582562698711625,996
+ranker_original,lightgbm_original,original,exploratory,-0.17578863477275553,-0.33411917220926446,-0.0166045710078211,996
+ridge_enhanced,ridge_original,constrained,primary,0.012144610885967844,-0.04365592517605767,0.06782535493148573,996
+ranker_enhanced,lightgbm_enhanced,constrained,exploratory,0.018014195804076674,-0.06028593279791552,0.09682954313171777,996
+ranker_enhanced,ridge_enhanced,constrained,exploratory,-0.016186330399123844,-0.09553244634780303,0.060500837883524027,996
+lightgbm_enhanced,lightgbm_original,constrained,exploratory,-0.04041376079085929,-0.11544950074607017,0.036674973935567484,996
+ranker_original,lightgbm_original,constrained,exploratory,-0.10725293520261496,-0.1884134601807191,-0.030818664597471616,996
+ridge_original,same model original,constrained-minus-original,exploratory,-0.12481772850872888,-0.29004348691983634,0.034703314208863884,996
+ridge_enhanced,same model original,constrained-minus-original,exploratory,-0.09200593822036743,-0.2350876946499916,0.05369717558925957,996
+lightgbm_original,same model original,constrained-minus-original,exploratory,-0.08276627456306491,-0.2531692829214605,0.09010723389601766,996
+lightgbm_enhanced,same model original,constrained-minus-original,exploratory,-0.022836663871015014,-0.17101260987838715,0.11731160762011558,996
+ranker_original,same model original,constrained-minus-original,exploratory,-0.014230574992924338,-0.09643767787533555,0.06777158608039197,996
+ranker_enhanced,same model original,constrained-minus-original,exploratory,-0.015170161966044121,-0.1360885751185002,0.09924793593108405,996

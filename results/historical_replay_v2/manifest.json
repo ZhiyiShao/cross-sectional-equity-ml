@@ -1,0 +1,18 @@
+{
+  "results/historical_replay_v2/annual_ic.csv": "475e5ef84bfc12229bb2b19ab4e889718777cafc3822fbc720db1d5d1e7ef84b",
+  "results/historical_replay_v2/annual_returns.csv": "5e4bb6fcafa5c704d6e7c83cc23ce74bc627351e4faf8a72c32d229195c0887d",
+  "results/historical_replay_v2/daily_prediction_metrics.csv": "3d5afd25d79ed47abbcfc959d13b0745d8466ac748acf593519fb15dceda4db2",
+  "results/historical_replay_v2/exposure_summary.csv": "89af5559c785158ce89f91abf3569338eb04491c0f4cde34651ddf286b3bc551",
+  "results/historical_replay_v2/label_coverage.csv": "192049a407b6790669dbf12012eb1ffc364482f9baa535f5bf30bf31c0ccb8f5",
+  "results/historical_replay_v2/overview.png": "08c39aeec438bd050b9f2e08062f00d62854d5054b968a5f8a8688c6977b866c",
+  "results/historical_replay_v2/paired_ic.csv": "1cb2d82f6e6bc922a41241857346c77092fb1f0d03926b7c5880e7c5f8bf4b6a",
+  "results/historical_replay_v2/paired_return_intervals.csv": "e4092af822f32f26f042e89e6cfaa1f3ae193042a797e709b40f94007eaca6d7",
+  "results/historical_replay_v2/portfolio_metrics.csv": "7dc75f9ddd56eb364b252377016fb555212a586cb84975db38e5bdfcadba7e27",
+  "results/historical_replay_v2/predictive_metrics.csv": "ee78c4eb90d25b9c40c8ef6736a824f780265a3c7fed3bbff32d857f0e1dd113",
+  "results/historical_replay_v2/primary_comparison.json": "64e73ed27a2c3091569078a661f7e3179f83fa6dd46cc49dd26c1fe64d2d0ea8",
+  "results/historical_replay_v2/quarterly_returns.csv": "b51f8ab257c9eb474cecd697d2b72e32732ea7772dfa0c17504f6e61b14de40e",
+  "results/historical_replay_v2/README.md": "0db9d30411b21d0a4f59903527539a05f32fcffcb4f0ae4eca6e407e0960ede4",
+  "results/historical_replay_v2/test_verification.json": "f4b39be2e86e77537538ff15f1e6588787834befaccdf3eb96a149157fc60b0d",
+  "results/historical_replay_v2/top_decile_labels.csv": "02a8c38beebe0499c568573c19832450df3b29f65306c626433b419d15d1918c",
+  "results/historical_replay_v2/verification.json": "156966cf147bff708c0cc4445d467084c156daa2bc5349ff1f184f3a2150f4df"
+}

@@ -1,0 +1,9 @@
+design,variant,year,net_return
+ranker_enhanced,original,2020,0.7875287295977433
+ranker_enhanced,original,2021,0.023918232960868924
+ranker_enhanced,constrained,2020,0.5144456043276795
+ranker_enhanced,constrained,2021,0.14639264232429228
+ranker_original,original,2020,0.3021009624460158
+ranker_original,original,2021,-0.03264882329715657
+ranker_original,constrained,2020,0.37734719090483404
+ranker_original,constrained,2021,-0.027284295198566788

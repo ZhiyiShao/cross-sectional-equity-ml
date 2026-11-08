@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "fits": 32,
+  "remaining_candidate_budget": 16,
+  "final_refits": 0,
+  "test_rows_read": 0,
+  "test_predictions": 0,
+  "test_metrics_used": false,
+  "original_artifact_metadata_unchanged": true,
+  "feature_digest": "98a5c1fd6073a96907e17c74e7bd9bc91512f61443a818dadb34440e9844dc7a",
+  "windows": [
+    {
+      "train": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "evaluate": [
+        "2019-01-01",
+        "2019-12-31"
+      ]
+    },
+    {
+      "train": [
+        "2015-01-01",
+        "2019-12-31"
+      ],
+      "evaluate": [
+        "2020-01-01",
+        "2021-12-31"
+      ]
+    }
+  ],
+  "sha256": {
+    "config/context_features_v2.json": "b6a4ae875b79abde39c5b870f63e83499f0c62404b5105277c8a385759a99e50",
+    "config/research_v2.json": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+    "src/equity_research/models/context_selection.py": "34be48fe6512560be91ef7f9ccc917176cf4f23c7bf675913c19214284cfd5f9",
+    "src/equity_research/backtest/risk_comparison.py": "11bfc1bd28d9f74d323b808311b7fe12e77aeb9cda35e23a112dce8985d53acc",
+    "src/equity_research/models/preprocessing.py": "d1b714edc1c4b9031251407dd2c9bb7cff7a41d0df7febfc770005c42c2e9121"
+  }
+}

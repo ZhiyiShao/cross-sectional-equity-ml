@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "fits": 6,
+  "candidate_fits_added": 0,
+  "verification_fits": 0,
+  "boundary": {
+    "candidate_rows": 176500,
+    "fit_rows": 175334,
+    "signal_dates": 352,
+    "signal_start": "2015-01-02",
+    "signal_end": "2021-12-21",
+    "max_label_end": "2021-12-30",
+    "restored_internal_boundary_rows": 497,
+    "excluded_cross_2022_rows": 500,
+    "original_train_rows": 125474,
+    "original_validation_rows": 49860
+  },
+  "independent_context_verified": true,
+  "independent_preprocessing_verified": true,
+  "independent_relevance_verified": true,
+  "checks": [
+    {
+      "id": "ridge_original",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    },
+    {
+      "id": "ridge_enhanced",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    },
+    {
+      "id": "lightgbm_original",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    },
+    {
+      "id": "lightgbm_enhanced",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    },
+    {
+      "id": "ranker_original",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    },
+    {
+      "id": "ranker_enhanced",
+      "rows": 175334,
+      "independent_prediction_max_error": 0.0
+    }
+  ],
+  "historical_replay_executed": false,
+  "unseen_data_read": false,
+  "performance_evaluated": false,
+  "prior_artifacts_unchanged": true
+}
