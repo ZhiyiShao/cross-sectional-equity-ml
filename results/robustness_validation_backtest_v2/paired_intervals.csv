@@ -1,0 +1,13 @@
+design,variant,annual_mean_net_difference,ci_low,ci_high,return_days
+lightgbm_enhanced,constrained,0.0,0.0,0.0,501
+lightgbm_enhanced,original,0.0,0.0,0.0,501
+lightgbm_original,constrained,0.020874161880068916,-0.060218196423175184,0.09741208047884749,501
+lightgbm_original,original,-0.024432727345417685,-0.12810066198956904,0.08059127645610216,501
+ranker_enhanced,constrained,0.0,0.0,0.0,501
+ranker_enhanced,original,0.0,0.0,0.0,501
+ranker_original,constrained,0.0,0.0,0.0,501
+ranker_original,original,0.0,0.0,0.0,501
+ridge_enhanced,constrained,0.0,0.0,0.0,501
+ridge_enhanced,original,0.0,0.0,0.0,501
+ridge_original,constrained,0.0,0.0,0.0,501
+ridge_original,original,0.0,0.0,0.0,501

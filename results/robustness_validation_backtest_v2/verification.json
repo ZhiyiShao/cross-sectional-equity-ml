@@ -1,0 +1,24 @@
+{
+  "status": "completed",
+  "model_fits": 0,
+  "final_refits": 0,
+  "new_prediction_calls": 0,
+  "holdout_performance_reads": 0,
+  "portfolio_paths": 14,
+  "cost_bps_per_side": 10,
+  "company_action_lag": 2,
+  "target_checks": 700,
+  "independently_verified_ledger_days": 7028,
+  "reproduced_old_paths": 12,
+  "first_date": "2020-01-06",
+  "last_date": "2021-12-30",
+  "protected_artifacts": 1478,
+  "old_artifact_metadata_unchanged": true,
+  "input_hashes_unchanged": true,
+  "selection_changed": false,
+  "bootstrap": {
+    "block_days": 20,
+    "replications": 2000,
+    "seed": 20261107
+  }
+}

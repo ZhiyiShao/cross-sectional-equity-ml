@@ -1,0 +1,16 @@
+{
+  "annual_comparison.csv": "d81a09c50a7f85b763509c9c87a000b8bd05ae067715ee0e8b3c6dca7b40a263",
+  "annual_returns.csv": "d35aa7a2a58b56e7faca767aecf497e1e69eaf77fb8a3f861cfd9a19596d1eb0",
+  "comparison.csv": "48cd00dca9b5bd64ff3a44fd57199ea5627eb23c8ad2c2f35fa1ca8b99faef6d",
+  "daily_portfolios.csv": "a1789c1a294f3a142b143d791ba682e7d4c8bfdf20d414ea424f3a46bbea4a03",
+  "exposures.csv": "dcb1dc1e6a9caee980ce3ad0beac8015c22f600c36a6c21ed334676e52ffd2a4",
+  "exposure_summary.csv": "a6dd9643565ba9d38b85b469c5220ac1518dc441040cf2ee29bf87388496eb7a",
+  "frozen_backtest.json": "46a6634e3eaff75d179558816e93a4fb2980a6caa8285e8034f32a111aea018f",
+  "lightgbm_comparison.png": "efcc100d6ef760c786b184fec923396bd0b2204321b40c7d0f787776a8a69d29",
+  "lightgbm_monthly.csv": "99ef1f345f179ddd686521477c6cff0ccdcc642c56e7c428ff0914baf7156b8b",
+  "paired_intervals.csv": "c88a8c147d00543afffea8e0f5c078023a3ead6612ece2cd17fffcf82a41fdf6",
+  "portfolio_metrics.csv": "229516974f75581ea1dd61e81919e79dd5e193142bd51670658eb36852dc0e27",
+  "README.md": "724d1e670014bf56863b8c5d88c49bcbcbaf526e1bd516b8932437eefe489496",
+  "reproduced_paths.csv": "755348931c77c50a97263f625ffc01e70086bddffd57b53d902dd90b522b03f9",
+  "verification.json": "af88afc1d58e74b7f644213014d70f682e5774de6c9e9152131fece556ab4e72"
+}

@@ -8,6 +8,9 @@
 | 为什么测试期 Ridge 更好 | [风险暴露与 2022 年持仓归因](../results/test_diagnostics/README.md) |
 | 如何不使用 WRDS 跑通流程 | [完整合成演示](DEMO.md) |
 | 如何读代码 | [五模块阅读路线](diagrams/READING_PATH.md) |
+| V2 参数搜索是否充分 | [开发期候选审计：窗口稳定性、边界与同参数对照](../results/search_audit_v2/README.md) |
+| V2 参数稳健性扩展 | [冻结网格与预算](PARAMETER_ROBUSTNESS_V2.md)、[80 次新增拟合后的统一评价](../results/parameter_robustness_v2/README.md) |
+| 参数稳健性执行与核验 | [入口、旧候选复用校验、拟合账本及完成状态](PARAMETER_ROBUSTNESS_EXECUTION.md) |
 
 本文是研究状态与实验关系的导航，不参与程序执行。`outputs/`、`data/`、`reports/`、`archive/` 为本地产物，未随 GitHub 发布；以下用代码格式标明这些路径，避免把本地记录伪装成可下载链接。公开的代码、配置、协议和组合汇总使用可点击链接。
 
@@ -141,3 +144,9 @@ flowchart TD
 | V2 事后历史稳健性回放 | 已见 2022–2025；199 个完整信号、997 个净值日期 | 0 次拟合/调参；六组各两种组合 + 动量/EW，四档成本共 56 路径；13,958 主组合日账本核验；主要收益差 +1.21pp，95% 区间 [−4.37, +6.78]pp；无新未见数据访问 | [统一结果与解释](../results/historical_replay_v2/README.md)；本地 `outputs/historical_replay_v2/`、`outputs/evaluation_v2_historical_2022/`；入口 `scripts/backtest.py historical-v2` |
 
 第一轮独立复现四条原净值、核对 5,996 个组合日及原产物哈希。`outputs/risk_comparison_v2_invalid_vol_units/` 是年化单位检查发现错误后留存的无效工程运行，不用于研究结论；修正未改变预定约束值。第二版不改变原测试结果或预定主模型身份，已见测试期不再称为未见评价。
+
+### 参数稳健性入选后的验证期组合检查
+
+复用 2015–2019 已训练模型的 2020–2021 预测，沿用原 V2 风险约束、10 bps/侧与最终资金规则。六组两种组合及旧 100 树对照共 14 路径，无拟合或新预测，不使用 2022–2025 表现。原有特征 LightGBM 100→300 树后，风险约束净 CAGR 为 22.81%→25.58%，前 10% 等权为 27.07%→24.98%；配对收益差区间包含零。其他五组完全复现。
+
+交付：[比较结果与解释](../results/robustness_validation_backtest_v2/README.md)；本地 `outputs/robustness_validation_backtest_v2/`；入口 `python scripts/backtest.py robustness-validation`。该开发期检查不改变原主模型或最终模型权重。

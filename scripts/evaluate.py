@@ -8,9 +8,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=["test", "validation-exposures", "test-exposures", "v2-preflight", "v2"])
+    parser.add_argument("stage", choices=["test", "validation-exposures", "test-exposures", "v2-preflight", "v2", "search-audit-v2", "robustness-v2"])
     parser.add_argument("--release", help="Separately authorized audited V2 replay release JSON")
     args = parser.parse_args()
+    if args.stage == "robustness-v2":
+        from equity_research.evaluation.parameter_robustness import main as run
+        run()
+        return
+    if args.stage == "search-audit-v2":
+        from equity_research.evaluation.search_audit_v2 import main as run
+        run()
+        return
     if args.stage in ["v2-preflight", "v2"]:
         import json
         from equity_research.evaluation.v2 import preflight, run_evaluation

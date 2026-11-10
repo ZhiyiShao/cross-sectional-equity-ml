@@ -1,0 +1,13 @@
+design,variant,max_nav_error
+ridge_original,original,0.0
+ridge_original,constrained,0.0
+ridge_enhanced,original,0.0
+ridge_enhanced,constrained,0.0
+lightgbm_enhanced,original,0.0
+lightgbm_enhanced,constrained,0.0
+ranker_original,original,0.0
+ranker_original,constrained,0.0
+ranker_enhanced,original,0.0
+ranker_enhanced,constrained,0.0
+lightgbm_original_old100,original,0.0
+lightgbm_original_old100,constrained,0.0

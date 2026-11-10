@@ -1,0 +1,13 @@
+{
+  "boundary_effects.csv": "c42f8f8e3940e23221b4e4740f05a8ddfbff4cedb2bb26b66a6681202f355a7f",
+  "candidate_annual_metrics.csv": "a931097022eb08ea8f7db0a42093e16a6ae8b380d8fc95293ab859a13c062b55",
+  "candidate_curves.png": "2b7e9b20ca9ad6d0fb73a0aeebe847e88099f8464f668fb367aefa2eaf98ba76",
+  "candidate_daily_metrics.csv": "0d83e8491801786471e2685a5f59f4b2b52c8bcb45fa1de97ad6e686302c1b95",
+  "candidate_ranking.csv": "0af6317cfb94aa7c895961e18f40ff408d54d40d86f590663920938826d96061",
+  "candidate_window_metrics.csv": "a088f0a7f2c27799f1018b9454d74e5e8f15beb4172f387c0f51adb8fc195d88",
+  "factorial_effects.csv": "1c7e41c3eb6bb74006f67bb86c516d11e09ca0082be67a5a621f0639d6b1e49e",
+  "paired_ic_intervals.csv": "c1d4707e4ffe0546fe20dc5c290cf37d3523c3bce34655b87d44bea3243a419b",
+  "README.md": "bccba5ae63964a489f14f764aaa51000833eee007204c6310637d11817d298ed",
+  "selection.csv": "75d67593fac24dbaf47dc10d14ad5fb5fc7c6bf12066cefd1fd05c8a8cde4c36",
+  "verification.json": "a1b36a00cdbab728afb74853878c1f5929c43061e49caf736820f6225bae1817"
+}

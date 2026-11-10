@@ -15,5 +15,8 @@ results/historical_replay_v2/** -text
 results/ranking_selection_v2/** -text
 results/risk_comparison_v2/** -text
 results/v2_comparison/** -text
+results/parameter_robustness_v2/** -text
+results/robustness_validation_backtest_v2/** -text
+results/search_audit_v2/** -text
 src/equity_research/models/preprocessing.py -text
 src/equity_research/backtest/engine.py -text

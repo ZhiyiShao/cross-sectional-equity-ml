@@ -1,0 +1,386 @@
+{
+  "version": "1.0",
+  "experiment_id": "parameter_robustness_v2",
+  "frozen_on": "2026-11-07",
+  "status": "plan_frozen_not_executed",
+  "execution_authorized_this_turn": false,
+  "parent_configs": [
+    "config/research_v2.json",
+    "config/context_features_v2.json",
+    "config/ranking_v2.json"
+  ],
+  "source_sha256": {
+    "config/research_v2.json": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+    "config/context_features_v2.json": "b6a4ae875b79abde39c5b870f63e83499f0c62404b5105277c8a385759a99e50",
+    "config/ranking_v2.json": "761fdc0b87bf472434f45e76d016b268ee2deadc453ed85feaea5729ce31370a",
+    "results/context_selection_v2/candidate_metrics.csv": "d3609554e9df18447b0bcbed9650f2888ddab8f5aa9ec9a352462ee5f19a94e2",
+    "results/context_selection_v2/candidate_ranking.csv": "41f9796140acfacc56d50b472e378bf168ec52a2fb51319bf4366b256a70bf1a",
+    "results/ranking_selection_v2/candidate_metrics.csv": "e3f6c1541cdb8e70b76e071c2b4681c0b6ca13408bbb04a1f729413efe86676f",
+    "results/ranking_selection_v2/candidate_ranking.csv": "69bb4e61d4e773c5a5d219516b795e0bda4ebbdcfd837165100144633d1bacd1",
+    "results/search_audit_v2/audit.json": "c2f8d59ee258705c6e416676151fdd32be5bc9263162d9816024b823b4f0065c",
+    "results/search_audit_v2/candidate_curves.csv": "1646772c1c1a7afc9b899479daa6c5a452db50a7373b5d7037a9a41ec574e62d",
+    "results/search_audit_v2/search_summary.csv": "691b1e77ce0a771b48951e60184da11a0425e27f4ee4f0ef38489fa8ef381dd3",
+    "results/search_audit_v2/matched_contrasts.csv": "66a21ae2204042dcbe6dedb8cdc1c642040039f00ee2bbc1e441af4a0a93f6a8",
+    "docs/PARAMETER_ROBUSTNESS_V2.md": "00504fa7ab9b6af56f92cb3b4e927c4495f6b734c5a9e8dffac6ab56494c86bc"
+  },
+  "development_windows": [
+    {
+      "train": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "evaluate": [
+        "2019-01-01",
+        "2019-12-31"
+      ]
+    },
+    {
+      "train": [
+        "2015-01-01",
+        "2019-12-31"
+      ],
+      "evaluate": [
+        "2020-01-01",
+        "2021-12-31"
+      ]
+    }
+  ],
+  "data_end_exclusive": "2022-01-01",
+  "expected_evaluation_coverage": [
+    {
+      "window": 1,
+      "dates": 49,
+      "strict_rows": 24427
+    },
+    {
+      "window": 2,
+      "dates": 100,
+      "strict_rows": 49860
+    }
+  ],
+  "designs": [
+    {
+      "id": "ridge_original",
+      "features": 21,
+      "grid": "ridge",
+      "representation": "raw",
+      "objective": "squared_error"
+    },
+    {
+      "id": "ridge_enhanced",
+      "features": 33,
+      "grid": "ridge",
+      "representation": "raw",
+      "objective": "squared_error"
+    },
+    {
+      "id": "lightgbm_original",
+      "features": 21,
+      "grid": "lightgbm",
+      "representation": "ranked_21_plus_raw_context",
+      "objective": "regression"
+    },
+    {
+      "id": "lightgbm_enhanced",
+      "features": 33,
+      "grid": "lightgbm",
+      "representation": "ranked_21_plus_raw_context",
+      "objective": "regression"
+    },
+    {
+      "id": "ranker_original",
+      "features": 21,
+      "grid": "lightgbm",
+      "representation": "ranked_21_plus_raw_context",
+      "objective": "lambdarank"
+    },
+    {
+      "id": "ranker_enhanced",
+      "features": 33,
+      "grid": "lightgbm",
+      "representation": "ranked_21_plus_raw_context",
+      "objective": "lambdarank"
+    }
+  ],
+  "ridge": {
+    "candidates": [
+      {
+        "id": "R00",
+        "alpha": 0.1,
+        "reuse_candidate": 0
+      },
+      {
+        "id": "R01",
+        "alpha": 10.0,
+        "reuse_candidate": 1
+      },
+      {
+        "id": "R02",
+        "alpha": 1000.0,
+        "reuse_candidate": 2
+      },
+      {
+        "id": "R03",
+        "alpha": 100000.0,
+        "reuse_candidate": 3
+      },
+      {
+        "id": "R04",
+        "alpha": 100.0,
+        "reuse_candidate": null
+      },
+      {
+        "id": "R05",
+        "alpha": 300.0,
+        "reuse_candidate": null
+      },
+      {
+        "id": "R06",
+        "alpha": 3000.0,
+        "reuse_candidate": null
+      },
+      {
+        "id": "R07",
+        "alpha": 10000.0,
+        "reuse_candidate": null
+      }
+    ],
+    "fixed": {
+      "solver": "cholesky",
+      "fit_intercept": true
+    },
+    "sample_size_alpha_scaling": false
+  },
+  "lightgbm": {
+    "candidates": [
+      {
+        "id": "L00",
+        "num_leaves": 7,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": 0
+      },
+      {
+        "id": "L01",
+        "num_leaves": 15,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": 1
+      },
+      {
+        "id": "L02",
+        "num_leaves": 31,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": 2
+      },
+      {
+        "id": "L03",
+        "num_leaves": 63,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": 3
+      },
+      {
+        "id": "L04",
+        "num_leaves": 3,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L05",
+        "num_leaves": 127,
+        "n_estimators": 100,
+        "min_child_samples": 500,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L06",
+        "num_leaves": 7,
+        "n_estimators": 300,
+        "min_child_samples": 500,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L07",
+        "num_leaves": 63,
+        "n_estimators": 300,
+        "min_child_samples": 500,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L08",
+        "num_leaves": 7,
+        "n_estimators": 100,
+        "min_child_samples": 100,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L09",
+        "num_leaves": 63,
+        "n_estimators": 100,
+        "min_child_samples": 100,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L10",
+        "num_leaves": 7,
+        "n_estimators": 300,
+        "min_child_samples": 100,
+        "reuse_candidate": null
+      },
+      {
+        "id": "L11",
+        "num_leaves": 63,
+        "n_estimators": 300,
+        "min_child_samples": 100,
+        "reuse_candidate": null
+      }
+    ],
+    "grid_mode": "explicit_list_not_cartesian_product",
+    "fixed": {
+      "learning_rate": 0.03,
+      "reg_lambda": 1.0,
+      "max_depth": -1,
+      "subsample": 1.0,
+      "subsample_freq": 0,
+      "colsample_bytree": 1.0,
+      "random_state": 20261107,
+      "deterministic": true,
+      "force_col_wise": true,
+      "n_jobs": 4,
+      "verbosity": -1
+    },
+    "regression_objective": "regression",
+    "ranking_fixed": {
+      "objective": "lambdarank",
+      "label_gain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "lambdarank_truncation_level": 53,
+      "lambdarank_norm": true,
+      "sigmoid": 1.0
+    },
+    "early_stopping": false
+  },
+  "budget": {
+    "new_ridge_fits": 16,
+    "new_regression_fits": 32,
+    "new_ranking_fits": 32,
+    "max_new_fit_calls": 80,
+    "reused_candidate_window_results": 48,
+    "total_candidate_window_results": 128,
+    "total_design_configurations": 64,
+    "final_refits": 0,
+    "portfolio_backtests": 0,
+    "fit_calls_executed": 0,
+    "failed_calls_consume_budget": true,
+    "automatic_retries": false
+  },
+  "reuse": {
+    "development_snapshot": "outputs/context_selection_v2/development_features_local.parquet",
+    "context_artifacts": "outputs/context_selection_v2",
+    "ranking_artifacts": "outputs/ranking_selection_v2",
+    "use_exact_window_preprocessing": true,
+    "refit_old_candidates": false,
+    "validation": [
+      "input_and_preprocessing_hashes",
+      "training_and_evaluation_row_sets",
+      "label_end_boundaries",
+      "feature_order",
+      "estimator_parameters",
+      "software_versions",
+      "saved_daily_ic_reproduction"
+    ],
+    "on_missing_or_inconsistent": "stop_no_refit_fallback"
+  },
+  "isolation": {
+    "metadata_before_targets": true,
+    "exclude_targets_ending_after_window": true,
+    "full_signal_eligible_population_for_features_and_prediction": true,
+    "targets_not_used_to_filter_prediction_population": true,
+    "holdout_performance_reads": 0,
+    "new_unseen_data_reads": 0,
+    "input_manifest_and_implementation_hashes_before_first_fit": true
+  },
+  "selection": {
+    "metric": "equal_window_mean_daily_spearman_ic_on_continuous_y_excess_5d",
+    "window_weights": [
+      0.5,
+      0.5
+    ],
+    "within_window": "equal_signal_date",
+    "scope": "independently_per_design_old_plus_new",
+    "tie_break": "exact_score_tie_then_candidate_id_ascending",
+    "approximate_tie_tolerance": null,
+    "preserves_old_anchor_order": true,
+    "portfolio_metrics_used": false,
+    "auto_promote_to_frozen_final_model": false,
+    "post_selection_refits": 0
+  },
+  "evaluation": {
+    "required": [
+      "all_candidate_window_and_year_ic",
+      "coverage",
+      "boundary_and_runner_up_gap",
+      "window_winners_and_candidate_rank_correlation",
+      "selected_minus_prior_selected",
+      "matched_feature_deltas",
+      "matched_objective_deltas",
+      "tree_count_and_min_samples_factorial_effects",
+      "boundary_increments",
+      "ndcg_top_decile",
+      "top_decile_continuous_label_return_and_coverage"
+    ],
+    "matched_design_contrasts": 56,
+    "selected_vs_prior_contrasts": 6,
+    "robustness_flags": "both_window_deltas_positive / window_tradeoff / unchanged; diagnostic_only",
+    "bootstrap": {
+      "block_signals": 10,
+      "replications": 2000,
+      "seed": 20261107,
+      "windows_sampled_independently": true,
+      "shared_indices_across_candidates": true,
+      "combined_window_weights": [
+        0.5,
+        0.5
+      ],
+      "interval": "percentile_95",
+      "scope": "56 matched design contrasts plus 6 selected-versus-prior contrasts; window and combined intervals",
+      "selection_adjusted": false,
+      "changes_selection": false
+    },
+    "stopping": "fixed_budget_even_if_new_winner_is_on_boundary",
+    "interpretation": "Adaptive follow-up on previously observed development data; descriptive, not independent confirmation"
+  },
+  "outputs": {
+    "local": "outputs/parameter_robustness_v2",
+    "public": "results/parameter_robustness_v2",
+    "preserve_all_previous_artifacts": true,
+    "overwrite_existing_run": false,
+    "resume": "only verified completed tasks skipped using fit ledger; no duplicate fits",
+    "raw_data_predictions_and_weights_local_only": true
+  },
+  "current_scope": {
+    "training": false,
+    "prediction": false,
+    "backtest": false,
+    "final_fit": false,
+    "holdout_replay": false,
+    "deliverables": [
+      "frozen_protocol",
+      "machine_readable_plan",
+      "static_plan_checks"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source_sha256": {
+    "results/context_selection_v2/candidate_metrics.csv": "d3609554e9df18447b0bcbed9650f2888ddab8f5aa9ec9a352462ee5f19a94e2",
+    "results/context_selection_v2/candidate_ranking.csv": "41f9796140acfacc56d50b472e378bf168ec52a2fb51319bf4366b256a70bf1a",
+    "results/ranking_selection_v2/candidate_metrics.csv": "e3f6c1541cdb8e70b76e071c2b4681c0b6ca13408bbb04a1f729413efe86676f",
+    "results/ranking_selection_v2/candidate_ranking.csv": "69bb4e61d4e773c5a5d219516b795e0bda4ebbdcfd837165100144633d1bacd1"
+  },
+  "candidate_window_rows": 48,
+  "candidate_configurations": 24,
+  "matched_contrasts": 20,
+  "model_fits": 0,
+  "market_data_reads": 0,
+  "holdout_performance_reads": 0,
+  "saved_ranking_reproduced": true,
+  "source_files_unchanged": true,
+  "selection_rule_changed": false,
+  "inference": "Descriptive aggregate audit; no significance test or new model selection."
+}

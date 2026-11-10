@@ -1,0 +1,75 @@
+{
+  "status": "completed",
+  "candidate_window_results": 128,
+  "design_configurations": 64,
+  "new_fits": 80,
+  "reused": 48,
+  "evaluation_fits": 0,
+  "final_refits": 0,
+  "backtests": 0,
+  "holdout_performance_reads": 0,
+  "daily_diagnostic_rows": 9664,
+  "annual_rows": 192,
+  "matched_contrasts": 56,
+  "selected_comparisons": 6,
+  "interval_rows": 186,
+  "old_scores_reproduced": true,
+  "selection": [
+    {
+      "design": "ridge_original",
+      "candidate": "R02",
+      "old_candidate": "R02"
+    },
+    {
+      "design": "ridge_enhanced",
+      "candidate": "R02",
+      "old_candidate": "R02"
+    },
+    {
+      "design": "lightgbm_original",
+      "candidate": "L06",
+      "old_candidate": "L00"
+    },
+    {
+      "design": "lightgbm_enhanced",
+      "candidate": "L03",
+      "old_candidate": "L03"
+    },
+    {
+      "design": "ranker_original",
+      "candidate": "L03",
+      "old_candidate": "L03"
+    },
+    {
+      "design": "ranker_enhanced",
+      "candidate": "L00",
+      "old_candidate": "L00"
+    }
+  ],
+  "plan_sha256": "80cb1d87d2f540ea814f612548200b652b883922a0c3c52c7a968718f80b330e",
+  "execution_ledger_sha256": "ed293c38875fc345dd843da62607bf6b2303f3d48a9ac69feeb15b5dd8a412c0",
+  "evaluation_code_sha256": "c8529981c2dce3a9ee4d58fc8169336a5fe4cd9f1e84fe07fbda35f9833b851f",
+  "bootstrap": {
+    "block_signals": 10,
+    "replications": 2000,
+    "seed": 20261107,
+    "windows_sampled_independently": true,
+    "shared_indices_across_candidates": true,
+    "combined_window_weights": [
+      0.5,
+      0.5
+    ],
+    "interval": "percentile_95",
+    "scope": "56 matched design contrasts plus 6 selected-versus-prior contrasts; window and combined intervals",
+    "selection_adjusted": false,
+    "changes_selection": false
+  },
+  "interpretation": "Development diagnostics; not independent or selection-adjusted evidence",
+  "protected_existing_artifacts": 998,
+  "protected_artifact_metadata_unchanged": true,
+  "saved_new_models_independently_checked": 80,
+  "prediction_positions_checked_per_model": 101,
+  "evaluation_unit_tests_passed": 6,
+  "real_artifact_tests_passed": 3,
+  "failed_fits": 0
+}
