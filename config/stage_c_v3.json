@@ -1,0 +1,161 @@
+{
+  "windows": {
+    "W1": {
+      "id": "W1",
+      "train": [
+        "2015-01-01",
+        "2017-12-31"
+      ],
+      "evaluate": [
+        "2018-01-01",
+        "2018-12-31"
+      ]
+    },
+    "W2": {
+      "id": "W2",
+      "train": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "evaluate": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "reuse": "Same definition as V2 window 1; reuse only after verification."
+    },
+    "W3": {
+      "id": "W3",
+      "train": [
+        "2015-01-01",
+        "2019-12-31"
+      ],
+      "evaluate": [
+        "2020-01-01",
+        "2020-12-31"
+      ],
+      "reuse": "Training set identical to V2 window 2; reuse its verified predictions restricted to 2020 signal dates with label_end_date <= 2020-12-31. Amended 2026-11-10."
+    },
+    "W4": {
+      "id": "W4",
+      "train": [
+        "2015-01-01",
+        "2020-12-31"
+      ],
+      "evaluate": [
+        "2021-01-01",
+        "2021-12-31"
+      ]
+    }
+  },
+  "members": {
+    "mlp_seed11": {
+      "kind": "mlp",
+      "family": "ridge_enhanced",
+      "hidden": [
+        32,
+        16
+      ],
+      "epochs": 6,
+      "alpha": 0.001,
+      "learning_rate": 0.001,
+      "seed": 11
+    },
+    "reg_seed11": {
+      "kind": "tree",
+      "family": "lightgbm_enhanced",
+      "seed": 11,
+      "feature_fraction": 0.8
+    },
+    "reg_seed29": {
+      "kind": "tree",
+      "family": "lightgbm_enhanced",
+      "seed": 29,
+      "feature_fraction": 0.8
+    },
+    "rank_seed11": {
+      "kind": "tree",
+      "family": "ranker_enhanced",
+      "seed": 11,
+      "feature_fraction": 0.8
+    },
+    "rank_seed29": {
+      "kind": "tree",
+      "family": "ranker_enhanced",
+      "seed": 29,
+      "feature_fraction": 0.8
+    }
+  },
+  "variants": {
+    "mlp": {
+      "members": [
+        "mlp_seed11"
+      ],
+      "baseline": "ridge_enhanced"
+    },
+    "reg_mean": {
+      "members": [
+        "reg_seed11",
+        "reg_seed29"
+      ],
+      "baseline": "lightgbm_enhanced"
+    },
+    "rank_mean": {
+      "members": [
+        "rank_seed11",
+        "rank_seed29"
+      ],
+      "baseline": "ranker_enhanced"
+    },
+    "consensus": {
+      "members": [
+        "mlp",
+        "reg_mean",
+        "rank_mean"
+      ],
+      "baseline": "ranker_enhanced"
+    }
+  },
+  "budget": 20,
+  "incumbents": {
+    "ridge_enhanced": {
+      "family": "ridge_enhanced",
+      "target": "ordinary",
+      "id": "R02"
+    },
+    "lightgbm_enhanced": {
+      "family": "lightgbm_enhanced",
+      "target": "ordinary",
+      "id": "L03"
+    },
+    "ranker_enhanced": {
+      "family": "ranker_enhanced",
+      "target": "residual",
+      "id": "L00"
+    }
+  },
+  "incumbent_means": {
+    "ridge_enhanced": -0.003939187575685173,
+    "lightgbm_enhanced": 0.007996986803944183,
+    "ranker_enhanced": 0.011524925590023468
+  },
+  "sources": {
+    "outputs/v3_baseline/W1_ridge_enhanced_R02/predictions.parquet": "4dceafe24b6c488b138d9a88b64e19857d0c982b4747b9e86f2bb55a09848862",
+    "outputs/v3_baseline/W2_ridge_enhanced_R02/predictions.parquet": "0e8325880a5f596f8cf412e579586eadaa88590ea99c4b3ede5b2d083fc4b72f",
+    "outputs/v3_baseline/W3_ridge_enhanced_R02/predictions.parquet": "80428a8a9a67a97acea4d54814805a97c31548baf47ab99dde6490b6d89dc1fd",
+    "outputs/v3_baseline/W4_ridge_enhanced_R02/predictions.parquet": "8d6366bd80141007a995d1344244d9412d7f10087724caf9c549a4a98dcc0472",
+    "outputs/v3_baseline/W1_lightgbm_enhanced_L03/predictions.parquet": "18207cde701e0223cc6d56992a366c6ed755790426530147d63866371a8d75c8",
+    "outputs/v3_baseline/W2_lightgbm_enhanced_L03/predictions.parquet": "10fafe1a3b80a7720322b023a313f1e22222cdb96ec6e42a2a9de88c42582d73",
+    "outputs/v3_baseline/W3_lightgbm_enhanced_L03/predictions.parquet": "7fa1d0ea3c7323b75713b8f3814e91f5032641905ce0060c03381f90cc8ff54b",
+    "outputs/v3_baseline/W4_lightgbm_enhanced_L03/predictions.parquet": "90f61fbf2573c92b1f33d3109af7f75d46c49f60769afa13703b1b533bad2606",
+    "outputs/v3_stage_b_targets/W1_ranker_enhanced_residual/predictions.parquet": "b4b49fa3fc7c32cc241d6bf3f51cc78a73756782e60e763bc2a58e6dc9dee0f8",
+    "outputs/v3_stage_b_targets/W2_ranker_enhanced_residual/predictions.parquet": "36775dd801a4ab22456f470dfbf42fbe50d537150ceba9cfac54f6c13e0633d4",
+    "outputs/v3_stage_b_targets/W3_ranker_enhanced_residual/predictions.parquet": "2de5187d2a5df75b451b73be4038858a55dc0aa84d7722a692112d5e87be0cc3",
+    "outputs/v3_stage_b_targets/W4_ranker_enhanced_residual/predictions.parquet": "b51d3ceb3b25e5ba1590f36411d72d0c7218e32c34fbc6cf8b71d34d0d06b40c",
+    "config/stage_b_v3.json": "83710de96c2ad3b85a15714c441b4f8f8a6d826c5e97f4ecea29e345973269cb",
+    "outputs/v3_stage_b_targets/comparison.json": "4edc31ef72d2f9fee823e4cb6820944279497bfc9854f0d951d344a83dff6500",
+    "outputs/v3_stage_b_targets/fit_ledger.json": "fd3e1666fcccd993c4f7ed52155afd3a02060edb478acba7f2ca24a8f02086b2",
+    "scripts/stage_c_v3.py": "0864b37de64517409005d4db4801c0d1e9402ca174ad5c1c52e6d201a3fcc5ce",
+    "src/equity_research/models/ensemble_v3.py": "5be7a3fb19ab914be25c7f5f38389b17284a847c9e556399f21858dac95c3f6b"
+  },
+  "selection": "Among incumbents and candidates beating their named control in mean and >=3 years, take highest mean. Exact ties use incumbent insertion order, then variant insertion order. D cannot change this signal."
+}

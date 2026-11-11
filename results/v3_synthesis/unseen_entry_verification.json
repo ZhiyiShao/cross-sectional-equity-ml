@@ -1,0 +1,30 @@
+{
+  "status": "local_verification_complete_release_not_installed",
+  "portfolio": "v3_final",
+  "primary_comparator": "raw__ridge_03",
+  "entry_seal_sha256": "595df8a4ea0874c9371c18084c3ef1e25d5d13b99045bf4e9f504ffc6b5e91a8",
+  "original_final_spec_sha256": "08735c2ccd9393c698ae589b953e57541ad2f9f78a596313f1a91cf52b6aa590",
+  "historical_check": {
+    "script": "scripts/verify_unseen_inputs_2025.py",
+    "same_vintage_disjoint_partitions": ["2014 through 2024-12-31", "2025-01-01 through 2025-12-31"],
+    "months": 12,
+    "matched_monthly_members": 6000,
+    "complete_five_day_signals": 48,
+    "matched_signal_security_keys": 24000,
+    "matched_eligibility_and_industry": true,
+    "matched_features": 33,
+    "maximum_absolute_feature_difference": 0.0,
+    "exact_label_status_endpoint_and_return_rows": 24000,
+    "maximum_label_endpoint": "2025-12-24"
+  },
+  "tests": {
+    "new_synthetic_entry_tests": 4,
+    "existing_non_fit_regression_tests": 4,
+    "passed": 8,
+    "exercise": "Independent temporary Git repositories and synthetic market paths; process death, concurrent access, reserved tag, input/seal/checkpoint changes, label and portfolio recovery, completed run deletion and old-branch reset, overlap binding"
+  },
+  "production_runs_reserved": 0,
+  "new_fits": 0,
+  "historical_replays": 0,
+  "real_2026_data_access": false
+}

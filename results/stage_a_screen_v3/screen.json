@@ -1,0 +1,687 @@
+{
+  "rule_sha256": "f909dc21753d9b7770a75a083016f17a05ba44b75ead0c88b90fedf69213b11d",
+  "input_sha256": "8e21730eaeb8089bc2540128cbfea7d5c986bc1f71d89a44c87ecd300306414b",
+  "code_sha256": "c6473b2a78d53209f119e1a3a00a1f358d096effb4e48ffb8505dd17715097d9",
+  "rows": 75265,
+  "dates": 151,
+  "decisions": [
+    {
+      "feature": "positive_fraction_5",
+      "missing_fraction": 3.98591642861888e-05,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.6448814261988672,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.43619271801115467,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.30000023311490764,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.17654650875649805,
+          "valid_days": 151
+        },
+        "momentum_120": {
+          "mean_daily_rho": 0.1400841865191697,
+          "valid_days": 151
+        },
+        "momentum_60_skip5": {
+          "mean_daily_rho": 0.01935659512620032,
+          "valid_days": 151
+        },
+        "reversal_1": {
+          "mean_daily_rho": -0.32965347186952654,
+          "valid_days": 151
+        },
+        "volatility_5": {
+          "mean_daily_rho": -0.0515210812588232,
+          "valid_days": 151
+        },
+        "volatility_20": {
+          "mean_daily_rho": -0.0514187769590566,
+          "valid_days": 151
+        },
+        "volatility_60": {
+          "mean_daily_rho": -0.04692545924831812,
+          "valid_days": 151
+        },
+        "downside_volatility_20": {
+          "mean_daily_rho": -0.12799885147849377,
+          "valid_days": 151
+        },
+        "log_dollar_volume_20": {
+          "mean_daily_rho": -0.012520225516677598,
+          "valid_days": 151
+        },
+        "log_dollar_volume_60": {
+          "mean_daily_rho": -0.01165199683267429,
+          "valid_days": 151
+        },
+        "dollar_volume_ratio_5_20": {
+          "mean_daily_rho": 0.030810254785897297,
+          "valid_days": 151
+        },
+        "share_volume_ratio_5_20": {
+          "mean_daily_rho": -0.006067047645431131,
+          "valid_days": 151
+        },
+        "share_turnover_20": {
+          "mean_daily_rho": -0.03687884836991665,
+          "valid_days": 151
+        },
+        "amihud_20": {
+          "mean_daily_rho": -0.011849803286015191,
+          "valid_days": 151
+        },
+        "intraday_range_20": {
+          "mean_daily_rho": -0.05497017547291614,
+          "valid_days": 151
+        },
+        "close_location_5": {
+          "mean_daily_rho": 0.5610519445828945,
+          "valid_days": 151
+        },
+        "log_market_cap": {
+          "mean_daily_rho": 0.030661282024763137,
+          "valid_days": 151
+        },
+        "market_beta_60": {
+          "mean_daily_rho": -0.025109978283116407,
+          "valid_days": 151
+        },
+        "industry_mom20": {
+          "mean_daily_rho": 0.1403737225891838,
+          "valid_days": 151
+        },
+        "industry_mom60": {
+          "mean_daily_rho": 0.08029387997201397,
+          "valid_days": 151
+        },
+        "relative_mom20": {
+          "mean_daily_rho": 0.24996252692390566,
+          "valid_days": 151
+        },
+        "relative_mom60": {
+          "mean_daily_rho": 0.1475664404341023,
+          "valid_days": 151
+        },
+        "industry_rank20": {
+          "mean_daily_rho": 0.2503122262797213,
+          "valid_days": 151
+        },
+        "momentum_vol_interaction": {
+          "mean_daily_rho": 0.30000023311490764,
+          "valid_days": 151
+        },
+        "reversal_breadth_interaction": {
+          "mean_daily_rho": -0.11966030329668377,
+          "valid_days": 151
+        },
+        "momentum_dispersion_interaction": {
+          "mean_daily_rho": 0.17654650875649805,
+          "valid_days": 151
+        }
+      },
+      "decision": "retain"
+    },
+    {
+      "feature": "positive_fraction_20",
+      "missing_fraction": 0.0002391549857171328,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.3190444221299098,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.43534789236029187,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.601841488510014,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.34921211936996843,
+          "valid_days": 151
+        },
+        "momentum_120": {
+          "mean_daily_rho": 0.2697700952152445,
+          "valid_days": 151
+        },
+        "momentum_60_skip5": {
+          "mean_daily_rho": 0.27975220346569296,
+          "valid_days": 151
+        },
+        "reversal_1": {
+          "mean_daily_rho": -0.15994321866314704,
+          "valid_days": 151
+        },
+        "volatility_5": {
+          "mean_daily_rho": -0.11315619186886228,
+          "valid_days": 151
+        },
+        "volatility_20": {
+          "mean_daily_rho": -0.11880269104351647,
+          "valid_days": 151
+        },
+        "volatility_60": {
+          "mean_daily_rho": -0.10103471109802924,
+          "valid_days": 151
+        },
+        "downside_volatility_20": {
+          "mean_daily_rho": -0.26950246762613067,
+          "valid_days": 151
+        },
+        "log_dollar_volume_20": {
+          "mean_daily_rho": -0.013388192330979246,
+          "valid_days": 151
+        },
+        "log_dollar_volume_60": {
+          "mean_daily_rho": -0.020941419392891167,
+          "valid_days": 151
+        },
+        "dollar_volume_ratio_5_20": {
+          "mean_daily_rho": 0.043301051661145486,
+          "valid_days": 151
+        },
+        "share_volume_ratio_5_20": {
+          "mean_daily_rho": -0.020553659304652916,
+          "valid_days": 151
+        },
+        "share_turnover_20": {
+          "mean_daily_rho": -0.08177136807280154,
+          "valid_days": 151
+        },
+        "amihud_20": {
+          "mean_daily_rho": -0.04423144307948417,
+          "valid_days": 151
+        },
+        "intraday_range_20": {
+          "mean_daily_rho": -0.12648907280773825,
+          "valid_days": 151
+        },
+        "close_location_5": {
+          "mean_daily_rho": 0.3246726492790272,
+          "valid_days": 151
+        },
+        "log_market_cap": {
+          "mean_daily_rho": 0.06032615414754442,
+          "valid_days": 151
+        },
+        "market_beta_60": {
+          "mean_daily_rho": -0.05454004101505408,
+          "valid_days": 151
+        },
+        "industry_mom20": {
+          "mean_daily_rho": 0.2948768101320072,
+          "valid_days": 151
+        },
+        "industry_mom60": {
+          "mean_daily_rho": 0.17652077527310478,
+          "valid_days": 151
+        },
+        "relative_mom20": {
+          "mean_daily_rho": 0.4908074944763973,
+          "valid_days": 151
+        },
+        "relative_mom60": {
+          "mean_daily_rho": 0.2837397204323397,
+          "valid_days": 151
+        },
+        "industry_rank20": {
+          "mean_daily_rho": 0.49189336315374677,
+          "valid_days": 151
+        },
+        "momentum_vol_interaction": {
+          "mean_daily_rho": 0.601841488510014,
+          "valid_days": 151
+        },
+        "reversal_breadth_interaction": {
+          "mean_daily_rho": -0.061153655128848496,
+          "valid_days": 151
+        },
+        "momentum_dispersion_interaction": {
+          "mean_daily_rho": 0.34921211936996843,
+          "valid_days": 151
+        },
+        "positive_fraction_5": {
+          "mean_daily_rho": 0.49236324510396273,
+          "valid_days": 151
+        }
+      },
+      "decision": "retain"
+    },
+    {
+      "feature": "positive_fraction_60",
+      "missing_fraction": 0.0008769016142961536,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.18136824574940866,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.24690858783136152,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.33603662464499956,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.5808877755465303,
+          "valid_days": 151
+        },
+        "momentum_120": {
+          "mean_daily_rho": 0.4556439000148513,
+          "valid_days": 151
+        },
+        "momentum_60_skip5": {
+          "mean_daily_rho": 0.5574197384800822,
+          "valid_days": 151
+        },
+        "reversal_1": {
+          "mean_daily_rho": -0.09875955840113369,
+          "valid_days": 151
+        },
+        "volatility_5": {
+          "mean_daily_rho": -0.16604945540602373,
+          "valid_days": 151
+        },
+        "volatility_20": {
+          "mean_daily_rho": -0.20937650067290378,
+          "valid_days": 151
+        },
+        "volatility_60": {
+          "mean_daily_rho": -0.20326974159835362,
+          "valid_days": 151
+        },
+        "downside_volatility_20": {
+          "mean_daily_rho": -0.2729719900114483,
+          "valid_days": 151
+        },
+        "log_dollar_volume_20": {
+          "mean_daily_rho": -0.010789043587576479,
+          "valid_days": 151
+        },
+        "log_dollar_volume_60": {
+          "mean_daily_rho": -0.029481180081163967,
+          "valid_days": 151
+        },
+        "dollar_volume_ratio_5_20": {
+          "mean_daily_rho": 0.029843434225848835,
+          "valid_days": 151
+        },
+        "share_volume_ratio_5_20": {
+          "mean_daily_rho": -0.005632866146783649,
+          "valid_days": 151
+        },
+        "share_turnover_20": {
+          "mean_daily_rho": -0.14508722590492532,
+          "valid_days": 151
+        },
+        "amihud_20": {
+          "mean_daily_rho": -0.10080344662731411,
+          "valid_days": 151
+        },
+        "intraday_range_20": {
+          "mean_daily_rho": -0.214320319236206,
+          "valid_days": 151
+        },
+        "close_location_5": {
+          "mean_daily_rho": 0.20860043079017349,
+          "valid_days": 151
+        },
+        "log_market_cap": {
+          "mean_daily_rho": 0.09760852071236178,
+          "valid_days": 151
+        },
+        "market_beta_60": {
+          "mean_daily_rho": -0.11134217355729303,
+          "valid_days": 151
+        },
+        "industry_mom20": {
+          "mean_daily_rho": 0.1719669721444364,
+          "valid_days": 151
+        },
+        "industry_mom60": {
+          "mean_daily_rho": 0.2938763193886282,
+          "valid_days": 151
+        },
+        "relative_mom20": {
+          "mean_daily_rho": 0.27132163067188764,
+          "valid_days": 151
+        },
+        "relative_mom60": {
+          "mean_daily_rho": 0.46766163645149983,
+          "valid_days": 151
+        },
+        "industry_rank20": {
+          "mean_daily_rho": 0.2722327854693872,
+          "valid_days": 151
+        },
+        "momentum_vol_interaction": {
+          "mean_daily_rho": 0.33603662464499956,
+          "valid_days": 151
+        },
+        "reversal_breadth_interaction": {
+          "mean_daily_rho": -0.04641822164708948,
+          "valid_days": 151
+        },
+        "momentum_dispersion_interaction": {
+          "mean_daily_rho": 0.5808877755465303,
+          "valid_days": 151
+        },
+        "positive_fraction_5": {
+          "mean_daily_rho": 0.29336648495126666,
+          "valid_days": 151
+        },
+        "positive_fraction_20": {
+          "mean_daily_rho": 0.5806673677187136,
+          "valid_days": 151
+        }
+      },
+      "decision": "retain"
+    },
+    {
+      "feature": "gain_share_5",
+      "missing_fraction": 3.98591642861888e-05,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.9148453726940285,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.6109645269753599,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.41897429955462745,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.2381270613016802,
+          "valid_days": 151
+        },
+        "momentum_120": {
+          "mean_daily_rho": 0.18119329584348962,
+          "valid_days": 151
+        },
+        "momentum_60_skip5": {
+          "mean_daily_rho": 0.018186790389936657,
+          "valid_days": 151
+        },
+        "reversal_1": {
+          "mean_daily_rho": -0.36986336261262753,
+          "valid_days": 151
+        },
+        "volatility_5": {
+          "mean_daily_rho": -0.06896824498386354,
+          "valid_days": 151
+        },
+        "volatility_20": {
+          "mean_daily_rho": -0.05932932459906473,
+          "valid_days": 151
+        },
+        "volatility_60": {
+          "mean_daily_rho": -0.04821715266357267,
+          "valid_days": 151
+        },
+        "downside_volatility_20": {
+          "mean_daily_rho": -0.21541134437654758,
+          "valid_days": 151
+        },
+        "log_dollar_volume_20": {
+          "mean_daily_rho": 0.004761420250546263,
+          "valid_days": 151
+        },
+        "log_dollar_volume_60": {
+          "mean_daily_rho": 0.005137134064175811,
+          "valid_days": 151
+        },
+        "dollar_volume_ratio_5_20": {
+          "mean_daily_rho": 0.0291903274510618,
+          "valid_days": 151
+        },
+        "share_volume_ratio_5_20": {
+          "mean_daily_rho": -0.02256939762649245,
+          "valid_days": 151
+        },
+        "share_turnover_20": {
+          "mean_daily_rho": -0.041835827321788775,
+          "valid_days": 151
+        },
+        "amihud_20": {
+          "mean_daily_rho": -0.03177290152998094,
+          "valid_days": 151
+        },
+        "intraday_range_20": {
+          "mean_daily_rho": -0.06424127439866519,
+          "valid_days": 151
+        },
+        "close_location_5": {
+          "mean_daily_rho": 0.6223262718573183,
+          "valid_days": 151
+        },
+        "log_market_cap": {
+          "mean_daily_rho": 0.050193788400348105,
+          "valid_days": 151
+        },
+        "market_beta_60": {
+          "mean_daily_rho": -0.027704463794508864,
+          "valid_days": 151
+        },
+        "industry_mom20": {
+          "mean_daily_rho": 0.18997320354100122,
+          "valid_days": 151
+        },
+        "industry_mom60": {
+          "mean_daily_rho": 0.10720133675304457,
+          "valid_days": 151
+        },
+        "relative_mom20": {
+          "mean_daily_rho": 0.3510651477874979,
+          "valid_days": 151
+        },
+        "relative_mom60": {
+          "mean_daily_rho": 0.2014885735814851,
+          "valid_days": 151
+        },
+        "industry_rank20": {
+          "mean_daily_rho": 0.35141974283194755,
+          "valid_days": 151
+        },
+        "momentum_vol_interaction": {
+          "mean_daily_rho": 0.41897429955462745,
+          "valid_days": 151
+        },
+        "reversal_breadth_interaction": {
+          "mean_daily_rho": -0.12670562438979932,
+          "valid_days": 151
+        },
+        "momentum_dispersion_interaction": {
+          "mean_daily_rho": 0.2381270613016802,
+          "valid_days": 151
+        },
+        "positive_fraction_5": {
+          "mean_daily_rho": 0.7146119268480753,
+          "valid_days": 151
+        },
+        "positive_fraction_20": {
+          "mean_daily_rho": 0.36224022693910723,
+          "valid_days": 151
+        },
+        "positive_fraction_60": {
+          "mean_daily_rho": 0.2168902819549142,
+          "valid_days": 151
+        }
+      },
+      "decision": "retain"
+    },
+    {
+      "feature": "gain_share_20",
+      "missing_fraction": 0.0002391549857171328,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.4399757371854943,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.6390889760450481,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.9475205421570985,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.5197324232942339,
+          "valid_days": 151
+        },
+        "momentum_120": {
+          "mean_daily_rho": 0.36034395396549107,
+          "valid_days": 151
+        },
+        "momentum_60_skip5": {
+          "mean_daily_rho": 0.4102383538766237,
+          "valid_days": 151
+        },
+        "reversal_1": {
+          "mean_daily_rho": -0.1684495472558357,
+          "valid_days": 151
+        },
+        "volatility_5": {
+          "mean_daily_rho": -0.14911663306817696,
+          "valid_days": 151
+        },
+        "volatility_20": {
+          "mean_daily_rho": -0.13619648063048162,
+          "valid_days": 151
+        },
+        "volatility_60": {
+          "mean_daily_rho": -0.0909639479054788,
+          "valid_days": 151
+        },
+        "downside_volatility_20": {
+          "mean_daily_rho": -0.5268125245909533,
+          "valid_days": 151
+        },
+        "log_dollar_volume_20": {
+          "mean_daily_rho": 0.028518727174290496,
+          "valid_days": 151
+        },
+        "log_dollar_volume_60": {
+          "mean_daily_rho": 0.019989356483988054,
+          "valid_days": 151
+        },
+        "dollar_volume_ratio_5_20": {
+          "mean_daily_rho": 0.03363849264653795,
+          "valid_days": 151
+        },
+        "share_volume_ratio_5_20": {
+          "mean_daily_rho": -0.05701118263235489,
+          "valid_days": 151
+        },
+        "share_turnover_20": {
+          "mean_daily_rho": -0.08763647839311771,
+          "valid_days": 151
+        },
+        "amihud_20": {
+          "mean_daily_rho": -0.09111598284479269,
+          "valid_days": 151
+        },
+        "intraday_range_20": {
+          "mean_daily_rho": -0.14619189717238104,
+          "valid_days": 151
+        },
+        "close_location_5": {
+          "mean_daily_rho": 0.34062460005054945,
+          "valid_days": 151
+        },
+        "log_market_cap": {
+          "mean_daily_rho": 0.09661970730287107,
+          "valid_days": 151
+        },
+        "market_beta_60": {
+          "mean_daily_rho": -0.057720137777174045,
+          "valid_days": 151
+        },
+        "industry_mom20": {
+          "mean_daily_rho": 0.40979999822265123,
+          "valid_days": 151
+        },
+        "industry_mom60": {
+          "mean_daily_rho": 0.22872643364290413,
+          "valid_days": 151
+        },
+        "relative_mom20": {
+          "mean_daily_rho": 0.7916350237274622,
+          "valid_days": 151
+        },
+        "relative_mom60": {
+          "mean_daily_rho": 0.4417086759624956,
+          "valid_days": 151
+        },
+        "industry_rank20": {
+          "mean_daily_rho": 0.7960867587263346,
+          "valid_days": 151
+        },
+        "momentum_vol_interaction": {
+          "mean_daily_rho": 0.9475205421570985,
+          "valid_days": 151
+        },
+        "reversal_breadth_interaction": {
+          "mean_daily_rho": -0.056638457203443,
+          "valid_days": 151
+        },
+        "momentum_dispersion_interaction": {
+          "mean_daily_rho": 0.5197324232942339,
+          "valid_days": 151
+        },
+        "positive_fraction_5": {
+          "mean_daily_rho": 0.31981708513921464,
+          "valid_days": 151
+        },
+        "positive_fraction_20": {
+          "mean_daily_rho": 0.6401584664469743,
+          "valid_days": 151
+        },
+        "positive_fraction_60": {
+          "mean_daily_rho": 0.3695775372508272,
+          "valid_days": 151
+        },
+        "gain_share_5": {
+          "mean_daily_rho": 0.447076189589955,
+          "valid_days": 151
+        }
+      },
+      "decision": "retain"
+    },
+    {
+      "feature": "gain_share_60",
+      "missing_fraction": 0.0008769016142961536,
+      "comparisons": {
+        "momentum_5": {
+          "mean_daily_rho": 0.2395924233582039,
+          "valid_days": 151
+        },
+        "momentum_10": {
+          "mean_daily_rho": 0.349500654107831,
+          "valid_days": 151
+        },
+        "momentum_20": {
+          "mean_daily_rho": 0.5116499199916643,
+          "valid_days": 151
+        },
+        "momentum_60": {
+          "mean_daily_rho": 0.9575898571378397,
+          "valid_days": 151
+        }
+      },
+      "decision": "redundant with momentum_60"
+    }
+  ]
+}

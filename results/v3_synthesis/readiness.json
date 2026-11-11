@@ -1,0 +1,80 @@
+{
+  "development_new_fits": 84,
+  "historical_replay_count": 1,
+  "historical_replay": {
+    "status": "completed_previously_seen_replay",
+    "signals": 199,
+    "qualified_rows": 99287,
+    "ledger_checks": 9970,
+    "model_fit_end": "2021-12-31",
+    "funding_reference": "equal weight NAV reproduced",
+    "best_fixed_ic": "raw__ridge_03",
+    "ic_paired_difference": {
+      "block_signals": 10,
+      "replications": 2000,
+      "paired_dates": 199,
+      "mean_difference": -0.016488576680026533,
+      "ci_low": -0.040338826015216885,
+      "ci_high": 0.008548355815469203
+    },
+    "protocol_sha256": "08735c2ccd9393c698ae589b953e57541ad2f9f78a596313f1a91cf52b6aa590",
+    "events_policy": "Frozen OTC quote proxies, nontradable CVRs excluded from investable NAV"
+  },
+  "prospective_status": "awaiting full-year 2026 data and 2025 vintage reconciliation",
+  "prospective_results": null,
+  "adapters_and_plan": {
+    "config/final_v3.json": "08735c2ccd9393c698ae589b953e57541ad2f9f78a596313f1a91cf52b6aa590",
+    "scripts/unseen_v3.py": "4abf287bbedb8c0bdf6d392190adf53d9b0014b76c4532830137aee87abbbaf0",
+    "scripts/unseen_portfolios_v3.py": "028e446c4db67723d29f14630422e12338459cd6b12e49857a21fb96c476422f",
+    "scripts/check_v3_vintage.py": "44e3989d079c94593344475f24719fd7f4c4942bdfc98175bab54b578426c7b2"
+  },
+  "cohorts": {
+    "2021": {
+      "verification": {
+        "training_end": "2021-12-31",
+        "fits": 1,
+        "ledger_sha256": "2871d8a6f826bb9c4aacd3140123363ad341496fd64c5504b33ca178acf4fbb1",
+        "pca_sha256": "76552259ef564b5158cc6005c09c211c26cc3ca9b17094db68b190bf62a56e86",
+        "momentum_missing": 0.011062021170568353
+      },
+      "models": {
+        "v3_final": {
+          "family": "ranker_enhanced",
+          "fit_rows": 175251,
+          "max_label_end": "2021-12-30 00:00:00"
+        }
+      }
+    },
+    "2025": {
+      "verification": {
+        "training_end": "2025-12-31",
+        "fits": 4,
+        "ledger_sha256": "d200edd544759bd8e61f873f589383b23a8cde2269c0423794e54907a041733c",
+        "pca_sha256": "6100042a9a445ba9d39ea84d6243f45d15c49fbcbab4bda871a205c63f117cf9",
+        "momentum_missing": 0.009286907799355048
+      },
+      "models": {
+        "cross_sectional_rank__lightgbm_10": {
+          "family": "lightgbm_original",
+          "fit_rows": 275119,
+          "max_label_end": "2025-12-24 00:00:00"
+        },
+        "raw__ridge_03": {
+          "family": "ridge_original",
+          "fit_rows": 275119,
+          "max_label_end": "2025-12-24 00:00:00"
+        },
+        "v2_enhanced_ridge_alpha_1000": {
+          "family": "ridge_enhanced",
+          "fit_rows": 275119,
+          "max_label_end": "2025-12-24 00:00:00"
+        },
+        "v3_final": {
+          "family": "ranker_enhanced",
+          "fit_rows": 275014,
+          "max_label_end": "2025-12-24 00:00:00"
+        }
+      }
+    }
+  }
+}

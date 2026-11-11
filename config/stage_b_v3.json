@@ -1,0 +1,209 @@
+{
+  "original": [
+    "momentum_5",
+    "momentum_10",
+    "momentum_20",
+    "momentum_60",
+    "momentum_120",
+    "momentum_60_skip5",
+    "reversal_1",
+    "volatility_5",
+    "volatility_20",
+    "volatility_60",
+    "downside_volatility_20",
+    "log_dollar_volume_20",
+    "log_dollar_volume_60",
+    "dollar_volume_ratio_5_20",
+    "share_volume_ratio_5_20",
+    "share_turnover_20",
+    "amihud_20",
+    "intraday_range_20",
+    "close_location_5",
+    "log_market_cap",
+    "market_beta_60"
+  ],
+  "context": [
+    "industry_mom20",
+    "industry_mom60",
+    "relative_mom20",
+    "relative_mom60",
+    "industry_rank20",
+    "universe_mean_mom20",
+    "universe_breadth20",
+    "universe_dispersion20",
+    "universe_median_vol20",
+    "momentum_vol_interaction",
+    "reversal_breadth_interaction",
+    "momentum_dispersion_interaction"
+  ],
+  "windows": {
+    "W1": {
+      "id": "W1",
+      "train": [
+        "2015-01-01",
+        "2017-12-31"
+      ],
+      "evaluate": [
+        "2018-01-01",
+        "2018-12-31"
+      ]
+    },
+    "W2": {
+      "id": "W2",
+      "train": [
+        "2015-01-01",
+        "2018-12-31"
+      ],
+      "evaluate": [
+        "2019-01-01",
+        "2019-12-31"
+      ],
+      "reuse": "Same definition as V2 window 1; reuse only after verification."
+    },
+    "W3": {
+      "id": "W3",
+      "train": [
+        "2015-01-01",
+        "2019-12-31"
+      ],
+      "evaluate": [
+        "2020-01-01",
+        "2020-12-31"
+      ],
+      "reuse": "Training set identical to V2 window 2; reuse its verified predictions restricted to 2020 signal dates with label_end_date <= 2020-12-31. Amended 2026-11-10."
+    },
+    "W4": {
+      "id": "W4",
+      "train": [
+        "2015-01-01",
+        "2020-12-31"
+      ],
+      "evaluate": [
+        "2021-01-01",
+        "2021-12-31"
+      ]
+    }
+  },
+  "preprocessing": {
+    "raw_clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "rank_clip_bounds": [
+      -0.5,
+      0.5
+    ],
+    "rule": "Identical to V2: Ridge uses raw values with training-only clipping, median fill and population scaling; tree models use same-date cross-sectional ranks of the 21 original features; the 12 context features always use raw training-only clipping, fill and scaling. States are fitted on each window's training rows only and independently rechecked."
+  },
+  "bootstrap": {
+    "type": "circular block",
+    "block_signal_dates": 10,
+    "replications": 2000,
+    "seed": 20261110
+  },
+  "stage": "B",
+  "frequency": "original five-session calendar in both roles",
+  "families": {
+    "ridge_enhanced": {
+      "control": "ridge_enhanced",
+      "candidate_id": "R02",
+      "parameters": {
+        "solver": "cholesky",
+        "fit_intercept": true,
+        "alpha": 1000.0
+      }
+    },
+    "lightgbm_enhanced": {
+      "control": "lightgbm_enhanced",
+      "candidate_id": "L03",
+      "parameters": {
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "objective": "regression",
+        "num_leaves": 63,
+        "n_estimators": 100,
+        "min_child_samples": 500
+      }
+    },
+    "ranker_enhanced": {
+      "control": "ranker_enhanced",
+      "candidate_id": "L00",
+      "parameters": {
+        "learning_rate": 0.03,
+        "reg_lambda": 1.0,
+        "max_depth": -1,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "random_state": 20261107,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "verbosity": -1,
+        "objective": "lambdarank",
+        "label_gain": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "lambdarank_truncation_level": 53,
+        "lambdarank_norm": true,
+        "sigmoid": 1.0,
+        "num_leaves": 7,
+        "n_estimators": 100,
+        "min_child_samples": 500
+      }
+    }
+  },
+  "target_order": [
+    "multi",
+    "residual",
+    "rank"
+  ],
+  "horizons": [
+    1,
+    5,
+    10,
+    20
+  ],
+  "entry_lag": 1,
+  "ordinary": "close(t+1) to close(t+1+h), compounded stock return minus compounded vwretd over identical sessions; strict label_one ok/ok_bridged only",
+  "multi": "One scalar per row: arithmetic mean of (5/h)*excess_h for h=1,5,10,20. Require all four valid and endpoint t+21 within training. One fit per model and window.",
+  "residual": "Within each training signal date regress valid ordinary five-day excess returns by equal-weight OLS on all SIC industry indicators (Unknown its own group), signal-date log market cap and 60-day market beta. Complete cases, no extra intercept, minimum-norm least squares. Omit dates with fewer than two residual degrees of freedom.",
+  "rank": "Within each eligible training date use (average_tie_rank-0.5)/n-0.5. Require n>=2. LambdaRank bins already encode the same order and ties: check group sizes and grades exactly then reuse its 0a control.",
+  "evaluation": "All candidates evaluated on original continuous y_excess_5d, exactly the same eligible five-day keys and dates as paired 0a. Target-specific missing observations may reduce training coverage; report it.",
+  "selection": "Within each family select highest four-window equal-weight mean IC; exact ties follow target_order. Adopt winner only if mean delta >0 and at least three of four annual deltas >0; otherwise retain five-day control.",
+  "budget": {
+    "new_fits": 32,
+    "reuse_equivalent_ranker": 4,
+    "baseline_refits": 0,
+    "tasks": 36,
+    "automatic_retry": false
+  },
+  "source_sha256": {
+    "config/stage_a_v3.json": "2c68fe465d5c59194a23378e58b0a53c6f3cacfc565b5eecaf71576474f4e633",
+    "results/v3_stage_a_directional/four_window_comparison.csv": "72955a23cade9903f60447bde7c3c93a44ace12c2f2f259b3052e3083d91ecde",
+    "scripts/build_daily_v3.py": "6da21a764e83967fc4f49e14a67fde184506bcdfcfd3d5e0651ff02e315f0a11",
+    "src/equity_research/models/stage_a_v3.py": "2faf02a6970a08ff6ddcc036ac6812e2a36f10cfbfd2b3bcff7d4773f99adbc4",
+    "src/equity_research/models/density_v3.py": "71c95b6c4ebf964585795591b0c6049291ada3d8de961aba97f30b5a775fed60",
+    "config/universe.json": "3d0e7c445fa1f72c619b8806dc59a7a1baed26ff68fa6ab78efaab2fd5d4131c",
+    "src/equity_research/data/features.py": "98903bd7b691ea27480b42d3349ac0696fdcacd3d5bef4f8bffae74e26e0597f",
+    "src/equity_research/data/universe.py": "cad4485cf79c5178aff43fbd9ef6dbb5837a25ec4aa9532e01c698290bdb45ff"
+  }
+}

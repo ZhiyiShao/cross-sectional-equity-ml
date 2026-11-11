@@ -1,0 +1,11 @@
+{
+  "scope": "0b training-density comparison; data preparation only",
+  "paired_controls": {"ridge_enhanced":"R02","lightgbm_enhanced":"L03"},
+  "control_results": "results/v3_baseline/window_metrics.csv",
+  "features": "Same 21 original and 12 V2 context columns, same representation and training-only preprocessing recipe; exclude six directional columns.",
+  "regularization": "Keep all numeric parameters, objectives and seeds fixed as in 0a. Ridge alpha=1000; LightGBM regression uses 63 leaves, 100 trees, min_child_samples=500. No sample-size scaling, sample weights, or extra search. Effective per-observation regularization may change.",
+  "windows": "Same four expanding windows as baseline_v3. Train on daily candidates; evaluate only original five-day signal dates.",
+  "eligibility": "signal_eligible, ok/ok_bridged label, finite target; signal date within split, signal date < label end <= split end. Do not use V1 split/purge flags. Read target and status only for bounded label ends.",
+  "future_budget": "Eight new fits maximum, two models times four windows. This preparation executes zero.",
+  "input_preflight": "Run scripts/prepare_context_v3.py to verify manifest before reading daily_features.parquet; join local bounded labels by signal_date and PERMNO one-to-one."
+}

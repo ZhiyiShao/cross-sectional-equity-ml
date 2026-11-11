@@ -1,0 +1,54 @@
+{
+  "signal": "ranker_enhanced",
+  "recipes": {
+    "vol_0.0": {
+      "risk": "vol",
+      "penalty": 0.0,
+      "pc_band": 0.02
+    },
+    "vol_0.05": {
+      "risk": "vol",
+      "penalty": 0.05,
+      "pc_band": 0.02
+    },
+    "vol_0.15": {
+      "risk": "vol",
+      "penalty": 0.15,
+      "pc_band": 0.02
+    },
+    "pca_0.0": {
+      "risk": "pca",
+      "penalty": 0.0,
+      "pc_band": 0.02
+    },
+    "pca_0.05": {
+      "risk": "pca",
+      "penalty": 0.05,
+      "pc_band": 0.02
+    },
+    "pca_0.15": {
+      "risk": "pca",
+      "penalty": 0.15,
+      "pc_band": 0.02
+    }
+  },
+  "baseline": "vol_0.0",
+  "cost_bps": 10,
+  "action_lag": 2,
+  "windows": [
+    "W3",
+    "W4"
+  ],
+  "rules": "Maximize 2020-21 arithmetic annual net active return, then require both annual returns higher than control. Otherwise retain control. Exact ties follow recipe order. EW is a funding-path reference.",
+  "turnover": "L1 distance from previous target, zero at inception. Exit of names outside current eligible pool is a constant in the objective.",
+  "pca": "Last 252 training sessions, eligible pool at final training snapshot, minimum 60 ordinary observations. Center individual returns, missing centered observations zero. First three covariance PCs; annualized loading bands +/-0.02. New entrants receive training median loadings.",
+  "sources": {
+    "config/stage_c_v3.json": "24fe84e66cefe660190c84d7753c9abe6c0b1617d88058fe6893d657d492aa6a",
+    "results/v3_stage_c/comparison.json": "1efa2a0a4f4144664aab5f27dee16e6b1f0bcc34d0c319969b66d0b607c11ab6",
+    "config/research_v2.json": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+    "src/equity_research/backtest/portfolio_v3.py": "525ce09d5e1d65eb01dc7296282a90189fdc2a24fcc76fa8e8b9d85d5676b258",
+    "scripts/stage_d_v3.py": "c9c78736d36a9bc4579ec84cd2a469a3b68fa43217de0f6872d7379bc39b09f2",
+    "outputs/v3_stage_b_targets/W3_ranker_enhanced_residual/predictions.parquet": "2de5187d2a5df75b451b73be4038858a55dc0aa84d7722a692112d5e87be0cc3",
+    "outputs/v3_stage_b_targets/W4_ranker_enhanced_residual/predictions.parquet": "b51d3ceb3b25e5ba1590f36411d72d0c7218e32c34fbc6cf8b71d34d0d06b40c"
+  }
+}

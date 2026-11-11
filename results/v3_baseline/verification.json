@@ -1,0 +1,12 @@
+{
+  "status": "baseline_complete",
+  "plan_sha256": "5ffec87837ab2bcddbe35bf54d4afdfb61bad8310f314807c1ec9a34ab1741de",
+  "new_fits": 12,
+  "reused": 12,
+  "final_refits": 0,
+  "backtests": 0,
+  "seen_period_reads": 0,
+  "unseen_period_reads": 0,
+  "selection": "none; fixed V2 development selections",
+  "next_step": "Stage 0b and stage A need their own frozen plans"
+}

@@ -20,3 +20,58 @@ results/robustness_validation_backtest_v2/** -text
 results/search_audit_v2/** -text
 src/equity_research/models/preprocessing.py -text
 src/equity_research/backtest/engine.py -text
+
+# V3 release hashes use working-tree bytes. Restore CRLF or preserve mixed line endings.
+config/final_test_plan.json text eol=crlf
+config/final_v3.sha256 text eol=crlf
+config/stage_c_v3.sha256 text eol=crlf
+config/stage_d_v3.sha256 text eol=crlf
+config/test_execution_calendar_v1.json text eol=crlf
+results/stage_a_screen_v3/screen.json text eol=crlf
+results/v3_density_0b/verification.json text eol=crlf
+results/v3_seen_replay/annual.csv text eol=crlf
+results/v3_seen_replay/portfolios.csv text eol=crlf
+results/v3_seen_replay/rank_ic.csv text eol=crlf
+results/v3_stage_a_directional/verification.json text eol=crlf
+results/v3_stage_b_targets/comparison.csv text eol=crlf
+results/v3_stage_b_targets/windows.csv text eol=crlf
+results/v3_stage_c/windows.csv text eol=crlf
+results/v3_stage_d/portfolios.csv text eol=crlf
+results/v3_synthesis/paired_ic_adjustment.csv text eol=crlf
+results/v3_synthesis/readiness.json text eol=crlf
+results/v3_synthesis/trial_inventory.csv text eol=crlf
+scripts/density_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/stage_a_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/stage_b_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/stage_c_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/verify_context_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/__init__.py text eol=crlf
+src/equity_research/backtest/__init__.py text eol=crlf
+src/equity_research/backtest/calendar.py text eol=crlf
+src/equity_research/backtest/frozen.py text eol=crlf
+src/equity_research/backtest/ledger.py text eol=crlf
+src/equity_research/backtest/market.py text eol=crlf
+src/equity_research/backtest/settlement.py text eol=crlf
+src/equity_research/backtest/validation.py text eol=crlf
+src/equity_research/backtest/validation_calendar.py text eol=crlf
+src/equity_research/data/__init__.py text eol=crlf
+src/equity_research/data/date_gate.py text eol=crlf
+src/equity_research/data/features.py text eol=crlf
+src/equity_research/data/ingest.py text eol=crlf
+src/equity_research/data/returns.py text eol=crlf
+src/equity_research/data/targets_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/data/universe.py text eol=crlf
+src/equity_research/evaluation/__init__.py text eol=crlf
+src/equity_research/evaluation/exposures.py text eol=crlf
+src/equity_research/models/__init__.py text eol=crlf
+src/equity_research/models/common.py text eol=crlf
+src/equity_research/models/density_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/models/ensemble_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/models/stage_a_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/models/stage_b_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+src/equity_research/paths.py text eol=crlf
+src/equity_research/provenance.py text eol=crlf
+tests/test_daily_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+tests/test_density_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+tests/test_stage_a_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol
+tests/test_stage_b_v3.py -text whitespace=trailing-space,space-before-tab,cr-at-eol

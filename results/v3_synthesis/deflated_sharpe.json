@@ -1,0 +1,9 @@
+{
+  "paths": 6,
+  "days": 501,
+  "selected": "pca_0.15",
+  "annualized_sharpe": 1.3470096700017438,
+  "annualized_hurdle": 0.16047111120868812,
+  "probability": 0.9461947688207183,
+  "interpretation": "Six correlated strategy paths, fixed zero risk-free rate, daily SR dispersion. DSR assumes independent daily observations. Conditional on stage D; prior prediction searches are not independent portfolio paths."
+}

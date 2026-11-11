@@ -1,0 +1,161 @@
+{
+  "signal": "ranker_enhanced",
+  "portfolio": {
+    "risk": "pca",
+    "penalty": 0.15,
+    "pc_band": 0.02
+  },
+  "portfolio_id": "pca_0.15",
+  "incumbents": {
+    "ridge_enhanced": {
+      "family": "ridge_enhanced",
+      "target": "ordinary",
+      "id": "R02"
+    },
+    "lightgbm_enhanced": {
+      "family": "lightgbm_enhanced",
+      "target": "ordinary",
+      "id": "L03"
+    },
+    "ranker_enhanced": {
+      "family": "ranker_enhanced",
+      "target": "residual",
+      "id": "L00"
+    }
+  },
+  "members": {
+    "mlp_seed11": {
+      "kind": "mlp",
+      "family": "ridge_enhanced",
+      "hidden": [
+        32,
+        16
+      ],
+      "epochs": 6,
+      "alpha": 0.001,
+      "learning_rate": 0.001,
+      "seed": 11
+    },
+    "reg_seed11": {
+      "kind": "tree",
+      "family": "lightgbm_enhanced",
+      "seed": 11,
+      "feature_fraction": 0.8
+    },
+    "reg_seed29": {
+      "kind": "tree",
+      "family": "lightgbm_enhanced",
+      "seed": 29,
+      "feature_fraction": 0.8
+    },
+    "rank_seed11": {
+      "kind": "tree",
+      "family": "ranker_enhanced",
+      "seed": 11,
+      "feature_fraction": 0.8
+    },
+    "rank_seed29": {
+      "kind": "tree",
+      "family": "ranker_enhanced",
+      "seed": 29,
+      "feature_fraction": 0.8
+    }
+  },
+  "variants": {
+    "mlp": {
+      "members": [
+        "mlp_seed11"
+      ],
+      "baseline": "ridge_enhanced"
+    },
+    "reg_mean": {
+      "members": [
+        "reg_seed11",
+        "reg_seed29"
+      ],
+      "baseline": "lightgbm_enhanced"
+    },
+    "rank_mean": {
+      "members": [
+        "rank_seed11",
+        "rank_seed29"
+      ],
+      "baseline": "ranker_enhanced"
+    },
+    "consensus": {
+      "members": [
+        "mlp",
+        "reg_mean",
+        "rank_mean"
+      ],
+      "baseline": "ranker_enhanced"
+    }
+  },
+  "seen": {
+    "period": [
+      "2022-01-01",
+      "2025-12-31"
+    ],
+    "training": [
+      "2015-01-01",
+      "2021-12-31"
+    ],
+    "runs": 1,
+    "status": "previously_seen",
+    "baseline_portfolios": "Original V1 top decile, V2 enhanced ridge original V2 risk LP, momentum top decile and universe EW. Extra fixed same-construction signal comparison evaluated under selected V3 rule."
+  },
+  "unseen": {
+    "local_data_last_date_verified": "2025-12-31",
+    "data_on_disk": false,
+    "acquisition": "User submits the WRDS query manually with fields identical to config/crsp_query.json. No download or read before all stages finish, the final configuration, baseline list and evaluation rules are hashed, and the user explicitly authorizes it.",
+    "vintage_check": "Before reading any 2026 row, compare the 2025 overlap between the old and new vintages (row counts, keys, return fields); decide handling before viewing 2026 performance. Research data through 2025 stays on the old vintage.",
+    "evaluated_models": [
+      "v3_final",
+      "raw__ridge_03",
+      "cross_sectional_rank__lightgbm_10",
+      "v2_enhanced_ridge_alpha_1000",
+      "momentum_20",
+      "universe_equal_weight"
+    ],
+    "training_cutoff": {
+      "primary": "Refit every evaluated model with its frozen configuration on 2015-2025, label_end_date <= 2025-12-31; new fits logged separately, originals untouched.",
+      "secondary": "Models trained through 2021 only."
+    },
+    "metrics": {
+      "prediction_primary": "Mean per-signal-date Rank IC on y_excess_5d and paired difference of v3_final minus best fixed baseline",
+      "portfolio_primary": "Annualized arithmetic mean of daily net return minus same-path universe equal weight, 10 bps per side",
+      "portfolio_condition": "Reported only if 2026 corporate-action and settlement ledgers pass the same verification as 2020-2025"
+    },
+    "runs": 1,
+    "interpretation": "About 50 five-day signal dates. Cannot confirm or reject IC differences of order 0.01. Describe only direction relative to development and the interval; never 'significant' or 'validated'. No evaluation period added or dropped based on results.",
+    "deadline": "WRDS access expected to end after graduation in May 2027. If 2026 data is not obtained by then, record the evaluation as not executed; no substitute period."
+  },
+  "funding": {
+    "cost_bps_per_side": 10,
+    "company_action_lag": 2,
+    "ordinary_sales_reusable": true,
+    "historical_settlement": "existing T+2/T+1 calendars",
+    "timing": "every fifth signal date, next-close execution",
+    "exceptions": "existing approved OTC quote proxy and CVR exclusion unchanged"
+  },
+  "sources": {
+    "config/stage_c_v3.json": "24fe84e66cefe660190c84d7753c9abe6c0b1617d88058fe6893d657d492aa6a",
+    "config/stage_d_v3.json": "ac56c8fb373100e54b7acb4c50fcc06d347ee6150888d36519d6b361a45a0d7d",
+    "results/v3_stage_c/comparison.json": "1efa2a0a4f4144664aab5f27dee16e6b1f0bcc34d0c319969b66d0b607c11ab6",
+    "results/v3_stage_d/comparison.json": "2b70ca964993b043d7f127490291142f2214b4b1e1dc5692cd790fd513422f4f",
+    "config/research_v3.json": "7da62b2abbbff7e46604554aa192cc0157c32a47364556f57aacf897e1a9c3f4",
+    "config/research_v2.json": "14a8fa2b431c482629b89197394c3485b63dc56fa007213af6a229f85048fa9a",
+    "config/stage_b_v3.json": "83710de96c2ad3b85a15714c441b4f8f8a6d826c5e97f4ecea29e345973269cb",
+    "src/equity_research/backtest/portfolio_v3.py": "525ce09d5e1d65eb01dc7296282a90189fdc2a24fcc76fa8e8b9d85d5676b258",
+    "src/equity_research/models/ensemble_v3.py": "5be7a3fb19ab914be25c7f5f38389b17284a847c9e556399f21858dac95c3f6b",
+    "src/equity_research/models/stage_b_v3.py": "7cfc36e16a0d480ceaf86fd3a9f8f35f86c8205e08068b08bf780a63d68ea585",
+    "scripts/stage_c_v3.py": "0864b37de64517409005d4db4801c0d1e9402ca174ad5c1c52e6d201a3fcc5ce",
+    "scripts/stage_e_v3.py": "66420abd4f04ff9f6158ad62822622d17e6402275fec06a93b73bf7583240bd8",
+    "scripts/final_v3.py": "653de850c724002fc8be3130cdf3f393d2f85356cc06e932f1e9d549a8a2ec3b",
+    "scripts/replay_v3.py": "6fe3aa976e9c0a54e4b4d3cd76b2b8f9ca53300b431689de43109d740e2d59ee",
+    "config/final_test_plan.json": "a2968ffca624cd39bd4dd4d5903d2b21846884f6123831aa691d286937311de0",
+    "config/final_evaluation_v2.json": "369a78f786f7772ab36b34c12607e7d11715c018dd06b45329d513c09292cc32",
+    "src/equity_research/backtest/engine.py": "adcc584d0a10fdacca1ff9da984eed99b36d81b9d00faf47523cbfc0abbf5b8f",
+    "src/equity_research/backtest/replay_v2.py": "ff676ff5b9b69283456733e017d80f5a2b2ce9edf1dce9b70715925a5c0f3080"
+  }
+}

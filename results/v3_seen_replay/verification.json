@@ -1,0 +1,19 @@
+{
+  "status": "completed_previously_seen_replay",
+  "signals": 199,
+  "qualified_rows": 99287,
+  "ledger_checks": 9970,
+  "model_fit_end": "2021-12-31",
+  "funding_reference": "equal weight NAV reproduced",
+  "best_fixed_ic": "raw__ridge_03",
+  "ic_paired_difference": {
+    "block_signals": 10,
+    "replications": 2000,
+    "paired_dates": 199,
+    "mean_difference": -0.016488576680026533,
+    "ci_low": -0.040338826015216885,
+    "ci_high": 0.008548355815469203
+  },
+  "protocol_sha256": "08735c2ccd9393c698ae589b953e57541ad2f9f78a596313f1a91cf52b6aa590",
+  "events_policy": "Frozen OTC quote proxies, nontradable CVRs excluded from investable NAV"
+}

@@ -1,0 +1,79 @@
+{
+  "manifest_sha256": "3007bf20f849930ca7cbb94953a62751c1a1e7b611234655ea131b66345d21ca",
+  "files": {
+    "config/features_v3.json": "f909dc21753d9b7770a75a083016f17a05ba44b75ead0c88b90fedf69213b11d",
+    "config/context_features_v2.json": "b6a4ae875b79abde39c5b870f63e83499f0c62404b5105277c8a385759a99e50",
+    "config/features_labels.json": "39f156a5d649b1b6786f77a560d085852f493f4003939c87749b045a6c74d663",
+    "config/baseline_v3.json": "5ffec87837ab2bcddbe35bf54d4afdfb61bad8310f314807c1ec9a34ab1741de",
+    "config/density_0b.json": "f492de7a08c0961bbff61808af5123a745183c8f621bc5a2aa6a10eaf73bcf22",
+    "scripts/prepare_context_v3.py": "a3f62b3ba8b3e3a45097c3621bdcb6c6dfa5fbd3f3d0258c23562d2fdaac08a3",
+    "scripts/build_daily_v3.py": "6da21a764e83967fc4f49e14a67fde184506bcdfcfd3d5e0651ff02e315f0a11",
+    "src/equity_research/data/features.py": "98903bd7b691ea27480b42d3349ac0696fdcacd3d5bef4f8bffae74e26e0597f",
+    "src/equity_research/data/universe.py": "cad4485cf79c5178aff43fbd9ef6dbb5837a25ec4aa9532e01c698290bdb45ff",
+    "src/equity_research/evaluation/exposures.py": "59396bfbadc1393f2dd0c202a96cd5f8254cce2c97e5606e06e7572d8f20b1c9",
+    "src/equity_research/models/context_selection.py": "f7080ea2b76eeb4c4fb39e10ddfdb6776fe3fb3773144e03b4bae6071be3afbc",
+    "src/equity_research/data/directional_v3.py": "ea834a6efcc137980593f0dfa07177fb29f47b6573b1f54a7a4be88f7db90012",
+    "data/processed/research_v3/features_labels.parquet": "ecedd15c1b75106dbcfa5325e3c567abc63101c1c53d413f357a0fd7098b8d05",
+    "data/processed/research_v3/context_0b/daily_features.parquet": "8e21730eaeb8089bc2540128cbfea7d5c986bc1f71d89a44c87ecd300306414b"
+  },
+  "coverage": {
+    "rows": 881500,
+    "days": 1763,
+    "five_day_rows": 176500,
+    "non_five_day_rows": 705000,
+    "unknown_industry": 2168,
+    "legacy_risk_join_rows": 176500,
+    "legacy_risk_join_lost": 705000,
+    "finite": {
+      "industry_mom20": 881500,
+      "industry_mom60": 881500,
+      "relative_mom20": 879136,
+      "relative_mom60": 878852,
+      "industry_rank20": 879136,
+      "universe_mean_mom20": 881500,
+      "universe_breadth20": 881500,
+      "universe_dispersion20": 881500,
+      "universe_median_vol20": 881500,
+      "momentum_vol_interaction": 879203,
+      "reversal_breadth_interaction": 879323,
+      "momentum_dispersion_interaction": 878919
+    }
+  },
+  "context_definitions": {
+    "industry_mom20": "Same signal-date eligible industry mean momentum_20; fewer than 5 finite observations or Unknown industry falls back to universe mean",
+    "industry_mom60": "Same as industry_mom20 using momentum_60",
+    "relative_mom20": "momentum_20 minus industry_mom20",
+    "relative_mom60": "momentum_60 minus industry_mom60",
+    "industry_rank20": "Average-tie rank of momentum_20 within eligible industry: (rank-.5)/n-.5; fewer than 5 finite observations or Unknown falls back to universe rank",
+    "universe_mean_mom20": "Equal weight mean of finite momentum_20 among signal-eligible stocks",
+    "universe_breadth20": "Fraction of finite eligible momentum_20 strictly above zero",
+    "universe_dispersion20": "Sample standard deviation (ddof=1) of eligible momentum_20",
+    "universe_median_vol20": "Median eligible volatility_20; already annualized",
+    "momentum_vol_interaction": "momentum_20 times universe_median_vol20",
+    "reversal_breadth_interaction": "reversal_1 times (universe_breadth20-.5)",
+    "momentum_dispersion_interaction": "momentum_60 times universe_dispersion20"
+  },
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "26.0.0"
+  },
+  "directional_boundaries": {
+    "5": {
+      "finite": 879306,
+      "strictly_positive_windows": 30223,
+      "outside_bounds": 0
+    },
+    "20": {
+      "finite": 879203,
+      "strictly_positive_windows": 0,
+      "outside_bounds": 0
+    },
+    "60": {
+      "finite": 878919,
+      "strictly_positive_windows": 0,
+      "outside_bounds": 0
+    }
+  },
+  "source_partitions": 84
+}

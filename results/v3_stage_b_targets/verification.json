@@ -1,0 +1,21 @@
+{
+  "plan_sha256": "83710de96c2ad3b85a15714c441b4f8f8a6d826c5e97f4ecea29e345973269cb",
+  "ledger_sha256": "fd3e1666fcccd993c4f7ed52155afd3a02060edb478acba7f2ca24a8f02086b2",
+  "paired_signal_dates": 1764,
+  "new_fits": 32,
+  "reused": 4,
+  "choices": {
+    "ridge_enhanced": {
+      "winner": "ridge_enhanced_multi",
+      "adopt": false
+    },
+    "lightgbm_enhanced": {
+      "winner": "lightgbm_enhanced_residual",
+      "adopt": false
+    },
+    "ranker_enhanced": {
+      "winner": "ranker_enhanced_residual",
+      "adopt": true
+    }
+  }
+}

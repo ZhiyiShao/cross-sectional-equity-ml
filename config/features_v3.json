@@ -1,0 +1,57 @@
+{
+  "status": "directional_block_rules_fixed_before_execution",
+  "scope": "First feature block only; no fits or selection authorized by this draft.",
+  "feature_count": 6,
+  "windows": [
+    5,
+    20,
+    60
+  ],
+  "source": "https://github.com/microsoft/qlib/blob/main/qlib/contrib/data/loader.py",
+  "attribution": "Adapted from Alpha158 directional count and directional movement families. Use audited CRSP total returns instead of differences in raw closing prices.",
+  "input": "r is the daily total return masked by the existing make_features ordinary return rule. Use an unbroken market-session index.",
+  "endpoint": "Through signal close inclusive. Each window requires w valid returns; undefined denominators and incomplete windows produce NaN.",
+  "first_available": "For each security and window w, the w-th consecutive valid market session (positive denominator also required). Research signals start 2015-01-02 using 2014 warm-up.",
+  "families": [
+    {
+      "name": "positive_fraction",
+      "formula": "count(r > 0) / w",
+      "source_family": "CNTP"
+    },
+    {
+      "name": "gain_share",
+      "formula": "sum(max(r, 0)) / sum(abs(r))",
+      "source_family": "SUMP"
+    }
+  ],
+  "incumbent_by_family": {
+    "ridge_directional": [
+      "ridge_enhanced",
+      "R02"
+    ],
+    "lightgbm_regression_directional": [
+      "lightgbm_enhanced",
+      "L03"
+    ],
+    "lightgbm_ranking_directional": [
+      "ranker_enhanced",
+      "L00"
+    ]
+  },
+  "paired_design": "Each listed candidate adds the screened directional block to its 33-feature incumbent. Match 0a five-day training and evaluation frequency, target, parameters, preprocessing and calendar. Process added columns with the same recipe as raw context columns. Phase 0b is a separate comparison.",
+  "adoption": "Within each pair, require strictly positive equal-window mean IC difference and strictly positive IC differences in at least three of four windows. Ties do not count. No cross-family replacement.",
+  "screen": {
+    "sample": "W1 2015-2017; five-day signal dates, signal_eligible; no target eligibility or labels",
+    "apply": "One W1 screen shared across all four windows and three families. Later windows may only be diagnostic.",
+    "existing": "Protect all 33 base columns; compare each candidate to each retained non-market-constant column.",
+    "skip_existing": [
+      "universe_mean_mom20",
+      "universe_breadth20",
+      "universe_dispersion20",
+      "universe_median_vol20"
+    ],
+    "order": "family list order then ascending window",
+    "missing": "drop if nonfinite fraction > 0.20",
+    "correlation": "Per date use pairwise finite raw values, average-tie Spearman, minimum 100 pairs, both nonconstant. Equal-weight signed daily correlations then absolute value; drop at >= 0.95 before rounding. If valid dates <90% of training signal dates stop for review."
+  }
+}

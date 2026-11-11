@@ -1,0 +1,13 @@
+{
+  "new_fits": 8,
+  "completed": 8,
+  "ledger_sha256": "2e81a63059366518be4bc76fb541796a498cf9ef53f102ea9331298f912a5c0c",
+  "daily_ic_verified": 392,
+  "bootstrap": {
+    "type": "circular block",
+    "block_signal_dates": 10,
+    "replications": 2000,
+    "seed": 20261110
+  },
+  "development_end": "2021-12-31"
+}
