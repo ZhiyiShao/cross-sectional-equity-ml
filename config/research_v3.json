@@ -1,0 +1,52 @@
+{
+  "drafted_on": "2026-11-10",
+  "status": "frozen",
+  "frozen_on": "2026-11-10",
+  "protocol": "docs/RESEARCH_V3.md",
+  "basis": ["results/parameter_robustness_v2/README.md", "config/research_v2.json", "config/crsp_query.json"],
+  "counts_at_drafting": {"fits": 0, "predictions": 0, "backtest_paths": 0, "downloads": 0, "seen_period_performance_reads": 0},
+  "partitions": {
+    "warmup": ["2014-01-01", "2014-12-31"],
+    "development": ["2015-01-01", "2021-12-31"],
+    "seen": ["2022-01-01", "2025-12-31"],
+    "unseen": ["2026-01-01", "2026-12-31"]
+  },
+  "seen_period_rules": "No labels, predictions, holdings or performance for 2022-2025 may be read during V3 development, including existing V1/V2 result files. One replay only, after the final V3 configuration is frozen, always labelled seen-period replay. Replay results may not change the configuration.",
+  "unseen_period": {
+    "local_data_last_date_verified": "2025-12-31",
+    "data_on_disk": false,
+    "acquisition": "User submits the WRDS query manually with fields identical to config/crsp_query.json. No download or read before all stages finish, the final configuration, baseline list and evaluation rules are hashed, and the user explicitly authorizes it.",
+    "vintage_check": "Before reading any 2026 row, compare the 2025 overlap between the old and new vintages (row counts, keys, return fields); decide handling before viewing 2026 performance. Research data through 2025 stays on the old vintage.",
+    "evaluated_models": ["v3_final", "raw__ridge_03", "cross_sectional_rank__lightgbm_10", "v2_enhanced_ridge_alpha_1000", "momentum_20", "universe_equal_weight"],
+    "training_cutoff": {"primary": "Refit every evaluated model with its frozen configuration on 2015-2025, label_end_date <= 2025-12-31; new fits logged separately, originals untouched.", "secondary": "Models trained through 2021 only."},
+    "metrics": {"prediction_primary": "Mean per-signal-date Rank IC on y_excess_5d and paired difference of v3_final minus best fixed baseline", "portfolio_primary": "Annualized arithmetic mean of daily net return minus same-path universe equal weight, 10 bps per side", "portfolio_condition": "Reported only if 2026 corporate-action and settlement ledgers pass the same verification as 2020-2025"},
+    "runs": 1,
+    "interpretation": "About 50 five-day signal dates. Cannot confirm or reject IC differences of order 0.01. Describe only direction relative to development and the interval; never 'significant' or 'validated'. No evaluation period added or dropped based on results.",
+    "deadline": "WRDS access expected to end after graduation in May 2027. If 2026 data is not obtained by then, record the evaluation as not executed; no substitute period."
+  },
+  "development_windows": [
+    {"id": "W1", "train": ["2015-01-01", "2017-12-31"], "evaluate": ["2018-01-01", "2018-12-31"]},
+    {"id": "W2", "train": ["2015-01-01", "2018-12-31"], "evaluate": ["2019-01-01", "2019-12-31"], "reuse": "Same definition as V2 window 1; reuse only after verification."},
+    {"id": "W3", "train": ["2015-01-01", "2019-12-31"], "evaluate": ["2020-01-01", "2020-12-31"], "reuse": "Training set identical to V2 window 2; reuse its verified predictions restricted to 2020 signal dates with label_end_date <= 2020-12-31. Amended 2026-11-10."},
+    {"id": "W4", "train": ["2015-01-01", "2020-12-31"], "evaluate": ["2021-01-01", "2021-12-31"]}
+  ],
+  "boundary": "Training label_end_date must not exceed train end; evaluation label_end_date must not exceed evaluation end; preprocessing fitted on training only. Equal weight per signal date within a window, then equal weight across the four windows.",
+  "selection": "Mean Rank IC on y_excess_5d across four windows; exact ties choose the earlier pre-ordered configuration. Evaluation calendar stays on the original every-fifth-day signal dates.",
+  "adoption_rule": "A stage winner replaces the previous configuration only if its four-window mean Rank IC is higher AND it is higher in at least three of four windows. Otherwise keep the previous configuration and report the rejected result. Intervals are reported, not used as a gate.",
+  "bootstrap": {"type": "circular block", "block_signal_dates": 10, "replications": 2000, "seed": 20261110},
+  "stages": [
+    {"id": "0a", "name": "baseline_rebuild", "max_fits": 18, "content": "Rebuild the six V2 selected designs on four windows using the existing five-day dataset and V2 feature and preprocessing rules. Amended 2026-11-10: W2 and W3 reuse verified V2 robustness predictions, so only W1 and W4 are fitted (12 planned fits; the cap stays 18). Details in config/baseline_v3.json."},
+    {"id": "0b", "name": "daily_training_contrast", "max_fits": 8, "content": "Ridge 33 and LightGBM regression 33 on four windows trained on daily cross-sections. Requires the research_v3 daily dataset; existing dataset verified at freeze to hold 554 signal dates at a five-trading-day step with no daily rows."},
+    {"id": "A", "name": "feature_library", "max_fits": 96, "content": "Up to 120 new price-volume features from fields in config/crsp_query.json only; list frozen in config/features_v3.json before any fit; label-free screening only; neutralized representation; similar-stock features restricted to information up to the signal date. Max lookback 252 trading days."},
+    {"id": "B", "name": "targets", "max_fits": 96, "content": "Horizons 1/5/10/20, residualized returns, cross-sectional rank targets. Evaluation always on y_excess_5d."},
+    {"id": "C", "name": "models_ensemble", "max_fits": 120, "content": "MLP trained in per-date batches without early stopping, seed-averaged LightGBM, equal-weight rank averaging only. No sequence models."},
+    {"id": "D", "name": "portfolio", "max_fits": 0, "max_backtest_paths": 24, "content": "Turnover penalty and PCA statistical risk model on top of V2 constraints; evaluated on 2020-2021 only; does not feed back into model selection."},
+    {"id": "E", "name": "synthesis", "max_fits": 0, "content": "Cumulative trial count from V1/V2/V3 ledgers, deflated Sharpe, freeze final configuration with hashes."}
+  ],
+  "total_max_new_fits": 338,
+  "stage_freeze": "Each stage's full feature list and parameter grid must be frozen before that stage's first fit. Failed or interrupted fits consume budget.",
+  "isolation": {"new_dirs": ["data/processed/research_v3", "outputs/v3_*", "results/v3_*"], "overwrite": "refuse if non-empty", "protected": "V1/V2 code outputs, models, results and frozen configs unchanged; verify sizes, mtimes and hashes before and after."},
+  "out_of_scope": ["nyanp Optiver reproduction (paused, files kept)", "A-share transfer test (separate protocol)", "fundamental or alternative data", "sequence deep models", "live or paper trading"],
+  "authorization": "This protocol authorizes no download, training, backtest, commit or external sending. Each stage needs an explicit user instruction at the time.",
+  "confirmed_by_user_on": "2026-11-10", "confirmed_items": ["four yearly walk-forward windows", "2026 full year as the only unseen period with 2015-2025 refit as primary", "stage fit caps and adoption rule", "daily-cross-section training as a stage 0 sub-question", "pause nyanp reproduction"]
+}

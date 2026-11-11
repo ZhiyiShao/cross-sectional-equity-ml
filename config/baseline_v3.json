@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "experiment_id": "baseline_v3",
+  "stage": "0a",
+  "frozen_on": "2026-11-10",
+  "status": "plan_frozen_not_executed",
+  "protocol": "docs/BASELINE_V3.md",
+  "parent": "config/research_v3.json",
+  "v2_plan": "config/parameter_robustness_v2.json",
+  "selection_source": "results/parameter_robustness_v2/selection.csv",
+  "source_sha256": {
+    "config/research_v3.json": "7da62b2abbbff7e46604554aa192cc0157c32a47364556f57aacf897e1a9c3f4",
+    "config/parameter_robustness_v2.json": "80cb1d87d2f540ea814f612548200b652b883922a0c3c52c7a968718f80b330e",
+    "results/parameter_robustness_v2/selection.csv": "75d67593fac24dbaf47dc10d14ad5fb5fc7c6bf12066cefd1fd05c8a8cde4c36",
+    "config/features_labels.json": "39f156a5d649b1b6786f77a560d085852f493f4003939c87749b045a6c74d663",
+    "config/context_features_v2.json": "b6a4ae875b79abde39c5b870f63e83499f0c62404b5105277c8a385759a99e50"
+  },
+  "selected": {
+    "ridge_original": "R02",
+    "ridge_enhanced": "R02",
+    "lightgbm_original": "L06",
+    "lightgbm_enhanced": "L03",
+    "ranker_original": "L03",
+    "ranker_enhanced": "L00"
+  },
+  "selected_note": "Development-period selections of the V2 parameter robustness study. They are the fixed V3 baseline; stage 0a selects nothing.",
+  "fit_windows": ["W1", "W4"],
+  "reuse": {
+    "W2": {"v2_window": 1},
+    "W3": {"v2_window": 2}
+  },
+  "reuse_rule": "The V2 window must have the same training interval and the same evaluation start. Stored predictions, summary and daily IC are verified against the V2 run ledger and independently recomputed before use. Evaluation is restricted to the V3 window: signal dates inside it and label_end_date not after its end. A signal date kept only in part stops the run.",
+  "snapshot": "outputs/context_selection_v2/development_features_local.parquet",
+  "preprocessing": {
+    "raw_clip_quantiles": [0.005, 0.995],
+    "rank_clip_bounds": [-0.5, 0.5],
+    "rule": "Identical to V2: Ridge uses raw values with training-only clipping, median fill and population scaling; tree models use same-date cross-sectional ranks of the 21 original features; the 12 context features always use raw training-only clipping, fill and scaling. States are fitted on each window's training rows only and independently rechecked."
+  },
+  "estimators": "Fixed parameters, seeds and ranking settings are taken unchanged from config/parameter_robustness_v2.json. No early stopping, no seed search, no additional candidates.",
+  "budget": {
+    "max_new_fit_calls": 12,
+    "reused_window_results": 12,
+    "total_window_results": 24,
+    "protocol_stage_cap": 18,
+    "final_refits": 0,
+    "portfolio_backtests": 0,
+    "failed_calls_consume_budget": true,
+    "automatic_retries": false
+  },
+  "evaluation": {
+    "metric": "Per-signal-date Spearman Rank IC on continuous y_excess_5d, equal weight per date within a window, then equal weight across the four windows",
+    "outputs": ["window_metrics.csv", "baseline_summary.csv", "daily_ic.csv", "verification.json"],
+    "selection": "none"
+  },
+  "isolation": {
+    "data_end_exclusive": "2022-01-01",
+    "seen_period_reads": 0,
+    "unseen_period_reads": 0,
+    "metadata_before_targets": true,
+    "targets_bounded_by_window_end": true
+  },
+  "outputs": {
+    "local": "outputs/v3_baseline",
+    "public": "results/v3_baseline",
+    "overwrite_existing_run": false,
+    "resume": "Only verified completed tasks are skipped; failed or interrupted fits are never retried automatically."
+  }
+}
